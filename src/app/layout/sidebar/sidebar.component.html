@@ -1,168 +1,54 @@
-<div id="adminmenumain" role="navigation" aria-label="فهرست اصلی">
+<div id="adminmenumain" role="navigation" [attr.aria-label]="menuModel.menuName">
   <div id="adminmenuback"></div>
   <div id="adminmenuwrap">
     <ul id="adminmenu">
+      <ng-container *ngFor="let menuGroup of menuModel.menuGroups;let groupIndex= index">
+      <li *ngFor="let item of menuGroup;let index= index" 
+      [class]="item.addClass"
+      (mouseenter)="item.isOpen = true"
+      (mouseleave)="item.isOpen = false"
+      [routerLinkActive]="item.children.length ? 'wp-has-current-submenu wp-menu-open' : 'current'" 
+      #routerLinkActiveEx1="routerLinkActive"
+        [ngClass]="{ 'menu-top': true, 'wp-not-current-submenu': !routerLinkActiveEx1.isActive && item.children.length, 'wp-has-submenu': item.children.length, 'open-sub': item.isOpen, 'wp-first-item':index === 0}">
+        <a 
+        [routerLink]="[item.routerLink]"
+        [routerLinkActive]="item.children.length ? 'wp-has-current-submenu wp-menu-open' : 'current'" 
+        #routerLinkActiveEx="routerLinkActive"
+        [ngClass]="{ 'menu-top': true, 'wp-not-current-submenu': !routerLinkActiveEx.isActive && item.children.length, 'wp-has-submenu': item.children.length, 'open-sub': item.isOpen, 'wp-first-item':index === 0}"
+          [attr.aria-haspopup]="item.children.length">
+          <div class="wp-menu-image dashicons-before" [class]="item.icon" 
+            [attr.aria-hidden]="!item.isOpen"></div>
+          <div class="wp-menu-name">{{item.name}}<span class="menu-counter" *ngIf="item.badge as badge">{{badge}}</span></div>
+        </a>
+        <ul *ngIf="item.children.length"
+        [ngClass]="{ 'wp-submenu wp-submenu-wrap': true, 'sub-open': item.isOpen}">
+     
+          <li class="wp-submenu-head" [attr.aria-hidden]="!item.isOpen">{{item.name}}<span class="menu-counter" *ngIf="item.badge as badge">{{badge}}</span></li>
+          <li 
+          *ngFor="let child of item.children;let childIndex= index"
+          [ngClass]="{'wp-first-item': childIndex === 0}"
+          [routerLinkActive]="['current', child.routerLinkActive]" 
+          >
+            <a 
+            (focus)="item.isOpen = true" (blur)="item.isOpen = false"
+            [routerLink]="[child.routerLink]"
+            [routerLinkActive]="['current', child.routerLinkActive]" 
+            [ngClass]="{'wp-first-item': childIndex === 0 }"
+            >{{child.name}}<span class="menu-counter" *ngIf="child.badge as badge">{{badge}}</span></a>
+          </li>
 
-      <li class="wp-first-item wp-has-submenu wp-not-current-submenu menu-top
-        menu-top-first menu-icon-dashboard menu-top-last" id="menu-dashboard">
-        <a href="index.php" class="wp-first-item wp-has-submenu
-          wp-not-current-submenu menu-top menu-top-first menu-icon-dashboard
-          menu-top-last" aria-haspopup="true"><div
-            class="wp-menu-image dashicons-before dashicons-dashboard"
-            aria-hidden="true"></div><div class="wp-menu-name">پیشخوان</div></a>
-        <ul class="wp-submenu wp-submenu-wrap"><li class="wp-submenu-head"
-            aria-hidden="true">پیشخوان</li><li class="wp-first-item"><a
-              href="index.php" class="wp-first-item">خانه</a></li><li><a
-              href="update-core.php">به‌روزرسانی‌ها</a></li></ul>
+        </ul>
       </li>
-      <!-- -------------------------- -->
-      <li class="wp-not-current-submenu wp-menu-separator" aria-hidden="true"><div
-          class="separator"></div>
+      <li *ngIf="groupIndex != menuModel.menuGroups.length - 1" class="wp-not-current-submenu wp-menu-separator" aria-hidden="true">
+        <div class="separator"></div>
       </li>
-      <!-- -------------------------- -->
-      <li class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-post
-        open-if-no-js menu-top-first open-sub" id="menu-posts">
-        <a href="edit.php" class="wp-has-submenu wp-not-current-submenu
-          menu-top menu-icon-post open-if-no-js menu-top-first"
-          aria-haspopup="true"><div
-            class="wp-menu-image dashicons-before dashicons-admin-post"
-            aria-hidden="true"></div><div class="wp-menu-name">نوشته‌ها</div></a>
-        <ul class="wp-submenu wp-submenu-wrap sub-open"><li class="wp-submenu-head"
-            aria-hidden="true">نوشته‌ها</li><li class="wp-first-item"><a
-              href="edit.php" class="wp-first-item">همهٔ نوشته‌ها</a></li><li><a
-              href="post-new.php">افزودن نوشته</a></li><li><a
-              href="edit-tags.php?taxonomy=category">دسته‌ها</a></li><li><a
-              href="edit-tags.php?taxonomy=post_tag">برچسب‌ها</a></li></ul>
+    </ng-container>
+      <li id="collapse-menu">
+        <button type="button" id="collapse-button" [attr.aria-label]="menuModel.collapseLable" aria-expanded="false">
+          <span class="collapse-button-icon" aria-hidden="true"></span>
+            <span class="collapse-button-label">{{menuModel.collapseLable}}</span>
+          </button>
       </li>
-      <!-- -------------------------- -->
-      <li class="wp-has-submenu wp-not-current-submenu menu-top
-        menu-icon-media" id="menu-media">
-        <a href="upload.php" class="wp-has-submenu wp-not-current-submenu
-          menu-top menu-icon-media" aria-haspopup="true"><div class="wp-menu-image
-            dashicons-before dashicons-admin-media" aria-hidden="true"></div><div
-            class="wp-menu-name">رسانه</div></a>
-        <ul class="wp-submenu wp-submenu-wrap"><li class="wp-submenu-head"
-            aria-hidden="true">رسانه</li><li class="wp-first-item"><a
-              href="upload.php" class="wp-first-item">کتابخانه</a></li><li><a
-              href="media-new.php">افزودن جدید</a></li></ul>
-      </li>
-      <!-- -------------------------- -->
-      <li class="wp-has-submenu wp-not-current-submenu menu-top
-        menu-icon-page" id="menu-pages">
-        <a href="edit.php?post_type=page" class="wp-has-submenu
-          wp-not-current-submenu menu-top menu-icon-page"
-          aria-haspopup="true"><div
-            class="wp-menu-image dashicons-before dashicons-admin-page"
-            aria-hidden="true"></div><div class="wp-menu-name">برگه‌ها</div></a>
-        <ul class="wp-submenu wp-submenu-wrap"><li class="wp-submenu-head"
-            aria-hidden="true">برگه‌ها</li><li class="wp-first-item"><a
-              href="edit.php?post_type=page" class="wp-first-item">همهٔ
-              برگه‌ها</a></li><li><a href="post-new.php?post_type=page">افزودن
-              جدید</a></li></ul>
-      </li>
-      <!-- -------------------------- -->
-      <li class="wp-not-current-submenu menu-top menu-icon-comments
-        menu-top-last" id="menu-comments">
-        <a href="edit-comments.php" class="wp-not-current-submenu menu-top
-          menu-icon-comments menu-top-last"><div
-            class="wp-menu-image dashicons-before dashicons-admin-comments"
-            aria-hidden="true"></div><div class="wp-menu-name">دیدگاه‌ها
-           </div></a>
-      </li>
-      <!-- -------------------------- -->
-      <li class="wp-not-current-submenu wp-menu-separator" aria-hidden="true"><div
-          class="separator"></div>
-      </li>
-      <!-- -------------------------- -->
-      <li class="wp-has-submenu wp-not-current-submenu menu-top
-        menu-icon-appearance menu-top-first" id="menu-appearance">
-        <a href="themes.php" class="wp-has-submenu wp-not-current-submenu
-          menu-top menu-icon-appearance menu-top-first" aria-haspopup="true"><div class="wp-menu-image
-            dashicons-before dashicons-admin-appearance" aria-hidden="true"></div><div
-            class="wp-menu-name">نمایش</div></a>
-        <ul class="wp-submenu wp-submenu-wrap"><li class="wp-submenu-head"
-            aria-hidden="true">نمایش</li><li class="wp-first-item"><a
-              href="themes.php" class="wp-first-item">پوسته <span
-                class="update-plugins count-0"><span class="theme-count">0</span></span></a></li><li><a
-              href="site-editor.php">ویرایشگر <span class="awaiting-mod">آزمایشی</span></a></li></ul>
-      </li>
-      <!-- -------------------------- -->
-      <li class="wp-has-submenu wp-not-current-submenu menu-top
-        menu-icon-plugins" id="menu-plugins">
-        <a href="plugins.php" class="wp-has-submenu wp-not-current-submenu
-          menu-top menu-icon-plugins" aria-haspopup="true"><div class="wp-menu-image
-            dashicons-before dashicons-admin-plugins" aria-hidden="true"></div><div
-            class="wp-menu-name">افزونه‌ها <span class="update-plugins
-              count-0"><span class="plugin-count">0</span></span></div></a>
-        <ul class="wp-submenu wp-submenu-wrap"><li class="wp-submenu-head"
-            aria-hidden="true">افزونه‌ها <span class="update-plugins count-0"><span
-                class="plugin-count">0</span></span></li><li
-            class="wp-first-item"><a href="plugins.php" class="wp-first-item">افزونه‌های
-              نصب‌شده</a></li><li><a href="plugin-install.php">افزودن</a></li></ul>
-      </li>
-      <!-- -------------------------- -->
-      <li class="wp-has-submenu wp-not-current-submenu menu-top
-        menu-icon-users" id="menu-users">
-        <a href="users.php" class="wp-has-submenu wp-not-current-submenu
-          menu-top menu-icon-users" aria-haspopup="true"><div class="wp-menu-image
-            dashicons-before dashicons-admin-users" aria-hidden="true"></div><div
-            class="wp-menu-name">کاربران</div></a>
-        <ul class="wp-submenu wp-submenu-wrap"><li class="wp-submenu-head"
-            aria-hidden="true">کاربران</li><li class="wp-first-item"><a
-              href="users.php" class="wp-first-item">همه کاربران</a></li><li><a
-              href="user-new.php">افزودن</a></li><li><a href="profile.php">شناسنامه</a></li></ul>
-      </li>
-      <!-- -------------------------- -->
-      <li [ngClass]="{'open-sub': isActive}" class="wp-has-submenu wp-not-current-submenu menu-top
-        menu-icon-tools" id="menu-tools">
-        <a href="tools.php" class="wp-has-submenu wp-not-current-submenu
-          menu-top menu-icon-tools" aria-haspopup="true"><div class="wp-menu-image
-            dashicons-before dashicons-admin-tools" aria-hidden="true"></div><div
-            class="wp-menu-name">ابزارها</div></a>
-        <ul class="wp-submenu wp-submenu-wrap" [ngClass]="{'sub-open': isActive}">
-          <li class="wp-submenu-head"
-            aria-hidden="true">ابزارها</li>
-            <li class="wp-first-item"><a (focus)="stayOpen()" (blur)="closeIt()"
-              href="tools.php" class="wp-first-item">ابزارهای دردسترس</a></li>
-              <li><a (focus)="stayOpen()" (blur)="closeIt()"
-              href="import.php">درون‌ریزی</a></li>
-              <li><a (focus)="stayOpen()" (blur)="closeIt()" href="export.php">برون‌بری</a></li>
-              <li><a (focus)="stayOpen()" (blur)="closeIt()"
-              href="site-health.php">سلامت سایت <span class="menu-counter
-                site-health-counter count-0"><span class="count">0</span></span></a></li><li><a (focus)="stayOpen()" (blur)="closeIt()"
-              href="export-personal-data.php">برون‌بری دادهٔ شخصی</a></li><li><a (focus)="stayOpen()" (blur)="closeIt()"
-              href="erase-personal-data.php">پاک‌سازی اطلاعات شخصی</a></li><li><a (focus)="stayOpen()" (blur)="closeIt()"
-              href="theme-editor.php">ویرایشگر پرونده پوسته</a></li><li><a (focus)="stayOpen()" (blur)="closeIt()"
-              href="plugin-editor.php">ویرایشگر پرونده افزونه</a></li></ul>
-      </li>
-      <!-- -------------------------- -->
-      <li class="wp-has-submenu wp-has-current-submenu wp-menu-open menu-top
-        menu-icon-settings menu-top-last" id="menu-settings">
-        <a href="options-general.php" class="wp-has-submenu
-          wp-has-current-submenu wp-menu-open menu-top menu-icon-settings
-          menu-top-last" aria-haspopup="true"><div
-            class="wp-menu-image dashicons-before dashicons-admin-settings"
-            aria-hidden="true"></div><div class="wp-menu-name">تنظیمات <span class="menu-counter">10</span></div></a>
-        <ul class="wp-submenu wp-submenu-wrap"><li class="wp-submenu-head"
-            aria-hidden="true">تنظیمات</li><li class="wp-first-item current"><a
-              href="options-general.php" class="wp-first-item current"
-              aria-current="page">عمومی</a></li><li><a
-              href="options-writing.php">نوشتن</a></li><li><a
-              href="options-reading.php">خواندن</a></li><li><a
-              href="options-discussion.php">گفت‌وگو</a></li><li><a
-              href="options-media.php">رسانه</a></li><li><a
-              href="options-permalink.php">پیوندهای یکتا</a></li><li><a
-              href="options-privacy.php">حریم خصوصی</a></li></ul>
-      </li>
-      <!-- -------------------------- -->
-      <li
-        id="collapse-menu" class="hide-if-no-js"><button type="button"
-          id="collapse-button" aria-label="باز شدن فهرست اصلی"
-          aria-expanded="false"><span class="collapse-button-icon"
-            aria-hidden="true"></span><span class="collapse-button-label">جمع
-            کردن فهرست</span></button>
-      </li>
-
     </ul>
   </div>
 </div>
