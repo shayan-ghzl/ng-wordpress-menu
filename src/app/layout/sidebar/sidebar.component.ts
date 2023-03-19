@@ -8,7 +8,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class SidebarComponent {
   constructor() {
-    // document.body.classList.add('ltr');
+    document.body.classList.add('rtl');
     // document.body.classList.add('sticky-menu');
     // document.body.classList.add('folded');
     // document.body.classList.add('no-js');

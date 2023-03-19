@@ -1,0 +1,178 @@
+.ltr #wpcontent {
+    margin-left: 160px;
+    padding-left: 20px;
+}
+
+.ltr #adminmenu {
+    clear: left;
+}
+
+.ltr.folded #wpcontent {
+    margin-left: 36px;
+}
+
+.ltr #adminmenuwrap {
+    float: left;
+}
+
+.ltr #adminmenu a:hover,
+.ltr #adminmenu a:focus,
+.ltr.folded #adminmenu .wp-submenu-head:hover {
+    box-shadow: inset 4px 0 0 0 currentColor;
+}
+
+.ltr #adminmenu .wp-submenu {
+    left: 160px;
+}
+
+.ltr.folded #adminmenu .wp-submenu.sub-open,
+.ltr.folded #adminmenu .open-sub .wp-submenu,
+.ltr.folded #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
+.ltr.folded #adminmenu .wp-has-current-submenu.open-sub .wp-submenu,
+.ltr.folded #adminmenu a.menu-top:focus+.wp-submenu,
+.ltr.folded #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu,
+.ltr.no-js.folded #adminmenu .wp-has-submenu:hover .wp-submenu {
+    left: 36px;
+}
+
+.ltr #adminmenu .wp-not-current-submenu .wp-submenu,
+.ltr.folded #adminmenu .wp-has-current-submenu .wp-submenu {
+    border-left: 5px solid transparent;
+}
+
+.ltr #adminmenu .wp-not-current-submenu li>a,
+.ltr.folded #adminmenu .wp-has-current-submenu li>a {
+    padding-right: 16px;
+    padding-left: 14px;
+}
+
+.ltr.folded #adminmenu .wp-menu-name {
+    left: -999px;
+}
+
+.ltr #adminmenu div.wp-menu-name {
+    padding: 8px 8px 8px 36px;
+}
+
+.ltr #adminmenu div.wp-menu-image {
+    float: left;
+}
+
+.ltr ul#adminmenu a.wp-has-current-submenu:after,
+.ltr ul#adminmenu>li.current>a.current:after {
+    right: 0;
+    border-right-color: #f0f0f1;
+}
+
+.ltr #adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after,
+.ltr #adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
+    right: 0;
+}
+
+.ltr #adminmenu .wp-submenu .wp-submenu-head {
+    padding: 5px 4px 5px 11px;
+    margin: -7px 0 4px -5px;
+    border-width: 3px 0 3px 5px;
+}
+
+.ltr #adminmenu .menu-counter,
+.ltr #adminmenu .awaiting-mod {
+    margin: 1px 0 -1px 6px;
+}
+
+.ltr #collapse-button .collapse-button-icon,
+.ltr #collapse-button .collapse-button-label {
+    left: 0;
+}
+
+.ltr #collapse-button .collapse-button-label {
+    padding: 0 0 0 36px;
+}
+
+@media only screen and (max-width: 960px) {
+    .ltr.auto-fold #wpcontent {
+        margin-left: 36px;
+    }
+
+    .ltr.auto-fold #adminmenu .wp-submenu.sub-open,
+    .ltr.auto-fold #adminmenu .open-sub .wp-submenu,
+    .ltr.auto-fold #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
+    .ltr.auto-fold #adminmenu .wp-has-current-submenu.open-sub .wp-submenu,
+    .ltr.auto-fold #adminmenu a.menu-top:focus+.wp-submenu,
+    .ltr.auto-fold #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu {
+        left: 36px;
+    }
+
+    .ltr.auto-fold #adminmenu a.wp-has-current-submenu:focus+.wp-submenu,
+    .ltr.auto-fold #adminmenu .wp-has-current-submenu .wp-submenu {
+        margin-right: -1px;
+    }
+
+    .ltr.auto-fold #adminmenu .wp-has-current-submenu li>a {
+        padding-right: 16px;
+        padding-left: 14px;
+    }
+
+    .ltr.auto-fold #adminmenu li.menu-top .wp-submenu>li>a {
+        padding-left: 12px;
+    }
+
+    .ltr.auto-fold #adminmenu .wp-menu-name {
+        left: -999px;
+    }
+}
+
+@media (min-width: 782px) {
+    body.ltr.is-fullscreen-mode #wpcontent {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 782px) {
+    .ltr.auto-fold #wpcontent {
+        margin-left: 0;
+        padding-left: 10px;
+    }
+
+    .ltr.auto-fold #adminmenu li.menu-top .wp-submenu>li>a {
+        padding: 10px 10px 10px 20px;
+    }
+
+    .ltr.auto-fold #adminmenu .selected .wp-submenu,
+    .ltr.auto-fold #adminmenu .wp-menu-open .wp-submenu {
+        left: -1px;
+    }
+
+    .ltr.auto-fold #adminmenu a.menu-top:focus+.wp-submenu,
+    .ltr.auto-fold #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu {
+        left: -1px;
+        right: 0;
+    }
+
+    .ltr #adminmenu .wp-not-current-submenu .wp-submenu,
+    .ltr.folded #adminmenu .wp-has-current-submenu .wp-submenu {
+        border-left: none;
+    }
+
+    .ltr #wp-responsive-toggle {
+        left: 4px;
+        padding-right: 10px;
+    }
+
+    .ltr #wpadminbar #wp-admin-bar-menu-toggle a {
+        margin-left: -1px;
+    }
+
+    .ltr #wpadminbar #wp-admin-bar-menu-toggle .ab-icon:before {
+        float: left;
+    }
+
+    .ltr.wp-responsive-open #wpbody {
+        right: -16em;
+    }
+}
+
+.ltr.focus-on #adminmenuback,
+.ltr.focus-on #adminmenuwrap {
+    transform: translateX(-100%);
+}

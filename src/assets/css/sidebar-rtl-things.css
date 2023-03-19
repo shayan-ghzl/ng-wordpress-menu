@@ -1,0 +1,178 @@
+.rtl #wpcontent {
+    margin-right: 160px;
+    padding-right: 20px;
+}
+
+.rtl #adminmenu {
+    clear: right;
+}
+
+.rtl.folded #wpcontent {
+    margin-right: 36px;
+}
+
+.rtl #adminmenuwrap {
+    float: right;
+}
+
+.rtl #adminmenu a:hover,
+.rtl #adminmenu a:focus,
+.rtl.folded #adminmenu .wp-submenu-head:hover {
+    box-shadow: inset -4px 0 0 0 currentColor;
+}
+
+.rtl #adminmenu .wp-submenu {
+    right: 160px;
+}
+
+.rtl.folded #adminmenu .wp-submenu.sub-open,
+.rtl.folded #adminmenu .open-sub .wp-submenu,
+.rtl.folded #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
+.rtl.folded #adminmenu .wp-has-current-submenu.open-sub .wp-submenu,
+.rtl.folded #adminmenu a.menu-top:focus+.wp-submenu,
+.rtl.folded #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu,
+.rtl.no-js.folded #adminmenu .wp-has-submenu:hover .wp-submenu {
+    right: 36px;
+}
+
+.rtl #adminmenu .wp-not-current-submenu .wp-submenu,
+.rtl.folded #adminmenu .wp-has-current-submenu .wp-submenu {
+    border-right: 5px solid transparent;
+}
+
+.rtl #adminmenu .wp-not-current-submenu li>a,
+.rtl.folded #adminmenu .wp-has-current-submenu li>a {
+    padding-left: 16px;
+    padding-right: 14px;
+}
+
+.rtl.folded #adminmenu .wp-menu-name {
+    right: -999px;
+}
+
+.rtl #adminmenu div.wp-menu-name {
+    padding: 8px 36px 8px 8px;
+}
+
+.rtl #adminmenu div.wp-menu-image {
+    float: right;
+}
+
+.rtl ul#adminmenu a.wp-has-current-submenu:after,
+.rtl ul#adminmenu>li.current>a.current:after {
+    left: 0;
+    border-left-color: #f0f0f1;
+}
+
+.rtl #adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after,
+.rtl #adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
+    left: 0;
+}
+
+.rtl #adminmenu .wp-submenu .wp-submenu-head {
+    padding: 5px 11px 5px 4px;
+    margin: -7px -5px 4px 0;
+    border-width: 3px 5px 3px 0;
+}
+
+.rtl #adminmenu .menu-counter,
+.rtl #adminmenu .awaiting-mod {
+    margin: 1px 6px -1px 0;
+}
+
+.rtl #collapse-button .collapse-button-icon,
+.rtl #collapse-button .collapse-button-label {
+    right: 0;
+}
+
+.rtl #collapse-button .collapse-button-label {
+    padding: 0 36px 0 0;
+}
+
+@media only screen and (max-width: 960px) {
+    .rtl.auto-fold #wpcontent {
+        margin-right: 36px;
+    }
+
+    .rtl.auto-fold #adminmenu .wp-submenu.sub-open,
+    .rtl.auto-fold #adminmenu .open-sub .wp-submenu,
+    .rtl.auto-fold #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
+    .rtl.auto-fold #adminmenu .wp-has-current-submenu.open-sub .wp-submenu,
+    .rtl.auto-fold #adminmenu a.menu-top:focus+.wp-submenu,
+    .rtl.auto-fold #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu {
+        right: 36px;
+    }
+
+    .rtl.auto-fold #adminmenu a.wp-has-current-submenu:focus+.wp-submenu,
+    .rtl.auto-fold #adminmenu .wp-has-current-submenu .wp-submenu {
+        margin-left: -1px;
+    }
+
+    .rtl.auto-fold #adminmenu .wp-has-current-submenu li>a {
+        padding-left: 16px;
+        padding-right: 14px;
+    }
+
+    .rtl.auto-fold #adminmenu li.menu-top .wp-submenu>li>a {
+        padding-right: 12px;
+    }
+
+    .rtl.auto-fold #adminmenu .wp-menu-name {
+        right: -999px;
+    }
+}
+
+@media (min-width: 782px) {
+    body.rtl.is-fullscreen-mode #wpcontent {
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 782px) {
+    .rtl.auto-fold #wpcontent {
+        margin-right: 0;
+        padding-right: 10px;
+    }
+
+    .rtl.auto-fold #adminmenu li.menu-top .wp-submenu>li>a {
+        padding: 10px 20px 10px 10px;
+    }
+
+    .rtl.auto-fold #adminmenu .selected .wp-submenu,
+    .rtl.auto-fold #adminmenu .wp-menu-open .wp-submenu {
+        right: -1px;
+    }
+
+    .rtl.auto-fold #adminmenu a.menu-top:focus+.wp-submenu,
+    .rtl.auto-fold #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu {
+        right: -1px;
+        left: 0;
+    }
+
+    .rtl #adminmenu .wp-not-current-submenu .wp-submenu,
+    .rtl.folded #adminmenu .wp-has-current-submenu .wp-submenu {
+        border-right: none;
+    }
+
+    .rtl #wp-responsive-toggle {
+        right: 4px;
+        padding-left: 10px;
+    }
+
+    .rtl #wpadminbar #wp-admin-bar-menu-toggle a {
+        margin-right: -1px;
+    }
+
+    .rtl #wpadminbar #wp-admin-bar-menu-toggle .ab-icon:before {
+        float: right;
+    }
+
+    .rtl.wp-responsive-open #wpbody {
+        left: -16em;
+    }
+}
+
+.rtl.focus-on #adminmenuback,
+.rtl.focus-on #adminmenuwrap {
+    transform: translateX(100%);
+}
