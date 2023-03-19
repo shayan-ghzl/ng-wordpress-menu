@@ -7,6 +7,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
 })
 export class SidebarComponent {
+  
   constructor() {
     document.body.classList.add('rtl');
     // document.body.classList.add('sticky-menu');
@@ -24,7 +25,6 @@ export class SidebarComponent {
     // document.body.classList.add('menu-over-content');
   }
 
-  stayOpen(){}
-  closeIt(){}
+
 
 }
