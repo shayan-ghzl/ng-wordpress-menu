@@ -423,4 +423,43 @@ export class SidebarComponent {
     this.isActive = false;
   }
 
+
+  getViewportWidth() {
+    let viewportWidth: boolean | number = false;
+
+    if (window.innerWidth) {
+      // On phones, window.innerWidth is affected by zooming.
+      viewportWidth = Math.max(window.innerWidth, document.documentElement.clientWidth);
+    }
+
+    return viewportWidth;
+  }
+
+  toggleMenu(){
+    console.log(this.getViewportWidth());
+    let viewportWidth = this.getViewportWidth() || 961;
+    console.log(viewportWidth);
+
+
+
+    if ( viewportWidth <= 960 ) {
+			if ( document.body.classList.contains('auto-fold') ) {
+				document.body.classList.remove('auto-fold');
+				document.body.classList.remove('folded');
+				// menuState = 'open';
+			} else {
+				document.body.classList.add('auto-fold');
+				// menuState = 'folded';
+			}
+		} else {
+			if ( document.body.classList.contains('folded') ) {
+				document.body.classList.remove('folded');
+				// menuState = 'open';
+			} else {
+        document.body.classList.add('folded');
+				// menuState = 'folded';
+			}
+		}
+  }
+
 }
