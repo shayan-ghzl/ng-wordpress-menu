@@ -404,25 +404,17 @@ export class SidebarComponent {
     // document.body.classList.add('folded');
     // document.body.classList.add('auto-fold');
     // document.body.classList.add('no-js');
-    // document.body.classList.add('ltr');
     // document.body.classList.add('menu-over-content');
-    // document.body.classList.add('sticky-menu');
+    // document.body.classList.add('wp-responsive-open');
+    document.body.classList.add('rtl');
+    document.body.classList.add('sticky-menu');
     // document.body.classList.add('upper-space');
     // document.body.classList.add('focus-off');
     // document.body.classList.add('focus-on');
-    // document.body.classList.add('wp-responsive-open');
     // document.body.classList.add('is-fullscreen-mode');
     // document.body.classList.add('sub-open');
     // document.body.classList.add('opensub');
   }
-
-  stayOpen() {
-    this.isActive = true;
-  }
-  closeIt() {
-    this.isActive = false;
-  }
-
 
   getViewportWidth() {
     let viewportWidth: boolean | number = false;
@@ -435,31 +427,17 @@ export class SidebarComponent {
     return viewportWidth;
   }
 
-  toggleMenu(){
-    console.log(this.getViewportWidth());
+  toggleMenu() {
     let viewportWidth = this.getViewportWidth() || 961;
-    console.log(viewportWidth);
 
-
-
-    if ( viewportWidth <= 960 ) {
-			if ( document.body.classList.contains('auto-fold') ) {
-				document.body.classList.remove('auto-fold');
-				document.body.classList.remove('folded');
-				// menuState = 'open';
-			} else {
-				document.body.classList.add('auto-fold');
-				// menuState = 'folded';
-			}
-		} else {
-			if ( document.body.classList.contains('folded') ) {
-				document.body.classList.remove('folded');
-				// menuState = 'open';
-			} else {
-        document.body.classList.add('folded');
-				// menuState = 'folded';
-			}
-		}
+    if (viewportWidth <= 960) {
+      if (document.body.classList.contains('auto-fold')) {
+        document.body.classList.remove('folded');
+      }
+      document.body.classList.toggle('auto-fold');
+    } else {
+      document.body.classList.toggle('folded')
+    }
   }
 
 }
