@@ -814,7 +814,7 @@ li#wp-admin-bar-menu-toggle {
 
 }
 
-@media (min-width: 782px) {
+@media screen and (min-width: 782px) {
 	body.is-fullscreen-mode #adminmenumain {
 		display: none;
 	}
@@ -908,6 +908,10 @@ li#wp-admin-bar-menu-toggle {
 	.auto-fold ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
 		display: none;
 	}
+
+	#collapse-menu{
+        display: none;
+    }
 
 	/* Make the submenus appear correctly when tapped. */
 	#adminmenu .wp-submenu {

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,6 +7,8 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
 })
 export class SidebarComponent {
+
+  @Output() onMenuToggle = new EventEmitter<boolean>();
 
   menuModel = {
     'menuName': 'فهرست اصلی',
@@ -398,16 +400,15 @@ export class SidebarComponent {
       ],
   };
 
-
-  isActive = false;
   constructor() {
     // document.body.classList.add('folded');
-    // document.body.classList.add('auto-fold');
+    document.body.classList.add('auto-fold');
     // document.body.classList.add('no-js');
     // document.body.classList.add('menu-over-content');
-    // document.body.classList.add('wp-responsive-open');
     document.body.classList.add('rtl');
     document.body.classList.add('sticky-menu');
+    // this will open menu in max-width:600px by toggle button
+    // document.body.classList.add('wp-responsive-open');
     // document.body.classList.add('upper-space');
     // document.body.classList.add('focus-off');
     // document.body.classList.add('focus-on');
@@ -428,8 +429,8 @@ export class SidebarComponent {
   }
 
   toggleMenu() {
+    this.onMenuToggle.emit(true);
     let viewportWidth = this.getViewportWidth() || 961;
-
     if (viewportWidth <= 960) {
       if (document.body.classList.contains('auto-fold')) {
         document.body.classList.remove('folded');
@@ -439,5 +440,7 @@ export class SidebarComponent {
       document.body.classList.toggle('folded')
     }
   }
+
+  
 
 }

@@ -1,15 +1,405 @@
 <div id="wpcontent">
   <!-- primary menu here -->
-  <!-- <div id="wpadminbar" class="nojq">
-
+  <!-- <div id="wpadminbar">
   </div> -->
+  
+   <!-- <div id="wpadminbar">
+    <button type="button" class="" id="wp-admin-bar-menu-toggle" (click)="openMenu()">
+      <span class="dashicons-before dashicons-menu" aria-hidden="true"></span>
+    </button> 
+  </div>  -->
+
+  <div id="wpadminbar" class="nojq">
+    <div class="quicklinks" id="wp-toolbar" role="navigation" aria-label="نوار ابزار">
+      <ul id="wp-admin-bar-root-default" class="ab-top-menu">
+        <li id="wp-admin-bar-menu-toggle">
+          <a class="ab-item" href="#" aria-expanded="true" (click)="openMenu()">
+            <span class="ab-icon" aria-hidden="true"></span>
+            <span class="screen-reader-text">فهرست</span>
+          </a>
+        </li>
+      </ul>
+      <ul id="wp-admin-bar-top-secondary" class="ab-top-secondary ab-top-menu">
+        <li id="wp-admin-bar-my-account" class="menupop with-avatar">
+          <a class="ab-item" aria-haspopup="true" href="#">
+            سلام
+            <span class="display-name">admin</span>
+            <img alt="" src="" class="avatar avatar-26 photo" height="26" width="26" loading="lazy" decoding="async">
+          </a>
+          <div class="ab-sub-wrapper">
+            <ul id="wp-admin-bar-user-actions" class="ab-submenu">
+              <li id="wp-admin-bar-user-info">
+                <a class="ab-item" tabindex="-1" href="#">
+                  <img alt="" src="" class="avatar avatar-64 photo" height="64" width="64" loading="lazy" decoding="async">
+                  <span class="display-name">admin</span>
+                </a>
+              </li>
+              <li id="wp-admin-bar-edit-profile">
+                <a class="ab-item" href="#">
+                  ویرایش شناسنامه
+                </a>
+              </li>
+              <li id="wp-admin-bar-logout">
+                <a class="ab-item" href="#">
+                  بیرون رفتن
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 
   <div id="wpbody" role="main">
 
     <div id="wpbody-content">
 
       <h1>Hello world</h1>
-
+      <div class="svg-container">
+        <svg class="icon-test"><use xlink:href="#admin-appearance"/></svg>
+        <svg class="icon-test"><use xlink:href="#admin-collapse"/></svg>
+        <svg class="icon-test"><use xlink:href="#admin-comments"/></svg>
+        <svg class="icon-test"><use xlink:href="#admin-customizer"/></svg>
+        <svg class="icon-test"><use xlink:href="#admin-generic"/></svg>
+        <svg class="icon-test"><use xlink:href="#admin-home"/></svg>
+        <svg class="icon-test"><use xlink:href="#admin-links"/></svg>
+        <svg class="icon-test"><use xlink:href="#admin-media"/></svg>
+        <svg class="icon-test"><use xlink:href="#admin-multisite"/></svg>
+        <svg class="icon-test"><use xlink:href="#admin-network"/></svg>
+        <svg class="icon-test"><use xlink:href="#admin-page"/></svg>
+        <svg class="icon-test"><use xlink:href="#admin-plugins"/></svg>
+        <svg class="icon-test"><use xlink:href="#admin-post"/></svg>
+        <svg class="icon-test"><use xlink:href="#admin-settings"/></svg>
+        <svg class="icon-test"><use xlink:href="#admin-site-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#admin-site-alt2"/></svg>
+        <svg class="icon-test"><use xlink:href="#admin-site-alt3"/></svg>
+        <svg class="icon-test"><use xlink:href="#admin-site"/></svg>
+        <svg class="icon-test"><use xlink:href="#admin-tools"/></svg>
+        <svg class="icon-test"><use xlink:href="#admin-users"/></svg>
+        <svg class="icon-test"><use xlink:href="#airplane"/></svg>
+        <svg class="icon-test"><use xlink:href="#album"/></svg>
+        <svg class="icon-test"><use xlink:href="#align-center"/></svg>
+        <svg class="icon-test"><use xlink:href="#align-full-width"/></svg>
+        <svg class="icon-test"><use xlink:href="#align-left"/></svg>
+        <svg class="icon-test"><use xlink:href="#align-none"/></svg>
+        <svg class="icon-test"><use xlink:href="#align-pull-left"/></svg>
+        <svg class="icon-test"><use xlink:href="#align-pull-right"/></svg>
+        <svg class="icon-test"><use xlink:href="#align-right"/></svg>
+        <svg class="icon-test"><use xlink:href="#align-wide"/></svg>
+        <svg class="icon-test"><use xlink:href="#amazon"/></svg>
+        <svg class="icon-test"><use xlink:href="#analytics"/></svg>
+        <svg class="icon-test"><use xlink:href="#archive"/></svg>
+        <svg class="icon-test"><use xlink:href="#arrow-down-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#arrow-down-alt2"/></svg>
+        <svg class="icon-test"><use xlink:href="#arrow-down"/></svg>
+        <svg class="icon-test"><use xlink:href="#arrow-left-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#arrow-left-alt2"/></svg>
+        <svg class="icon-test"><use xlink:href="#arrow-left"/></svg>
+        <svg class="icon-test"><use xlink:href="#arrow-right-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#arrow-right-alt2"/></svg>
+        <svg class="icon-test"><use xlink:href="#arrow-right"/></svg>
+        <svg class="icon-test"><use xlink:href="#arrow-up-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#arrow-up-alt2"/></svg>
+        <svg class="icon-test"><use xlink:href="#arrow-up-duplicate"/></svg>
+        <svg class="icon-test"><use xlink:href="#arrow-up"/></svg>
+        <svg class="icon-test"><use xlink:href="#art"/></svg>
+        <svg class="icon-test"><use xlink:href="#awards"/></svg>
+        <svg class="icon-test"><use xlink:href="#backup"/></svg>
+        <svg class="icon-test"><use xlink:href="#bank"/></svg>
+        <svg class="icon-test"><use xlink:href="#beer"/></svg>
+        <svg class="icon-test"><use xlink:href="#bell"/></svg>
+        <svg class="icon-test"><use xlink:href="#block-default"/></svg>
+        <svg class="icon-test"><use xlink:href="#book-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#book"/></svg>
+        <svg class="icon-test"><use xlink:href="#buddicons-activity"/></svg>
+        <svg class="icon-test"><use xlink:href="#buddicons-bbpress-logo"/></svg>
+        <svg class="icon-test"><use xlink:href="#buddicons-buddypress-logo"/></svg>
+        <svg class="icon-test"><use xlink:href="#buddicons-community"/></svg>
+        <svg class="icon-test"><use xlink:href="#buddicons-forums"/></svg>
+        <svg class="icon-test"><use xlink:href="#buddicons-friends"/></svg>
+        <svg class="icon-test"><use xlink:href="#buddicons-groups"/></svg>
+        <svg class="icon-test"><use xlink:href="#buddicons-pm"/></svg>
+        <svg class="icon-test"><use xlink:href="#buddicons-replies"/></svg>
+        <svg class="icon-test"><use xlink:href="#buddicons-topics"/></svg>
+        <svg class="icon-test"><use xlink:href="#buddicons-tracking"/></svg>
+        <svg class="icon-test"><use xlink:href="#building"/></svg>
+        <svg class="icon-test"><use xlink:href="#businessman"/></svg>
+        <svg class="icon-test"><use xlink:href="#businessperson"/></svg>
+        <svg class="icon-test"><use xlink:href="#businesswoman"/></svg>
+        <svg class="icon-test"><use xlink:href="#button"/></svg>
+        <svg class="icon-test"><use xlink:href="#calculator"/></svg>
+        <svg class="icon-test"><use xlink:href="#calendar-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#calendar"/></svg>
+        <svg class="icon-test"><use xlink:href="#camera-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#camera"/></svg>
+        <svg class="icon-test"><use xlink:href="#car"/></svg>
+        <svg class="icon-test"><use xlink:href="#carrot"/></svg>
+        <svg class="icon-test"><use xlink:href="#cart"/></svg>
+        <svg class="icon-test"><use xlink:href="#category"/></svg>
+        <svg class="icon-test"><use xlink:href="#chart-area"/></svg>
+        <svg class="icon-test"><use xlink:href="#chart-bar"/></svg>
+        <svg class="icon-test"><use xlink:href="#chart-line"/></svg>
+        <svg class="icon-test"><use xlink:href="#chart-pie"/></svg>
+        <svg class="icon-test"><use xlink:href="#clipboard"/></svg>
+        <svg class="icon-test"><use xlink:href="#clock"/></svg>
+        <svg class="icon-test"><use xlink:href="#cloud-saved"/></svg>
+        <svg class="icon-test"><use xlink:href="#cloud-upload"/></svg>
+        <svg class="icon-test"><use xlink:href="#cloud"/></svg>
+        <svg class="icon-test"><use xlink:href="#code-standards"/></svg>
+        <svg class="icon-test"><use xlink:href="#coffee"/></svg>
+        <svg class="icon-test"><use xlink:href="#color-picker"/></svg>
+        <svg class="icon-test"><use xlink:href="#columns"/></svg>
+        <svg class="icon-test"><use xlink:href="#controls-back"/></svg>
+        <svg class="icon-test"><use xlink:href="#controls-forward"/></svg>
+        <svg class="icon-test"><use xlink:href="#controls-pause"/></svg>
+        <svg class="icon-test"><use xlink:href="#controls-play"/></svg>
+        <svg class="icon-test"><use xlink:href="#controls-repeat"/></svg>
+        <svg class="icon-test"><use xlink:href="#controls-skipback"/></svg>
+        <svg class="icon-test"><use xlink:href="#controls-skipforward"/></svg>
+        <svg class="icon-test"><use xlink:href="#controls-volumeoff"/></svg>
+        <svg class="icon-test"><use xlink:href="#controls-volumeon"/></svg>
+        <svg class="icon-test"><use xlink:href="#cover-image"/></svg>
+        <svg class="icon-test"><use xlink:href="#dashboard"/></svg>
+        <svg class="icon-test"><use xlink:href="#database-add"/></svg>
+        <svg class="icon-test"><use xlink:href="#database-export"/></svg>
+        <svg class="icon-test"><use xlink:href="#database-import"/></svg>
+        <svg class="icon-test"><use xlink:href="#database-remove"/></svg>
+        <svg class="icon-test"><use xlink:href="#database-view"/></svg>
+        <svg class="icon-test"><use xlink:href="#database"/></svg>
+        <svg class="icon-test"><use xlink:href="#desktop"/></svg>
+        <svg class="icon-test"><use xlink:href="#dismiss"/></svg>
+        <svg class="icon-test"><use xlink:href="#download"/></svg>
+        <svg class="icon-test"><use xlink:href="#drumstick"/></svg>
+        <svg class="icon-test"><use xlink:href="#edit-large"/></svg>
+        <svg class="icon-test"><use xlink:href="#edit-page"/></svg>
+        <svg class="icon-test"><use xlink:href="#edit"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-aligncenter"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-alignleft"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-alignright"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-bold"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-break"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-code-duplicate"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-code"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-contract"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-customchar"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-expand"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-help"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-indent"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-insertmore"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-italic"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-justify"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-kitchensink"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-ltr"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-ol-rtl"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-ol"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-outdent"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-paragraph"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-paste-text"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-paste-word"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-quote"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-removeformatting"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-rtl"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-spellcheck"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-strikethrough"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-table"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-textcolor"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-ul"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-underline"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-unlink"/></svg>
+        <svg class="icon-test"><use xlink:href="#editor-video"/></svg>
+        <svg class="icon-test"><use xlink:href="#ellipsis"/></svg>
+        <svg class="icon-test"><use xlink:href="#email-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#email-alt2"/></svg>
+        <svg class="icon-test"><use xlink:href="#email"/></svg>
+        <svg class="icon-test"><use xlink:href="#embed-audio"/></svg>
+        <svg class="icon-test"><use xlink:href="#embed-generic"/></svg>
+        <svg class="icon-test"><use xlink:href="#embed-photo"/></svg>
+        <svg class="icon-test"><use xlink:href="#embed-post"/></svg>
+        <svg class="icon-test"><use xlink:href="#embed-video"/></svg>
+        <svg class="icon-test"><use xlink:href="#excerpt-view"/></svg>
+        <svg class="icon-test"><use xlink:href="#exit"/></svg>
+        <svg class="icon-test"><use xlink:href="#external"/></svg>
+        <svg class="icon-test"><use xlink:href="#facebook-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#facebook"/></svg>
+        <svg class="icon-test"><use xlink:href="#feedback"/></svg>
+        <svg class="icon-test"><use xlink:href="#filter"/></svg>
+        <svg class="icon-test"><use xlink:href="#flag"/></svg>
+        <svg class="icon-test"><use xlink:href="#food"/></svg>
+        <svg class="icon-test"><use xlink:href="#format-aside"/></svg>
+        <svg class="icon-test"><use xlink:href="#format-audio"/></svg>
+        <svg class="icon-test"><use xlink:href="#format-chat"/></svg>
+        <svg class="icon-test"><use xlink:href="#format-gallery"/></svg>
+        <svg class="icon-test"><use xlink:href="#format-image"/></svg>
+        <svg class="icon-test"><use xlink:href="#format-quote"/></svg>
+        <svg class="icon-test"><use xlink:href="#format-status"/></svg>
+        <svg class="icon-test"><use xlink:href="#format-video"/></svg>
+        <svg class="icon-test"><use xlink:href="#forms"/></svg>
+        <svg class="icon-test"><use xlink:href="#fullscreen-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#fullscreen-exit-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#games"/></svg>
+        <svg class="icon-test"><use xlink:href="#google"/></svg>
+        <svg class="icon-test"><use xlink:href="#googleplus"/></svg>
+        <svg class="icon-test"><use xlink:href="#grid-view"/></svg>
+        <svg class="icon-test"><use xlink:href="#groups"/></svg>
+        <svg class="icon-test"><use xlink:href="#hammer"/></svg>
+        <svg class="icon-test"><use xlink:href="#heading"/></svg>
+        <svg class="icon-test"><use xlink:href="#heart"/></svg>
+        <svg class="icon-test"><use xlink:href="#hidden"/></svg>
+        <svg class="icon-test"><use xlink:href="#hourglass"/></svg>
+        <svg class="icon-test"><use xlink:href="#html"/></svg>
+        <svg class="icon-test"><use xlink:href="#id-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#id"/></svg>
+        <svg class="icon-test"><use xlink:href="#image-crop"/></svg>
+        <svg class="icon-test"><use xlink:href="#image-filter"/></svg>
+        <svg class="icon-test"><use xlink:href="#image-flip-horizontal"/></svg>
+        <svg class="icon-test"><use xlink:href="#image-flip-vertical"/></svg>
+        <svg class="icon-test"><use xlink:href="#image-rotate-left"/></svg>
+        <svg class="icon-test"><use xlink:href="#image-rotate-right"/></svg>
+        <svg class="icon-test"><use xlink:href="#image-rotate"/></svg>
+        <svg class="icon-test"><use xlink:href="#images-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#images-alt2"/></svg>
+        <svg class="icon-test"><use xlink:href="#index-card"/></svg>
+        <svg class="icon-test"><use xlink:href="#info-outline"/></svg>
+        <svg class="icon-test"><use xlink:href="#info"/></svg>
+        <svg class="icon-test"><use xlink:href="#insert-after"/></svg>
+        <svg class="icon-test"><use xlink:href="#insert-before"/></svg>
+        <svg class="icon-test"><use xlink:href="#insert"/></svg>
+        <svg class="icon-test"><use xlink:href="#instagram"/></svg>
+        <svg class="icon-test"><use xlink:href="#laptop"/></svg>
+        <svg class="icon-test"><use xlink:href="#layout"/></svg>
+        <svg class="icon-test"><use xlink:href="#leftright"/></svg>
+        <svg class="icon-test"><use xlink:href="#lightbulb"/></svg>
+        <svg class="icon-test"><use xlink:href="#linkedin"/></svg>
+        <svg class="icon-test"><use xlink:href="#list-view"/></svg>
+        <svg class="icon-test"><use xlink:href="#location-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#location"/></svg>
+        <svg class="icon-test"><use xlink:href="#lock-duplicate"/></svg>
+        <svg class="icon-test"><use xlink:href="#lock"/></svg>
+        <svg class="icon-test"><use xlink:href="#marker"/></svg>
+        <svg class="icon-test"><use xlink:href="#media-archive"/></svg>
+        <svg class="icon-test"><use xlink:href="#media-audio"/></svg>
+        <svg class="icon-test"><use xlink:href="#media-code"/></svg>
+        <svg class="icon-test"><use xlink:href="#media-default"/></svg>
+        <svg class="icon-test"><use xlink:href="#media-document"/></svg>
+        <svg class="icon-test"><use xlink:href="#media-interactive"/></svg>
+        <svg class="icon-test"><use xlink:href="#media-spreadsheet"/></svg>
+        <svg class="icon-test"><use xlink:href="#media-text"/></svg>
+        <svg class="icon-test"><use xlink:href="#media-video"/></svg>
+        <svg class="icon-test"><use xlink:href="#megaphone"/></svg>
+        <svg class="icon-test"><use xlink:href="#menu-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#menu-alt2"/></svg>
+        <svg class="icon-test"><use xlink:href="#menu-alt3"/></svg>
+        <svg class="icon-test"><use xlink:href="#menu"/></svg>
+        <svg class="icon-test"><use xlink:href="#microphone"/></svg>
+        <svg class="icon-test"><use xlink:href="#migrate"/></svg>
+        <svg class="icon-test"><use xlink:href="#minus"/></svg>
+        <svg class="icon-test"><use xlink:href="#money-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#money"/></svg>
+        <svg class="icon-test"><use xlink:href="#move"/></svg>
+        <svg class="icon-test"><use xlink:href="#nametag"/></svg>
+        <svg class="icon-test"><use xlink:href="#networking"/></svg>
+        <svg class="icon-test"><use xlink:href="#no-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#no"/></svg>
+        <svg class="icon-test"><use xlink:href="#open-folder"/></svg>
+        <svg class="icon-test"><use xlink:href="#palmtree"/></svg>
+        <svg class="icon-test"><use xlink:href="#paperclip"/></svg>
+        <svg class="icon-test"><use xlink:href="#pdf"/></svg>
+        <svg class="icon-test"><use xlink:href="#performance"/></svg>
+        <svg class="icon-test"><use xlink:href="#pets"/></svg>
+        <svg class="icon-test"><use xlink:href="#phone"/></svg>
+        <svg class="icon-test"><use xlink:href="#pinterest"/></svg>
+        <svg class="icon-test"><use xlink:href="#playlist-audio"/></svg>
+        <svg class="icon-test"><use xlink:href="#playlist-video"/></svg>
+        <svg class="icon-test"><use xlink:href="#plugins-checked"/></svg>
+        <svg class="icon-test"><use xlink:href="#plus-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#plus-alt2"/></svg>
+        <svg class="icon-test"><use xlink:href="#plus"/></svg>
+        <svg class="icon-test"><use xlink:href="#podio"/></svg>
+        <svg class="icon-test"><use xlink:href="#portfolio"/></svg>
+        <svg class="icon-test"><use xlink:href="#post-status"/></svg>
+        <svg class="icon-test"><use xlink:href="#pressthis"/></svg>
+        <svg class="icon-test"><use xlink:href="#printer"/></svg>
+        <svg class="icon-test"><use xlink:href="#privacy"/></svg>
+        <svg class="icon-test"><use xlink:href="#products"/></svg>
+        <svg class="icon-test"><use xlink:href="#randomize"/></svg>
+        <svg class="icon-test"><use xlink:href="#reddit"/></svg>
+        <svg class="icon-test"><use xlink:href="#redo"/></svg>
+        <svg class="icon-test"><use xlink:href="#remove"/></svg>
+        <svg class="icon-test"><use xlink:href="#rest-api"/></svg>
+        <svg class="icon-test"><use xlink:href="#rss"/></svg>
+        <svg class="icon-test"><use xlink:href="#saved"/></svg>
+        <svg class="icon-test"><use xlink:href="#schedule"/></svg>
+        <svg class="icon-test"><use xlink:href="#screenoptions"/></svg>
+        <svg class="icon-test"><use xlink:href="#search"/></svg>
+        <svg class="icon-test"><use xlink:href="#share-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#share-alt2"/></svg>
+        <svg class="icon-test"><use xlink:href="#share"/></svg>
+        <svg class="icon-test"><use xlink:href="#shield-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#shield"/></svg>
+        <svg class="icon-test"><use xlink:href="#shortcode"/></svg>
+        <svg class="icon-test"><use xlink:href="#slides"/></svg>
+        <svg class="icon-test"><use xlink:href="#smartphone"/></svg>
+        <svg class="icon-test"><use xlink:href="#smiley"/></svg>
+        <svg class="icon-test"><use xlink:href="#sort"/></svg>
+        <svg class="icon-test"><use xlink:href="#sos"/></svg>
+        <svg class="icon-test"><use xlink:href="#spotify"/></svg>
+        <svg class="icon-test"><use xlink:href="#star-empty"/></svg>
+        <svg class="icon-test"><use xlink:href="#star-filled"/></svg>
+        <svg class="icon-test"><use xlink:href="#star-half"/></svg>
+        <svg class="icon-test"><use xlink:href="#sticky"/></svg>
+        <svg class="icon-test"><use xlink:href="#store"/></svg>
+        <svg class="icon-test"><use xlink:href="#superhero-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#superhero"/></svg>
+        <svg class="icon-test"><use xlink:href="#table-col-after"/></svg>
+        <svg class="icon-test"><use xlink:href="#table-col-before"/></svg>
+        <svg class="icon-test"><use xlink:href="#table-col-delete"/></svg>
+        <svg class="icon-test"><use xlink:href="#table-row-after"/></svg>
+        <svg class="icon-test"><use xlink:href="#table-row-before"/></svg>
+        <svg class="icon-test"><use xlink:href="#table-row-delete"/></svg>
+        <svg class="icon-test"><use xlink:href="#tablet"/></svg>
+        <svg class="icon-test"><use xlink:href="#tag"/></svg>
+        <svg class="icon-test"><use xlink:href="#tagcloud"/></svg>
+        <svg class="icon-test"><use xlink:href="#testimonial"/></svg>
+        <svg class="icon-test"><use xlink:href="#text-page"/></svg>
+        <svg class="icon-test"><use xlink:href="#text"/></svg>
+        <svg class="icon-test"><use xlink:href="#thumbs-down"/></svg>
+        <svg class="icon-test"><use xlink:href="#thumbs-up"/></svg>
+        <svg class="icon-test"><use xlink:href="#tickets-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#tickets"/></svg>
+        <svg class="icon-test"><use xlink:href="#tide"/></svg>
+        <svg class="icon-test"><use xlink:href="#translation"/></svg>
+        <svg class="icon-test"><use xlink:href="#trash"/></svg>
+        <svg class="icon-test"><use xlink:href="#twitch"/></svg>
+        <svg class="icon-test"><use xlink:href="#twitter-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#twitter"/></svg>
+        <svg class="icon-test"><use xlink:href="#undo"/></svg>
+        <svg class="icon-test"><use xlink:href="#universal-access-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#universal-access"/></svg>
+        <svg class="icon-test"><use xlink:href="#unlock"/></svg>
+        <svg class="icon-test"><use xlink:href="#update-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#update"/></svg>
+        <svg class="icon-test"><use xlink:href="#upload"/></svg>
+        <svg class="icon-test"><use xlink:href="#vault"/></svg>
+        <svg class="icon-test"><use xlink:href="#video-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#video-alt2"/></svg>
+        <svg class="icon-test"><use xlink:href="#video-alt3"/></svg>
+        <svg class="icon-test"><use xlink:href="#visibility"/></svg>
+        <svg class="icon-test"><use xlink:href="#warning"/></svg>
+        <svg class="icon-test"><use xlink:href="#welcome-add-page"/></svg>
+        <svg class="icon-test"><use xlink:href="#welcome-comments"/></svg>
+        <svg class="icon-test"><use xlink:href="#welcome-learn-more"/></svg>
+        <svg class="icon-test"><use xlink:href="#welcome-view-site"/></svg>
+        <svg class="icon-test"><use xlink:href="#welcome-widgets-menus"/></svg>
+        <svg class="icon-test"><use xlink:href="#welcome-write-blog"/></svg>
+        <svg class="icon-test"><use xlink:href="#whatsapp"/></svg>
+        <svg class="icon-test"><use xlink:href="#wordpress-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#wordpress"/></svg>
+        <svg class="icon-test"><use xlink:href="#xing"/></svg>
+        <svg class="icon-test"><use xlink:href="#yes-alt"/></svg>
+        <svg class="icon-test"><use xlink:href="#yes"/></svg>
+        <svg class="icon-test"><use xlink:href="#youtube"/></svg>
+    </div>
     </div>
 
   </div>
