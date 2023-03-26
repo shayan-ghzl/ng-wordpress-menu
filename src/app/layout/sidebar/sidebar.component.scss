@@ -104,6 +104,7 @@ div {
 	padding: 2px 5px;
 	color: #f0f0f1;
 	text-decoration: none;
+	cursor: pointer;
 }
 
 #adminmenu .wp-submenu a {
@@ -869,8 +870,8 @@ li#wp-admin-bar-menu-toggle {
 		display: none;
 	}
 
-	.auto-fold .wp-responsive-open #adminmenuback,
-	.auto-fold .wp-responsive-open #adminmenuwrap {
+	.auto-fold.wp-responsive-open #adminmenuback,
+	.auto-fold.wp-responsive-open #adminmenuwrap {
 		display: block;
 	}
 

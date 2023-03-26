@@ -1,23 +1,24 @@
 <ng-template #listItemTemplate let-item let-index="index" let-childLength="childLength">
   <li
   [class]="item.addClass"
-  (mouseenter)="item.isOpen = true"
+  (mouseenter)="item.isOpen = !wpResponsiveActive"
   (mouseleave)="item.isOpen = false"
   [routerLinkActive]="childLength ? 'wp-has-current-submenu wp-menu-open' : 'current'" 
   #exportedItemRouterLinkActive="routerLinkActive"
-    [ngClass]="{ 'menu-top': true, 'wp-not-current-submenu': !exportedItemRouterLinkActive.isActive && childLength, 'wp-has-submenu': childLength, 'open-sub': item.isOpen, 'wp-first-item':index === 0}">
+    [ngClass]="{ 'selected': wpResponsiveActive && item.isSelected, 'menu-top': true, 'wp-not-current-submenu': !exportedItemRouterLinkActive.isActive && childLength, 'wp-has-submenu': childLength, 'open-sub': !wpResponsiveActive && item.isOpen, 'wp-first-item':index === 0}">
     <a 
-    [routerLink]="[item.routerLink]"
+    (click)="item.isSelected = !item.isSelected"
+    [routerLink]="(wpResponsiveActive) ? null : item.routerLink"
     routerLinkActive
     #exportedAnchorRouterLinkActive="routerLinkActive"
-    [ngClass]="{'current':(exportedAnchorRouterLinkActive.isActive && childLength) || (exportedItemRouterLinkActive.isActive && childLength === 0),'wp-has-current-submenu wp-menu-open':(exportedAnchorRouterLinkActive.isActive && childLength) || (exportedItemRouterLinkActive.isActive && childLength), 'menu-top': true, 'wp-not-current-submenu': !exportedAnchorRouterLinkActive.isActive && !exportedItemRouterLinkActive.isActive && childLength, 'wp-has-submenu': childLength, 'open-sub': item.isOpen, 'wp-first-item':index === 0}"
+    [ngClass]="{'current':(exportedAnchorRouterLinkActive.isActive && childLength) || (exportedItemRouterLinkActive.isActive && childLength === 0),'wp-has-current-submenu wp-menu-open':(exportedAnchorRouterLinkActive.isActive && childLength) || (exportedItemRouterLinkActive.isActive && childLength), 'menu-top': true, 'wp-not-current-submenu': !exportedAnchorRouterLinkActive.isActive && !exportedItemRouterLinkActive.isActive && childLength, 'wp-has-submenu': childLength, 'open-sub': !wpResponsiveActive && item.isOpen, 'wp-first-item':index === 0}"
       [attr.aria-haspopup]="childLength">
-      <div class="wp-menu-image dashicons-before" [class]="item.icon" 
+      <div class="wp-menu-image dashicons-before" *ngIf="item.icon as icon" [class]="icon" 
         [attr.aria-hidden]="!item.isOpen"></div>
       <div class="wp-menu-name">{{item.name}}<span class="menu-counter" *ngIf="item.badge as badge">{{badge}}</span></div>
     </a>
     <ul *ngIf="childLength"
-    [ngClass]="{ 'wp-submenu wp-submenu-wrap': true, 'sub-open': item.isOpen}">
+    [ngClass]="{ 'wp-submenu wp-submenu-wrap': true, 'sub-open': !wpResponsiveActive && item.isOpen}">
  
       <li class="wp-submenu-head" [routerLink]="[item.routerLink]" [attr.aria-hidden]="!item.isOpen">{{item.name}}<span class="menu-counter" *ngIf="item.badge as badge">{{badge}}</span></li>
       <li 
@@ -41,24 +42,24 @@
     <ng-container *ngTemplateOutlet="listItemTemplate;context:{$implicit: item, index: index, childLength:item.children.length}">
     </ng-container>
   </ng-template>
-  <li *ngIf="groupIndex != menuModel.menuGroups.length - 1" class="wp-not-current-submenu wp-menu-separator" aria-hidden="true">
+  <li *ngIf="groupIndex != menu.menuGroups.length - 1" class="wp-not-current-submenu wp-menu-separator" aria-hidden="true">
     <div class="separator"></div>
   </li>
 </ng-template>
 
-<div id="adminmenumain" role="navigation" [attr.aria-label]="menuModel.menuName">
+<div id="adminmenumain" role="navigation" [attr.aria-label]="menu.menuName">
   <div id="adminmenuback"></div>
   <div id="adminmenuwrap">
     <ul id="adminmenu">
       <ng-container *ngIf="true">
-        <ng-template ngFor let-menuGroup let-groupIndex="index"  [ngForOf]="menuModel.menuGroups">
+        <ng-template ngFor let-menuGroup let-groupIndex="index"  [ngForOf]="menu.menuGroups">
           <ng-container *ngTemplateOutlet="ulListTemplate;context:{$implicit: menuGroup, groupIndex: groupIndex}">
           </ng-container>
         </ng-template>
         <li id="collapse-menu">
-          <button type="button" id="collapse-button" [attr.aria-label]="menuModel.collapseLable" aria-expanded="false" (click)="toggleMenu()">
+          <button type="button" id="collapse-button" [attr.aria-label]="menu.collapseLable" aria-expanded="false" (click)="toggleMenu()">
             <span class="collapse-button-icon" aria-hidden="true"></span>
-              <span class="collapse-button-label">{{menuModel.collapseLable}}</span>
+              <span class="collapse-button-label">{{menu.collapseLable}}</span>
             </button>
         </li>
       </ng-container>

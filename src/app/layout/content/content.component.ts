@@ -7,8 +7,9 @@ import { Component } from '@angular/core';
 })
 export class ContentComponent {
 
-  openMenu() {
-    document.body.classList.add('wp-responsive-open')
+  openMenu(e:any) {
+    e.preventDefault();
+    document.body.classList.toggle('wp-responsive-open')
   }
 
 }
