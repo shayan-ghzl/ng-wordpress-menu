@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgWpMenu } from 'ng-wordpress-menu';
 
 @Component({
@@ -6,7 +6,7 @@ import { NgWpMenu } from 'ng-wordpress-menu';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   menuModelLtr: NgWpMenu = {
     'menuName': 'Primary Menu',
@@ -60,7 +60,7 @@ export class AppComponent {
             ]
           },
           {
-            "routerLink": "/media",
+            "routerLink": "/library",
             "icon": "dashicons-admin-media",
             "name": "Media",
             "isOpen": false,
@@ -71,7 +71,7 @@ export class AppComponent {
                 "name": "Library",
               },
               {
-                "routerLink": "/add-new",
+                "routerLink": "/add-new-library",
                 "name": "Add New",
               }
             ]
@@ -151,7 +151,7 @@ export class AppComponent {
                 "name": "All Users",
               },
               {
-                "routerLink": "/add",
+                "routerLink": "/add-user",
                 "name": "Add New",
               },
               {
@@ -294,7 +294,7 @@ export class AppComponent {
             ]
           },
           {
-            "routerLink": "/media",
+            "routerLink": "/library",
             "icon": "dashicons-admin-media",
             "name": "رسانه",
             "isOpen": false,
@@ -305,7 +305,7 @@ export class AppComponent {
                 "name": "کتابخانه",
               },
               {
-                "routerLink": "/add-new",
+                "routerLink": "/add-new-library",
                 "name": "افزودن جدید",
               }
             ]
@@ -385,7 +385,7 @@ export class AppComponent {
                 "name": "همه کاربران",
               },
               {
-                "routerLink": "/add",
+                "routerLink": "/add-user",
                 "name": "افزودن",
               },
               {
@@ -476,8 +476,12 @@ export class AppComponent {
       ],
   };
 
-  onMenuToggle(){
+  ngOnInit() {
+
+  }
+
+  onMenuToggle() {
     console.log('Menu Toggle');
   }
-  
+
 }

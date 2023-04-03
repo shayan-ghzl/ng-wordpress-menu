@@ -9,6 +9,9 @@
 // initialize fonts
 // @import "./assets/scss/font-init.scss";
 
+// ---------------ANGULAR-MATERIAL---------------
+@import "./assets/scss/material-snackbar.scss";
+
 // wordpress css-reset not necessary for adminmenu
 body {
     background: #f0f0f1;
@@ -58,3 +61,7 @@ a:focus {
     outline: 1px solid transparent;
 }
 
+// this is for wpadminbar space form menu first item
+html{
+    padding-top: 32px;
+}

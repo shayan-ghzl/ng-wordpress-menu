@@ -59,9 +59,9 @@ const routes: Routes = [
     data: { pageTitle: 'all-pages' }
   },
   {
-    path: 'add-new',
+    path: 'add-new-library',
     component: TestRouteComponent,
-    data: { pageTitle: 'add-new' }
+    data: { pageTitle: 'add-new-library' }
   },
   {
     path: 'comments',
@@ -94,9 +94,9 @@ const routes: Routes = [
     data: { pageTitle: 'installed-plugins' }
   },
   {
-    path: 'add',
+    path: 'add-user',
     component: TestRouteComponent,
-    data: { pageTitle: 'add' }
+    data: { pageTitle: 'add-user' }
   },
   {
     path: 'users',
@@ -193,7 +193,16 @@ const routes: Routes = [
     component: TestRouteComponent,
     data: { pageTitle: 'permalink' }
   },
-  { path: 'privacy', component: TestRouteComponent }
+  {
+    path: 'privacy',
+    component: TestRouteComponent,
+    data: { pageTitle: 'privacy' }
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
 ];
 
 @NgModule({

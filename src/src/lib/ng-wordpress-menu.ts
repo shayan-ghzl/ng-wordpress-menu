@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { NgWpMenu } from './menu';
 
 @Component({
-  selector: 'ng-wordpress-menu',
+  selector: 'ng-wp-menu',
   template: `
 <ng-template #listItemTemplate let-item let-index="index" let-childLength="childLength">
   <li
@@ -15,7 +15,7 @@ import { NgWpMenu } from './menu';
   #exportedItemRouterLinkActive="routerLinkActive"
     [ngClass]="{ 'selected': wpResponsiveActive && item.isSelected, 'menu-top': true, 'wp-not-current-submenu': !exportedItemRouterLinkActive.isActive && childLength, 'wp-has-submenu': childLength, 'open-sub': !wpResponsiveActive && item.isOpen, 'wp-first-item':index === 0}">
     <a 
-    (click)="item.isSelected = !item.isSelected"
+    (click)="item.isSelected = !item.isSelected && wpResponsiveActive"
     [routerLink]="(wpResponsiveActive) ? null : item.routerLink"
     routerLinkActive
     #exportedAnchorRouterLinkActive="routerLinkActive"
@@ -128,7 +128,6 @@ export class Menu implements OnInit, AfterViewInit {
   }
 
   toggleMenu() {
-    this.onMenuToggle.emit();
     let viewportWidth = this.getViewportWidth() || 961;
     if (viewportWidth <= 960) {
       if (document.body.classList.contains('auto-fold')) {
@@ -138,6 +137,7 @@ export class Menu implements OnInit, AfterViewInit {
     } else {
       document.body.classList.toggle('folded');
     }
+    this.onMenuToggle.emit();
   }
 
   triggerEvent() {
@@ -149,6 +149,7 @@ export class Menu implements OnInit, AfterViewInit {
     if (viewportWidth <= 782) {
       this.wpResponsiveActive = true;
       document.body.classList.add('auto-fold');
+      this.onMenuToggle.emit();
     } else {
       this.wpResponsiveActive = false;
     }

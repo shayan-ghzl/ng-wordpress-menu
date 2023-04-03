@@ -1,23 +1,54 @@
-<div id="wpwrap">
+<div>
+  
+  <ng-wp-menu [menu]="menuModelLtr" (onMenuToggle)="onMenuToggle()"></ng-wp-menu>
 
-    <ng-wordpress-menu [menu]="menuModelLtr" (onMenuToggle)="onMenuToggle()"></ng-wordpress-menu>
-  
-    <div id="wpcontent">
-      <!-- primary menu here -->
-      <!-- <div id="wpadminbar" class="nojq">
-    
-      </div> -->
-    
-      <div id="wpbody" role="main">
-    
-        <div id="wpbody-content">
-    
-            <router-outlet></router-outlet>
-    
-        </div>
-    
-      </div>
-    
+  <div id="wpcontent">
+
+    <!-- navbar place -->
+    <div id="wpadminbar">
+        <ul>
+          <li>
+            <a routerLink="/home" routerLinkActive="active">Home</a>
+          </li>
+          <li>
+            <a routerLink="/comments" routerLinkActive="active">Comments</a>
+          </li>
+          <li>
+            <a routerLink="/plugins" routerLinkActive="active">Plugins</a>
+          </li>
+          <li>
+            <a routerLink="/tools" routerLinkActive="active">Tools</a>
+          </li>
+          <li>
+            <a routerLink="/import" routerLinkActive="active">Import</a>
+          </li>
+        </ul>
     </div>
-  
+
+    <div id="wpbody" role="main">
+
+      <div id="body-content">
+        <div class="page-header">
+          <div class="entry-title">
+              <h1>Documents</h1>
+              <h3>Support rtl and ltr</h3>
+          </div>
+        </div>
+        <router-outlet></router-outlet>
+
+      </div>
+
+    </div>
+
   </div>
+
+</div>
+
+<!-- <ng-wp-menu [menu]="menuModelLtr" (onMenuToggle)="onMenuToggle()"></ng-wp-menu>
+<div id="wpcontent">
+    <div id="wpadminbar">
+    </div>
+  <div id="wpbody" role="main">
+      <router-outlet></router-outlet>
+  </div>
+</div> -->
