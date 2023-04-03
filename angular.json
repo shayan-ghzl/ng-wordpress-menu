@@ -3,56 +3,67 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "wp-navigation": {
+    "ng-wordpress-menu": {
+      "projectType": "library",
+      "root": "src",
+      "sourceRoot": "src/src",
+      "prefix": "",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "src/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "src/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "src/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "src/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "showcase": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss",
-          "skipTests": true
-        },
-        "@schematics/angular:class": {
-          "skipTests": true
-        },
-        "@schematics/angular:directive": {
-          "skipTests": true
-        },
-        "@schematics/angular:guard": {
-          "skipTests": true
-        },
-        "@schematics/angular:interceptor": {
-          "skipTests": true
-        },
-        "@schematics/angular:pipe": {
-          "skipTests": true
-        },
-        "@schematics/angular:resolver": {
-          "skipTests": true
-        },
-        "@schematics/angular:service": {
-          "skipTests": true
+          "style": "scss"
         }
       },
-      "root": "",
-      "sourceRoot": "src",
+      "root": "showcase",
+      "sourceRoot": "showcase/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/wp-navigation",
-            "index": "src/index.html",
-            "main": "src/main.ts",
+            "outputPath": "dist/showcase",
+            "index": "showcase/src/index.html",
+            "main": "showcase/src/main.ts",
             "polyfills": [
               "zone.js"
             ],
-            "tsConfig": "tsconfig.app.json",
+            "tsConfig": "showcase/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "showcase/src/favicon.ico",
+              "showcase/src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "showcase/src/styles.scss"
             ],
             "scripts": []
           },
@@ -87,18 +98,22 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "wp-navigation:build:production"
+              "browserTarget": "showcase:build:production"
             },
             "development": {
-              "browserTarget": "wp-navigation:build:development"
+              "browserTarget": "showcase:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4200,
+            "host": "192.168.1.190"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "wp-navigation:build"
+            "browserTarget": "showcase:build"
           }
         },
         "test": {
@@ -108,14 +123,14 @@
               "zone.js",
               "zone.js/testing"
             ],
-            "tsConfig": "tsconfig.spec.json",
+            "tsConfig": "showcase/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "showcase/src/favicon.ico",
+              "showcase/src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "showcase/src/styles.scss"
             ],
             "scripts": []
           }

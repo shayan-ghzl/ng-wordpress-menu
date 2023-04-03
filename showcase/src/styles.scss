@@ -1,0 +1,60 @@
+/* You can add global styles to this file, and also import other style files */
+
+// css-reset
+// @import "./assets/css/bootstrap-reboot.rtl.css";
+// @import "./assets/scss/color.scss";
+// @import "./assets/scss/font-size.scss";
+// @import "./assets/scss/font-spacing.scss";
+
+// initialize fonts
+// @import "./assets/scss/font-init.scss";
+
+// wordpress css-reset not necessary for adminmenu
+body {
+    background: #f0f0f1;
+    color: #3c434a;
+    font-size: 13px;
+    line-height: 1.4em;
+    min-width: 600px;
+    // font-family: Vazir, 'Vazir';
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 782px) {
+    body * {
+        -webkit-tap-highlight-color: transparent !important;
+    }
+}
+
+@media screen and (max-width: 782px) {
+    body {
+        min-width: 240px;
+        overflow-x: hidden;
+    }
+}
+
+a {
+    color: #2271b1;
+    transition-property: border, background, color;
+    transition-duration: .05s;
+    transition-timing-function: ease-in-out;
+}
+
+a:active,
+a:hover {
+    color: #135e96;
+}
+
+a:focus {
+    color: #043959;
+    box-shadow: 0 0 0 1px #4f94d4, 0 0 2px 1px rgb(79 148 212 / 80%);
+    outline: 1px solid transparent;
+}
+

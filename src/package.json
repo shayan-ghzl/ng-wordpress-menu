@@ -1,0 +1,27 @@
+{
+  "name": "ng-wordpress-menu",
+  "version": "0.0.1",
+  "keywords": [
+    "angular"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shayan-ghzl/ng-wordpress-menu/issues"
+  },
+  "author": {
+    "name": "Shayan Ghazali",
+    "email": "shayan97.tti@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shayan-ghzl/ng-wordpress-menu.git"
+  },
+  "peerDependencies": {
+    "@angular/common": ">= 8.0.0",
+    "@angular/core": ">= 8.0.0",
+    "@angular/router": ">= 8.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

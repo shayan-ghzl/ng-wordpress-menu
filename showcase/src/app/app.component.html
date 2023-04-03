@@ -1,0 +1,23 @@
+<div id="wpwrap">
+
+    <ng-wordpress-menu [menu]="menuModelLtr" (onMenuToggle)="onMenuToggle()"></ng-wordpress-menu>
+  
+    <div id="wpcontent">
+      <!-- primary menu here -->
+      <!-- <div id="wpadminbar" class="nojq">
+    
+      </div> -->
+    
+      <div id="wpbody" role="main">
+    
+        <div id="wpbody-content">
+    
+            <router-outlet></router-outlet>
+    
+        </div>
+    
+      </div>
+    
+    </div>
+  
+  </div>
