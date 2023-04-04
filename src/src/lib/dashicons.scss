@@ -1,3 +1,4 @@
+@use 'sass:math';
 
 @font-face {
     font-family: dashicons;
@@ -10,7 +11,19 @@
     font-weight: 400;
     font-style: normal
 }
+// ------------------------------
 
+$base-size: 14px; // Default
+
+@function strip-units($number) {
+	@return math.div($number, ($number * 0 + 1));
+}
+
+@function convertPixelToEm($pixels, $context: $base-size) {
+	@return #{strip-units($pixels)/strip-units($context)}em;
+}
+
+// ------------------------------
 .dashicons,
 .dashicons-before:before {
     font-family: dashicons;
@@ -24,9 +37,9 @@
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    width: 20px;
-    height: 20px;
-    font-size: 20px;
+    width: convertPixelToEm(20px);
+    height: convertPixelToEm(20px);
+    font-size: convertPixelToEm(20px);
     vertical-align: top;
     text-align: center;
     transition: color .1s ease-in
