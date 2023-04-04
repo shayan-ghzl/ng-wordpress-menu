@@ -10,10 +10,9 @@ $base-size: 14px; // Default
 	@return #{strip-units($pixels)/strip-units($context)}em;
 }
 
-ng-wp-menu {
+ng-wp-menu, #wpwrap {
 	font-size: $base_size;
 }
-
 // ------------------------------
 a,
 div {
