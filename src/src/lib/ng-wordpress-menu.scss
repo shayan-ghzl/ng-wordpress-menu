@@ -21,8 +21,7 @@ div {
 
 #adminmenuback,
 #adminmenuwrap,
-#adminmenu,
-#adminmenu .wp-submenu {
+#adminmenu{
 	width: convertPixelToEm(160px);
 	background-color: #1d2327;
 }
@@ -164,6 +163,7 @@ div {
 }
 
 #adminmenu .wp-submenu {
+	width: convertPixelToEm(160px);
 	list-style: none;
 	position: absolute;
 	top: -1000em;
