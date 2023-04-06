@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { NgWpMenu } from 'ng-wordpress-menu';
 
 @Component({
@@ -6,7 +6,11 @@ import { NgWpMenu } from 'ng-wordpress-menu';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
+
+  ngAfterViewInit(): void {
+    document.body.classList.add('ng-wp-menu-default-theme');
+  }
 
   menuModelLtr: NgWpMenu = {
     'menuName': 'Primary Menu',
@@ -477,7 +481,17 @@ export class AppComponent implements OnInit {
   };
 
   ngOnInit() {
+    
+  }
 
+  changeTheme(themeName: string) {
+    let clsItems = document.body.classList;
+    clsItems.forEach((item: string) => {
+      if (/^ng-wp-menu-([a-z]*?)-theme$/.test(item)) {
+        clsItems.add(themeName);
+        clsItems.remove(item);
+      }
+    });
   }
 
   onMenuToggle() {

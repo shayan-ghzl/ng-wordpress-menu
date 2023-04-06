@@ -73,7 +73,7 @@ import { NgWpMenu } from './menu';
 `,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['./dashicons.scss', './ng-wordpress-menu.scss']
+  styleUrls: ['./dashicons.scss', './ng-wordpress-menu.scss', './colors.scss']
 })
 export class Menu implements OnInit, OnChanges {
 

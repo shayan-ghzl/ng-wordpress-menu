@@ -20,7 +20,7 @@ $base-size: 14px; // Default
 }
 
 @function convertPixelToEm($pixels, $context: $base-size) {
-	@return #{strip-units($pixels)/strip-units($context)}em;
+	@return #{math.div(strip-units($pixels), strip-units($context))}em;
 }
 
 // ------------------------------
