@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { NgWpMenu } from 'ng-wordpress-menu';
+import { NgWpMenu } from 'src/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { NgWpMenu } from 'ng-wordpress-menu';
 export class AppComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
-    document.body.classList.add('ng-wp-menu-default-theme');
+    document.body.classList.add('ng-wp-menu-normal-theme');
   }
 
   menuModelLtr: NgWpMenu = {

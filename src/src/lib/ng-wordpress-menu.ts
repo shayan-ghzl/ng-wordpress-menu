@@ -73,7 +73,7 @@ import { NgWpMenu } from './menu';
 `,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['./dashicons.scss', './ng-wordpress-menu.scss', './colors.scss']
+  styleUrls: ['./dashicons.scss', './ng-wordpress-menu.scss']
 })
 export class Menu implements OnInit, OnChanges {
 
@@ -103,7 +103,7 @@ export class Menu implements OnInit, OnChanges {
     if (changes['menu'].firstChange) {
       this.direction = this.menu.menuDirection || this.direction;
       document.body.classList.add(this.direction);
-    }else{
+    } else {
       let currentDirection = this.menu.menuDirection || this.direction;
       if (this.direction !== currentDirection) {
         document.body.classList.add(currentDirection);
@@ -160,7 +160,7 @@ export class Menu implements OnInit, OnChanges {
   adjustSubmenu(e: any) {
     let menuItem = e.currentTarget;
     let bottomOffset, pageHeight, adjustment, theFold, menutop, wintop, maxtop,
-    submenu = this.findSingle(menuItem, '.wp-submenu');
+      submenu = this.findSingle(menuItem, '.wp-submenu');
     menutop = this.getOffset(menuItem).top;
     wintop = window.pageYOffset;
     maxtop = menutop - wintop - 30; // max = make the top of the sub almost touch admin bar.
@@ -226,14 +226,13 @@ export class Menu implements OnInit, OnChanges {
 
   getViewport(): any {
     let win = window,
-        d = document,
-        e = d.documentElement,
-        g = d.body,
-        w = win.innerWidth || e.clientWidth || g.clientWidth,
-        h = win.innerHeight || e.clientHeight || g.clientHeight;
-
+      d = document,
+      e = d.documentElement,
+      g = d.body,
+      w = win.innerWidth || e.clientWidth || g.clientWidth,
+      h = win.innerHeight || e.clientHeight || g.clientHeight;
     return { width: w, height: h };
-}
+  }
 
 }
 

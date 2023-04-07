@@ -1,1084 +1,11 @@
-@use 'sass:math';
-
-$base-size: 14px; // Default
-
-@function strip-units($number) {
-	@return math.div($number, ($number * 0 + 1));
-}
-
-@function convertPixelToEm($pixels, $context: $base-size) {
-	@return #{math.div(strip-units($pixels), strip-units($context))}em;
-}
-
-ng-wp-menu, #wpwrap {
-	font-size: $base_size;
-}
-// ------------------------------
-a,
-div {
-	outline: 0;
-}
-
-#adminmenuback,
-#adminmenuwrap,
-#adminmenu{
-	width: convertPixelToEm(160px);
-}
-
-#wpcontent {
-	height: 100%;
-}
-
-.ltr #wpcontent {
-	margin-left: convertPixelToEm(160px);
-	padding-left: convertPixelToEm(20px);
-}
-
-.rtl #wpcontent {
-	margin-right: convertPixelToEm(160px);
-	padding-right: convertPixelToEm(20px);
-}
-
-#wpbody {
-	position: relative;
-}
-
-#adminmenuback {
-	position: fixed;
-	top: 0;
-	bottom: convertPixelToEm(-120px);
-	z-index: 1;
-	/* positive z-index to avoid elastic scrolling woes in Safari */
-}
-
-.upper-space #adminmenuback {
-	position: absolute;
-}
-
-.upper-space #adminmenuback,
-.upper-space #adminmenuwrap {
-	margin-top: 2em;
-}
-
-#adminmenu {
-	clear: left;
-	margin: convertPixelToEm(12px) 0;
-	padding: 0;
-	list-style: none;
-}
-
-.rtl #adminmenu {
-	clear: right;
-}
-
-.folded #adminmenuback,
-.folded #adminmenuwrap,
-.folded #adminmenu,
-.folded #adminmenu li.menu-top {
-	width: convertPixelToEm(36px);
-}
-
-
-.ltr.folded #wpcontent {
-	margin-left: convertPixelToEm(36px);
-}
-
-.rtl.folded #wpcontent {
-	margin-right: convertPixelToEm(36px);
-}
-
-/*------------------------------------------------------------------------------
-  7.0 - Main Navigation (Left Menu)
-------------------------------------------------------------------------------*/
-
-#adminmenuwrap {
-	position: relative;
-	float: left;
-	z-index: 9990;
-}
-
-.rtl #adminmenuwrap {
-	float: right;
-}
-
-/* side admin menu */
-#adminmenu * {
-	-webkit-user-select: none;
-	user-select: none;
-}
-
-#adminmenu li {
-	margin: 0;
-	padding: 0;
-}
-
-#adminmenu a {
-	display: block;
-	line-height: 1.3;
-	padding: convertPixelToEm(2px) convertPixelToEm(5px);
-	text-decoration: none;
-	cursor: pointer;
-}
-
-#adminmenu .wp-submenu a {
-	font-size: convertPixelToEm(13px);
-	line-height: 1.4;
-	margin: 0;
-	padding: convertPixelToEm(5px) 0;
-}
-
-#adminmenu .wp-submenu a:hover,
-#adminmenu .wp-submenu a:focus {
-	background: none;
-}
-
-#adminmenu a:hover,
-#adminmenu a:focus,
-.folded #adminmenu .wp-submenu-head:hover {
-	box-shadow: inset convertPixelToEm(4px) 0 0 0 currentColor;
-	transition: box-shadow .1s linear;
-}
-
-.rtl #adminmenu a:hover,
-.rtl #adminmenu a:focus,
-.rtl.folded #adminmenu .wp-submenu-head:hover {
-	box-shadow: inset convertPixelToEm(-4px) 0 0 0 currentColor;
-}
-
-#adminmenu li.menu-top {
-	border: none;
-	min-height: convertPixelToEm(34px);
-	position: relative;
-}
-
-#adminmenu .wp-submenu {
-	width: convertPixelToEm(160px);
-	list-style: none;
-	position: absolute;
-	top: -1000em;
-	overflow: visible;
-	word-wrap: break-word;
-	padding: convertPixelToEm(7px) 0 convertPixelToEm(8px);
-	z-index: 9999;
-	box-shadow: 0 convertPixelToEm(3px) convertPixelToEm(5px) rgba(0, 0, 0, 0.2);
-}
-
-.ltr #adminmenu .wp-submenu {
-	left: convertPixelToEm(160px);
-}
-
-.rtl #adminmenu .wp-submenu {
-	right: convertPixelToEm(160px);
-}
-
-#adminmenu .sub-open,
-#adminmenu .open-sub .wp-submenu,
-#adminmenu a.menu-top:focus+.wp-submenu,
-.no-js li.wp-has-submenu:hover .wp-submenu {
-	top: convertPixelToEm(-1px);
-}
-
-#adminmenu a.wp-has-current-submenu:focus+.wp-submenu {
-	top: 0;
-}
-
-#adminmenu .wp-has-current-submenu .wp-submenu,
-.no-js li.wp-has-current-submenu:hover .wp-submenu,
-#adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
-#adminmenu .wp-has-current-submenu.open-sub .wp-submenu {
-	position: relative;
-	z-index: 3;
-	top: auto;
-	left: auto;
-	right: auto;
-	bottom: auto;
-	border: 0 none;
-	margin-top: 0;
-	box-shadow: none;
-}
-
-.folded #adminmenu .wp-has-current-submenu .wp-submenu {
-	box-shadow: 0 convertPixelToEm(3px) convertPixelToEm(5px) rgba(0, 0, 0, 0.2);
-}
-
-/* ensure that wp-submenu's box shadow doesn't appear on top of the focused menu item's background. */
-#adminmenu li.menu-top:hover,
-#adminmenu li.open-sub>a.menu-top,
-#adminmenu li>a.menu-top:focus {
-	position: relative;
-}
-
-.folded #adminmenu li.menu-top:hover,
-.folded #adminmenu li.open-sub>a.menu-top,
-.folded #adminmenu li>a.menu-top:focus {
-	z-index: 10000;
-}
-
-.folded #adminmenu .wp-submenu.sub-open,
-.folded #adminmenu .open-sub .wp-submenu,
-.folded #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
-.folded #adminmenu .wp-has-current-submenu.open-sub .wp-submenu,
-.folded #adminmenu a.menu-top:focus+.wp-submenu,
-.folded #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu,
-.no-js.folded #adminmenu .wp-has-submenu:hover .wp-submenu {
-	top: 0;
-}
-
-.ltr.folded #adminmenu .wp-submenu.sub-open,
-.ltr.folded #adminmenu .open-sub .wp-submenu,
-.ltr.folded #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
-.ltr.folded #adminmenu .wp-has-current-submenu.open-sub .wp-submenu,
-.ltr.folded #adminmenu a.menu-top:focus+.wp-submenu,
-.ltr.folded #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu,
-.ltr.no-js.folded #adminmenu .wp-has-submenu:hover .wp-submenu {
-	left: convertPixelToEm(36px);
-}
-
-.rtl.folded #adminmenu .wp-submenu.sub-open,
-.rtl.folded #adminmenu .open-sub .wp-submenu,
-.rtl.folded #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
-.rtl.folded #adminmenu .wp-has-current-submenu.open-sub .wp-submenu,
-.rtl.folded #adminmenu a.menu-top:focus+.wp-submenu,
-.rtl.folded #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu,
-.rtl.no-js.folded #adminmenu .wp-has-submenu:hover .wp-submenu {
-	right: convertPixelToEm(36px);
-}
-
-.folded #adminmenu a.wp-has-current-submenu:focus+.wp-submenu,
-.folded #adminmenu .wp-has-current-submenu .wp-submenu {
-	position: absolute;
-	top: -1000em;
-}
-
-#adminmenu .wp-not-current-submenu .wp-submenu,
-.folded #adminmenu .wp-has-current-submenu .wp-submenu {
-	min-width: convertPixelToEm(160px);
-	width: auto;
-}
-
-.ltr #adminmenu .wp-not-current-submenu .wp-submenu,
-.ltr.folded #adminmenu .wp-has-current-submenu .wp-submenu {
-	border-left: convertPixelToEm(5px) solid transparent;
-}
-
-.rtl #adminmenu .wp-not-current-submenu .wp-submenu,
-.rtl.folded #adminmenu .wp-has-current-submenu .wp-submenu {
-	border-right: convertPixelToEm(5px) solid transparent;
-}
-
-#adminmenu .wp-not-current-submenu li>a,
-.folded #adminmenu .wp-has-current-submenu li>a {
-	padding-right: convertPixelToEm(16px);
-	padding-left: convertPixelToEm(14px);
-	/* Exclude from the transition the outline for Windows High Contrast mode */
-	transition: all .1s ease-in-out, outline 0s;
-}
-
-.rtl #adminmenu .wp-not-current-submenu li>a,
-.rtl.folded #adminmenu .wp-has-current-submenu li>a {
-	padding-left: convertPixelToEm(16px);
-	padding-right: convertPixelToEm(14px);
-}
-
-#adminmenu .wp-has-current-submenu ul>li>a,
-.folded #adminmenu li.menu-top .wp-submenu>li>a {
-	padding: convertPixelToEm(5px) convertPixelToEm(12px);
-}
-
-#adminmenu a.menu-top,
-#adminmenu .wp-submenu-head {
-	font-size: convertPixelToEm(14px);
-	font-weight: 400;
-	line-height: 1.3;
-	padding: 0;
-}
-
-#adminmenu .wp-submenu-head {
-	display: none;
-	cursor: pointer;
-}
-
-.folded #adminmenu .wp-menu-name {
-	position: absolute;
-}
-
-.ltr.folded #adminmenu .wp-menu-name {
-	left: convertPixelToEm(-999px);
-}
-
-.rtl.folded #adminmenu .wp-menu-name {
-	right: convertPixelToEm(-999px);
-}
-
-.folded #adminmenu .wp-submenu-head {
-	display: block;
-}
-
-#adminmenu .wp-submenu li {
-	padding: 0;
-	margin: 0;
-}
-
-#adminmenu .wp-menu-image img {
-	padding: convertPixelToEm(9px) 0 0;
-	opacity: 0.6;
-	filter: alpha(opacity=60);
-}
-
-#adminmenu div.wp-menu-name {
-	padding: convertPixelToEm(8px) convertPixelToEm(8px) convertPixelToEm(8px) convertPixelToEm(36px);
-	overflow-wrap: break-word;
-	word-wrap: break-word;
-	-ms-word-break: break-all;
-	word-break: break-word;
-	-webkit-hyphens: auto;
-	hyphens: auto;
-}
-
-.rtl #adminmenu div.wp-menu-name {
-	padding: convertPixelToEm(8px) convertPixelToEm(36px) convertPixelToEm(8px) convertPixelToEm(8px);
-}
-
-#adminmenu div.wp-menu-image {
-	float: left;
-	width: convertPixelToEm(36px);
-	height: convertPixelToEm(34px);
-	margin: 0;
-	text-align: center;
-	background-image: none;
-}
-
-.rtl #adminmenu div.wp-menu-image {
-	float: right;
-}
-
-#adminmenu div.wp-menu-image.svg {
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: convertPixelToEm(20px) auto;
-}
-
-div.wp-menu-image:before {
-	padding: convertPixelToEm(7px) 0;
-	transition: all .1s ease-in-out;
-}
-
-
-.folded #adminmenu div.wp-menu-image {
-	width: convertPixelToEm(35px);
-	height: convertPixelToEm(30px);
-	position: absolute;
-	z-index: 25;
-}
-
-.folded #adminmenu a.menu-top {
-	height: convertPixelToEm(34px);
-}
-
-/* Sticky admin menu */
-.sticky-menu #adminmenuwrap {
-	position: fixed;
-}
-
-ul#adminmenu a.wp-has-current-submenu {
-	position: relative;
-}
-
-ul#adminmenu a.wp-has-current-submenu:after,
-ul#adminmenu>li.current>a.current:after {
-	border: solid convertPixelToEm(8px) transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
-	top: 50%;
-	margin-top: convertPixelToEm(-8px);
-}
-
-.ltr ul#adminmenu a.wp-has-current-submenu:after,
-.ltr ul#adminmenu>li.current>a.current:after {
-	right: 0;
-}
-
-.rtl ul#adminmenu a.wp-has-current-submenu:after,
-.rtl ul#adminmenu>li.current>a.current:after {
-	left: 0;
-}
-
-.folded ul#adminmenu li:hover a.wp-has-current-submenu:after,
-.folded ul#adminmenu li.wp-has-current-submenu:focus-within a.wp-has-current-submenu:after {
-	display: none;
-}
-
-.folded ul#adminmenu a.wp-has-current-submenu:after,
-.folded ul#adminmenu>li a.current:after {
-	border-width: convertPixelToEm(4px);
-	margin-top: convertPixelToEm(-4px);
-}
-
-/* flyout menu arrow */
-#adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after,
-#adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
-	border: convertPixelToEm(8px) solid transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
-	top: convertPixelToEm(10px);
-	z-index: 10000;
-}
-
-.ltr #adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after,
-.ltr #adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
-	right: 0;
-}
-
-.rtl #adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after,
-.rtl #adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
-	left: 0;
-}
-
-.folded ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after,
-.folded ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
-	border-width: convertPixelToEm(4px);
-	margin-top: convertPixelToEm(-4px);
-	top: convertPixelToEm(18px);
-}
-
-#adminmenu li.menu-top:hover .wp-menu-image img,
-#adminmenu li.wp-has-current-submenu .wp-menu-image img {
-	opacity: 1;
-	filter: alpha(opacity=100);
-}
-
-#adminmenu li.wp-menu-separator {
-	height: convertPixelToEm(5px);
-	padding: 0;
-	margin: 0 0 convertPixelToEm(6px);
-	cursor: inherit;
-}
-
-/* @todo: is this even needed given that it's nested beneath the above li.wp-menu-separator? */
-#adminmenu div.separator {
-	height: convertPixelToEm(2px);
-	padding: 0;
-}
-
-#adminmenu .wp-submenu .wp-submenu-head {
-	font-weight: 400;
-	font-size: convertPixelToEm(14px);
-	padding: convertPixelToEm(5px) convertPixelToEm(4px) convertPixelToEm(5px) convertPixelToEm(11px);
-	margin: convertPixelToEm(-7px) 0 convertPixelToEm(4px) convertPixelToEm(-5px);
-	border-width: convertPixelToEm(3px) 0 convertPixelToEm(3px) convertPixelToEm(5px);
-	border-style: solid;
-	border-color: transparent;
-}
-
-.rtl #adminmenu .wp-submenu .wp-submenu-head {
-	padding: convertPixelToEm(5px) convertPixelToEm(11px) convertPixelToEm(5px) convertPixelToEm(4px);
-	margin: convertPixelToEm(-7px) convertPixelToEm(-5px) convertPixelToEm(4px) 0;
-	border-width: convertPixelToEm(3px) convertPixelToEm(5px) convertPixelToEm(3px) 0;
-}
-
-#adminmenu li.current,
-.folded #adminmenu li.wp-menu-open {
-	border: 0 none;
-}
-
-/* @todo: consider to use a single rule for these counters and the list table comments counters. */
-#adminmenu .menu-counter,
-#adminmenu .awaiting-mod {
-	display: inline-block;
-	vertical-align: top;
-	box-sizing: border-box;
-	margin: convertPixelToEm(1px) 0 convertPixelToEm(-1px) convertPixelToEm(2px);
-	padding: 0 convertPixelToEm(5px);
-	min-width: convertPixelToEm(18px);
-	height: convertPixelToEm(18px);
-	border-radius: convertPixelToEm(9px);
-	font-size: convertPixelToEm(11px);
-	line-height: 1.6;
-	text-align: center;
-	z-index: 26;
-}
-
-.rtl #adminmenu .menu-counter,
-.rtl #adminmenu .awaiting-mod {
-	margin: convertPixelToEm(1px) convertPixelToEm(6px) convertPixelToEm(-1px) 0;
-}
-
-#collapse-button {
-	display: block;
-	width: 100%;
-	height: convertPixelToEm(34px);
-	margin: 0;
-	border: none;
-	padding: 0;
-	font-family: inherit;
-	font-size: inherit;
-	position: relative;
-	overflow: visible;
-	background: none;
-	cursor: pointer;
-}
-
-#collapse-button:focus {
-	/* Only visible in Windows High Contrast mode */
-	outline: convertPixelToEm(1px) solid transparent;
-	outline-offset: convertPixelToEm(-1px);
-}
-
-#collapse-button .collapse-button-icon,
-#collapse-button .collapse-button-label {
-	/* absolutely positioned to avoid convertPixelToEm(1px) shift in IE when button is pressed */
-	display: block;
-	position: absolute;
-	top: 0;
-}
-
-.ltr #collapse-button .collapse-button-icon,
-.ltr #collapse-button .collapse-button-label {
-	left: 0;
-}
-
-.rtl #collapse-button .collapse-button-icon,
-.rtl #collapse-button .collapse-button-label {
-	right: 0;
-}
-
-#collapse-button .collapse-button-label {
-	top: convertPixelToEm(8px);
-}
-
-#collapse-button .collapse-button-icon {
-	width: convertPixelToEm(36px);
-	height: convertPixelToEm(34px);
-}
-
-#collapse-button .collapse-button-label {
-	padding: 0 0 0 convertPixelToEm(36px);
-}
-
-.rtl #collapse-button .collapse-button-label {
-	padding: 0 convertPixelToEm(36px) 0 0;
-}
-
-.folded #collapse-button .collapse-button-label {
-	display: none;
-}
-
-#collapse-button .collapse-button-icon:after {
-	content: "\f148";
-	display: block;
-	position: relative;
-	top: convertPixelToEm(7px);
-	text-align: center;
-	font: normal convertPixelToEm(20px)/1 dashicons !important;
-	speak: never;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-/* rtl:ignore */
-.folded #collapse-button .collapse-button-icon:after,
-.rtl #collapse-button .collapse-button-icon:after {
-	transform: rotate(180deg);
-}
-
-.rtl.folded #collapse-button .collapse-button-icon:after {
-	transform: none;
-}
-
-#collapse-button .collapse-button-icon:after,
-#collapse-button .collapse-button-label {
-	transition: all .1s ease-in-out;
-}
-
-/**
- * Toolbar menu toggle
- */
-li#wp-admin-bar-menu-toggle {
-	display: none;
-}
-
-/* Auto-folding of the admin menu */
-@media only screen and (max-width: convertPixelToEm(960px)) {
-
-
-	.ltr.auto-fold #wpcontent {
-		margin-left: convertPixelToEm(36px);
-	}
-
-	.rtl.auto-fold #wpcontent {
-		margin-right: convertPixelToEm(36px);
-	}
-
-	.auto-fold #adminmenuback,
-	.auto-fold #adminmenuwrap,
-	.auto-fold #adminmenu,
-	.auto-fold #adminmenu li.menu-top {
-		width: convertPixelToEm(36px);
-	}
-
-	.auto-fold #adminmenu .wp-submenu.sub-open,
-	.auto-fold #adminmenu .open-sub .wp-submenu,
-	.auto-fold #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
-	.auto-fold #adminmenu .wp-has-current-submenu.open-sub .wp-submenu,
-	.auto-fold #adminmenu a.menu-top:focus+.wp-submenu,
-	.auto-fold #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu {
-		top: 0;
-	}
-
-	.ltr.auto-fold #adminmenu .wp-submenu.sub-open,
-	.ltr.auto-fold #adminmenu .open-sub .wp-submenu,
-	.ltr.auto-fold #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
-	.ltr.auto-fold #adminmenu .wp-has-current-submenu.open-sub .wp-submenu,
-	.ltr.auto-fold #adminmenu a.menu-top:focus+.wp-submenu,
-	.ltr.auto-fold #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu {
-		left: convertPixelToEm(36px);
-	}
-
-	.rtl.auto-fold #adminmenu .wp-submenu.sub-open,
-	.rtl.auto-fold #adminmenu .open-sub .wp-submenu,
-	.rtl.auto-fold #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
-	.rtl.auto-fold #adminmenu .wp-has-current-submenu.open-sub .wp-submenu,
-	.rtl.auto-fold #adminmenu a.menu-top:focus+.wp-submenu,
-	.rtl.auto-fold #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu {
-		right: convertPixelToEm(36px);
-	}
-
-	.auto-fold #adminmenu a.wp-has-current-submenu:focus+.wp-submenu,
-	.auto-fold #adminmenu .wp-has-current-submenu .wp-submenu {
-		position: absolute;
-		top: -1000em;
-		padding: convertPixelToEm(7px) 0 convertPixelToEm(8px);
-		z-index: 9999;
-	}
-
-	.ltr.auto-fold #adminmenu a.wp-has-current-submenu:focus+.wp-submenu,
-	.ltr.auto-fold #adminmenu .wp-has-current-submenu .wp-submenu {
-		margin-right: convertPixelToEm(-1px);
-	}
-
-	.rtl.auto-fold #adminmenu a.wp-has-current-submenu:focus+.wp-submenu,
-	.rtl.auto-fold #adminmenu .wp-has-current-submenu .wp-submenu {
-		margin-left: convertPixelToEm(-1px);
-	}
-
-	.auto-fold #adminmenu .wp-has-current-submenu .wp-submenu {
-		min-width: convertPixelToEm(150px);
-		width: auto;
-	}
-
-	.auto-fold #adminmenu .wp-has-current-submenu li>a {
-		padding-right: convertPixelToEm(16px);
-		padding-left: convertPixelToEm(14px);
-	}
-
-	.rtl.auto-fold #adminmenu .wp-has-current-submenu li>a {
-		padding-left: convertPixelToEm(16px);
-		padding-right: convertPixelToEm(14px);
-	}
-
-	.ltr.auto-fold #adminmenu li.menu-top .wp-submenu>li>a {
-		padding-left: convertPixelToEm(12px);
-	}
-
-	.rtl.auto-fold #adminmenu li.menu-top .wp-submenu>li>a {
-		padding-right: convertPixelToEm(12px);
-	}
-
-	.auto-fold #adminmenu .wp-menu-name {
-		position: absolute;
-	}
-
-	.ltr.auto-fold #adminmenu .wp-menu-name {
-		left: convertPixelToEm(-999px);
-	}
-
-	.rtl.auto-fold #adminmenu .wp-menu-name {
-		right: convertPixelToEm(-999px);
-	}
-
-	.auto-fold #adminmenu .wp-submenu-head {
-		display: block;
-	}
-
-	.auto-fold #adminmenu div.wp-menu-image {
-		height: convertPixelToEm(30px);
-		width: convertPixelToEm(34px);
-		position: absolute;
-		z-index: 25;
-	}
-
-	.auto-fold #adminmenu a.menu-top {
-		min-height: convertPixelToEm(34px);
-	}
-
-	.auto-fold #adminmenu li.wp-menu-open {
-		border: 0 none;
-	}
-
-	.auto-fold #adminmenu .wp-has-current-submenu.menu-top-last {
-		margin-bottom: 0;
-	}
-
-	.auto-fold ul#adminmenu li:hover a.wp-has-current-submenu:after,
-	.auto-fold ul#adminmenu li:focus-within a.wp-has-current-submenu:after {
-		display: none;
-	}
-
-	.auto-fold ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after,
-	.auto-fold ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
-		border-width: convertPixelToEm(4px);
-		margin-top: convertPixelToEm(-4px);
-		top: convertPixelToEm(16px);
-	}
-
-	.auto-fold ul#adminmenu a.wp-has-current-submenu:after,
-	.auto-fold ul#adminmenu>li a.current:after {
-		border-width: convertPixelToEm(4px);
-		margin-top: convertPixelToEm(-4px);
-	}
-
-	.auto-fold #adminmenu li.menu-top:hover,
-	.auto-fold #adminmenu li.open-sub>a.menu-top,
-	.auto-fold #adminmenu li>a.menu-top:focus {
-		z-index: 10000;
-	}
-
-	.auto-fold #collapse-menu .collapse-button-label {
-		display: none;
-	}
-
-	/* rtl:ignore */
-	.auto-fold #collapse-button .collapse-button-icon:after {
-		transform: rotate(180deg);
-	}
-
-	.rtl.auto-fold #collapse-button .collapse-button-icon:after {
-		transform: none;
-	}
-
-}
-
-@media screen and (min-width: convertPixelToEm(782px)) {
-	body.is-fullscreen-mode #adminmenumain {
-		display: none;
-	}
-
-
-	body.ltr.is-fullscreen-mode #wpcontent {
-		margin-left: 0;
-	}
-
-	body.rtl.is-fullscreen-mode #wpcontent {
-		margin-right: 0;
-	}
-}
-
-@media screen and (max-width: convertPixelToEm(782px)) {
-
-	.auto-fold #wpcontent {
-		position: relative;
-	}
-
-	.ltr.auto-fold #wpcontent {
-		margin-left: 0;
-		padding-left: convertPixelToEm(10px);
-	}
-
-	.rtl.auto-fold #wpcontent {
-		margin-right: 0;
-		padding-right: convertPixelToEm(10px);
-	}
-
-	.sticky-menu #adminmenuwrap {
-		position: relative;
-		z-index: auto;
-		top: 0;
-	}
-
-	/* Sidebar Adjustments */
-	.auto-fold #adminmenu,
-	.auto-fold #adminmenuback,
-	.auto-fold #adminmenuwrap {
-		position: absolute;
-		width: convertPixelToEm(190px);
-		z-index: 100;
-	}
-
-	.auto-fold #adminmenuback {
-		position: fixed;
-	}
-
-	.auto-fold #adminmenuback,
-	.auto-fold #adminmenuwrap {
-		display: none;
-	}
-
-	.auto-fold.wp-responsive-open #adminmenuback,
-	.auto-fold.wp-responsive-open #adminmenuwrap {
-		display: block;
-	}
-
-	.auto-fold #adminmenu li.menu-top {
-		width: 100%;
-	}
-
-	/* Resize the admin menu items to a comfortable touch size */
-	.auto-fold #adminmenu li a {
-		font-size: convertPixelToEm(16px);
-		padding: convertPixelToEm(5px);
-	}
-
-	.auto-fold #adminmenu li.menu-top .wp-submenu>li>a {
-		padding: convertPixelToEm(10px) convertPixelToEm(10px) convertPixelToEm(10px) convertPixelToEm(20px);
-	}
-
-	.rtl.auto-fold #adminmenu li.menu-top .wp-submenu>li>a {
-		padding: convertPixelToEm(10px) convertPixelToEm(20px) convertPixelToEm(10px) convertPixelToEm(10px);
-	}
-
-	/* Restore the menu names */
-	.auto-fold #adminmenu .wp-menu-name {
-		position: static;
-	}
-
-	/* Switch the arrow side */
-	.auto-fold ul#adminmenu a.wp-has-current-submenu:after,
-	.auto-fold ul#adminmenu>li.current>a.current:after {
-		border-width: convertPixelToEm(8px);
-		margin-top: convertPixelToEm(-8px);
-	}
-
-	.auto-fold ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after,
-	.auto-fold ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
-		display: none;
-	}
-
-	#collapse-menu {
-		display: none;
-	}
-
-	/* Make the submenus appear correctly when tapped. */
-	#adminmenu .wp-submenu {
-		position: relative;
-		display: none;
-	}
-
-	.auto-fold #adminmenu .selected .wp-submenu,
-	.auto-fold #adminmenu .wp-menu-open .wp-submenu {
-		position: relative;
-		display: block;
-		top: 0;
-		box-shadow: none;
-	}
-
-	.ltr.auto-fold #adminmenu .selected .wp-submenu,
-	.ltr.auto-fold #adminmenu .wp-menu-open .wp-submenu {
-		left: convertPixelToEm(-1px);
-	}
-
-	.rtl.auto-fold #adminmenu .selected .wp-submenu,
-	.rtl.auto-fold #adminmenu .wp-menu-open .wp-submenu {
-		right: convertPixelToEm(-1px);
-	}
-
-	.auto-fold #adminmenu .selected .wp-submenu:after,
-	.auto-fold #adminmenu .wp-menu-open .wp-submenu:after {
-		display: none;
-	}
-
-	.auto-fold #adminmenu .open-sub .wp-submenu {
-		display: none;
-	}
-
-	.auto-fold #adminmenu .selected .wp-submenu {
-		display: block;
-	}
-
-	.auto-fold ul#adminmenu li:hover a.wp-has-current-submenu:after,
-	.auto-fold ul#adminmenu li:focus-within a.wp-has-current-submenu:after {
-		display: block;
-	}
-
-	.auto-fold #adminmenu a.menu-top:focus+.wp-submenu,
-	.auto-fold #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu {
-		position: relative;
-		left: convertPixelToEm(-1px);
-		right: 0;
-		top: 0;
-	}
-
-	.rtl.auto-fold #adminmenu a.menu-top:focus+.wp-submenu,
-	.rtl.auto-fold #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu {
-		right: convertPixelToEm(-1px);
-		left: 0;
-	}
-
-	.ltr #adminmenu .wp-not-current-submenu .wp-submenu,
-	.ltr.folded #adminmenu .wp-has-current-submenu .wp-submenu {
-		border-left: none;
-	}
-
-	.rtl #adminmenu .wp-not-current-submenu .wp-submenu,
-	.rtl.folded #adminmenu .wp-has-current-submenu .wp-submenu {
-		border-right: none;
-	}
-
-	/* Remove submenu headers and adjust sub meu*/
-	#adminmenu .wp-submenu .wp-submenu-head {
-		display: none;
-	}
-
-	/* Toolbar menu toggle */
-	#wp-responsive-toggle {
-		position: fixed;
-		top: convertPixelToEm(5px);
-		z-index: 99999;
-		border: none;
-		box-sizing: border-box;
-	}
-
-	.ltr #wp-responsive-toggle {
-		left: convertPixelToEm(4px);
-		padding-right: convertPixelToEm(10px);
-	}
-
-	.rtl #wp-responsive-toggle {
-		right: convertPixelToEm(4px);
-		padding-left: convertPixelToEm(10px);
-	}
-
-	#wpadminbar #wp-admin-bar-menu-toggle a {
-		display: block;
-		padding: 0;
-		overflow: hidden;
-		outline: none;
-		text-decoration: none;
-		border: convertPixelToEm(1px) solid transparent;
-		background: none;
-		height: convertPixelToEm(44px);
-	}
-
-	.ltr #wpadminbar #wp-admin-bar-menu-toggle a {
-		margin-left: convertPixelToEm(-1px);
-	}
-
-	.rtl #wpadminbar #wp-admin-bar-menu-toggle a {
-		margin-right: convertPixelToEm(-1px);
-	}
-
-	li#wp-admin-bar-menu-toggle {
-		display: block;
-	}
-
-	#wpadminbar #wp-admin-bar-menu-toggle a:hover {
-		border: convertPixelToEm(1px) solid transparent;
-	}
-
-	#wpadminbar #wp-admin-bar-menu-toggle .ab-icon:before {
-		content: "\f228";
-		display: inline-block;
-		float: left;
-		font: normal convertPixelToEm(40px)/convertPixelToEm(45px) dashicons;
-		vertical-align: middle;
-		outline: none;
-		margin: 0;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-		height: convertPixelToEm(44px);
-		width: convertPixelToEm(50px);
-		padding: 0;
-		border: none;
-		text-align: center;
-		text-decoration: none;
-		box-sizing: border-box;
-	}
-
-	.rtl #wpadminbar #wp-admin-bar-menu-toggle .ab-icon:before {
-		float: right;
-	}
-
-	.ltr.wp-responsive-open #wpbody {
-		right: -16em;
-	}
-
-	.rtl.wp-responsive-open #wpbody {
-		left: -16em;
-	}
-}
-
-/* Smartphone */
-@media screen and (max-width: convertPixelToEm(600px)) {
-
-	#adminmenuwrap,
-	#adminmenuback {
-		display: none;
-	}
-
-	.wp-responsive-open #adminmenuwrap,
-	.wp-responsive-open #adminmenuback {
-		display: block;
-	}
-
-	.auto-fold #adminmenu {
-		top: convertPixelToEm(46px);
-	}
-}
-
-/* ******************************************************************************************** */
-/* -------------------------------- */
-.focus-on #adminmenuback,
-.focus-on #adminmenuwrap {
-	transform: translateX(-100%);
-	transition-duration: 0.6s;
-	transition-property: transform;
-	transition-timing-function: ease-in-out;
-}
-
-.rtl.focus-on #adminmenuback,
-.rtl.focus-on #adminmenuwrap {
-	transform: translateX(100%);
-}
-
-.focus-off #adminmenuback,
-.focus-off #adminmenuwrap {
-	transform: translateX(0);
-	transition-duration: 0.2s;
-	transition-property: transform;
-	transition-timing-function: ease-in-out;
-}
-
-/* ---------------todo-fix-this-wherre-to-place---------------- */
-#adminmenu a:focus {
-	outline: convertPixelToEm(1px) solid transparent;
-	outline-offset: convertPixelToEm(-1px);
-}
-
-#adminmenu .wp-submenu li.current,
-#adminmenu .wp-submenu li.current a,
-#adminmenu .wp-submenu li.current a:hover {
-	font-weight: 600;
-}
-
-// ------------------With-Colors------------------
-
 // @use 'sass:math';
-
 // $base-size: 14px; // Default
-
 // @function strip-units($number) {
 // 	@return math.div($number, ($number * 0 + 1));
 // }
-
 // @function convertPixelToEm($pixels, $context: $base-size) {
 // 	@return #{math.div(strip-units($pixels), strip-units($context))}em;
 // }
-
 // ng-wp-menu, #wpwrap {
 // 	font-size: $base_size;
 // }
@@ -1087,32 +14,25 @@ li#wp-admin-bar-menu-toggle {
 // div {
 // 	outline: 0;
 // }
-
 // #adminmenuback,
 // #adminmenuwrap,
 // #adminmenu{
 // 	width: convertPixelToEm(160px);
-// 	background-color: #1d2327;
 // }
-
 // #wpcontent {
 // 	height: 100%;
 // }
-
 // .ltr #wpcontent {
 // 	margin-left: convertPixelToEm(160px);
 // 	padding-left: convertPixelToEm(20px);
 // }
-
 // .rtl #wpcontent {
 // 	margin-right: convertPixelToEm(160px);
 // 	padding-right: convertPixelToEm(20px);
 // }
-
 // #wpbody {
 // 	position: relative;
 // }
-
 // #adminmenuback {
 // 	position: fixed;
 // 	top: 0;
@@ -1120,117 +40,87 @@ li#wp-admin-bar-menu-toggle {
 // 	z-index: 1;
 // 	/* positive z-index to avoid elastic scrolling woes in Safari */
 // }
-
 // .upper-space #adminmenuback {
 // 	position: absolute;
 // }
-
 // .upper-space #adminmenuback,
 // .upper-space #adminmenuwrap {
 // 	margin-top: 2em;
 // }
-
 // #adminmenu {
 // 	clear: left;
 // 	margin: convertPixelToEm(12px) 0;
 // 	padding: 0;
 // 	list-style: none;
 // }
-
 // .rtl #adminmenu {
 // 	clear: right;
 // }
-
 // .folded #adminmenuback,
 // .folded #adminmenuwrap,
 // .folded #adminmenu,
 // .folded #adminmenu li.menu-top {
 // 	width: convertPixelToEm(36px);
 // }
-
-
 // .ltr.folded #wpcontent {
 // 	margin-left: convertPixelToEm(36px);
 // }
-
 // .rtl.folded #wpcontent {
 // 	margin-right: convertPixelToEm(36px);
 // }
-
 // /*------------------------------------------------------------------------------
 //   7.0 - Main Navigation (Left Menu)
 // ------------------------------------------------------------------------------*/
-
 // #adminmenuwrap {
 // 	position: relative;
 // 	float: left;
 // 	z-index: 9990;
 // }
-
 // .rtl #adminmenuwrap {
 // 	float: right;
 // }
-
 // /* side admin menu */
 // #adminmenu * {
 // 	-webkit-user-select: none;
 // 	user-select: none;
 // }
-
 // #adminmenu li {
 // 	margin: 0;
 // 	padding: 0;
 // }
-
 // #adminmenu a {
 // 	display: block;
 // 	line-height: 1.3;
 // 	padding: convertPixelToEm(2px) convertPixelToEm(5px);
-// 	color: #f0f0f1;
 // 	text-decoration: none;
 // 	cursor: pointer;
 // }
-
 // #adminmenu .wp-submenu a {
-// 	color: #c3c4c7;
-// 	color: rgba(240, 246, 252, 0.7);
 // 	font-size: convertPixelToEm(13px);
 // 	line-height: 1.4;
 // 	margin: 0;
 // 	padding: convertPixelToEm(5px) 0;
 // }
-
 // #adminmenu .wp-submenu a:hover,
 // #adminmenu .wp-submenu a:focus {
 // 	background: none;
 // }
-
-// #adminmenu a:hover,
-// #adminmenu li.menu-top>a:focus,
-// #adminmenu .wp-submenu a:hover,
-// #adminmenu .wp-submenu a:focus {
-// 	color: #72aee6;
-// }
-
 // #adminmenu a:hover,
 // #adminmenu a:focus,
 // .folded #adminmenu .wp-submenu-head:hover {
 // 	box-shadow: inset convertPixelToEm(4px) 0 0 0 currentColor;
 // 	transition: box-shadow .1s linear;
 // }
-
 // .rtl #adminmenu a:hover,
 // .rtl #adminmenu a:focus,
 // .rtl.folded #adminmenu .wp-submenu-head:hover {
 // 	box-shadow: inset convertPixelToEm(-4px) 0 0 0 currentColor;
 // }
-
 // #adminmenu li.menu-top {
 // 	border: none;
 // 	min-height: convertPixelToEm(34px);
 // 	position: relative;
 // }
-
 // #adminmenu .wp-submenu {
 // 	width: convertPixelToEm(160px);
 // 	list-style: none;
@@ -1240,29 +130,23 @@ li#wp-admin-bar-menu-toggle {
 // 	word-wrap: break-word;
 // 	padding: convertPixelToEm(7px) 0 convertPixelToEm(8px);
 // 	z-index: 9999;
-// 	background-color: #2c3338;
 // 	box-shadow: 0 convertPixelToEm(3px) convertPixelToEm(5px) rgba(0, 0, 0, 0.2);
 // }
-
 // .ltr #adminmenu .wp-submenu {
 // 	left: convertPixelToEm(160px);
 // }
-
 // .rtl #adminmenu .wp-submenu {
 // 	right: convertPixelToEm(160px);
 // }
-
 // #adminmenu .sub-open,
 // #adminmenu .open-sub .wp-submenu,
 // #adminmenu a.menu-top:focus+.wp-submenu,
 // .no-js li.wp-has-submenu:hover .wp-submenu {
 // 	top: convertPixelToEm(-1px);
 // }
-
 // #adminmenu a.wp-has-current-submenu:focus+.wp-submenu {
 // 	top: 0;
 // }
-
 // #adminmenu .wp-has-current-submenu .wp-submenu,
 // .no-js li.wp-has-current-submenu:hover .wp-submenu,
 // #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
@@ -1277,33 +161,20 @@ li#wp-admin-bar-menu-toggle {
 // 	margin-top: 0;
 // 	box-shadow: none;
 // }
-
 // .folded #adminmenu .wp-has-current-submenu .wp-submenu {
 // 	box-shadow: 0 convertPixelToEm(3px) convertPixelToEm(5px) rgba(0, 0, 0, 0.2);
 // }
-
 // /* ensure that wp-submenu's box shadow doesn't appear on top of the focused menu item's background. */
 // #adminmenu li.menu-top:hover,
 // #adminmenu li.open-sub>a.menu-top,
 // #adminmenu li>a.menu-top:focus {
 // 	position: relative;
-// 	background-color: #1d2327;
-// 	color: #72aee6;
 // }
-
 // .folded #adminmenu li.menu-top:hover,
 // .folded #adminmenu li.open-sub>a.menu-top,
 // .folded #adminmenu li>a.menu-top:focus {
 // 	z-index: 10000;
 // }
-
-// #adminmenu li.wp-has-current-submenu a.wp-has-current-submenu,
-// #adminmenu li.current a.menu-top,
-// #adminmenu .wp-has-current-submenu .wp-submenu .wp-submenu-head {
-// 	background: #2271b1;
-// 	color: #fff;
-// }
-
 // .folded #adminmenu .wp-submenu.sub-open,
 // .folded #adminmenu .open-sub .wp-submenu,
 // .folded #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
@@ -1313,7 +184,6 @@ li#wp-admin-bar-menu-toggle {
 // .no-js.folded #adminmenu .wp-has-submenu:hover .wp-submenu {
 // 	top: 0;
 // }
-
 // .ltr.folded #adminmenu .wp-submenu.sub-open,
 // .ltr.folded #adminmenu .open-sub .wp-submenu,
 // .ltr.folded #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
@@ -1323,7 +193,6 @@ li#wp-admin-bar-menu-toggle {
 // .ltr.no-js.folded #adminmenu .wp-has-submenu:hover .wp-submenu {
 // 	left: convertPixelToEm(36px);
 // }
-
 // .rtl.folded #adminmenu .wp-submenu.sub-open,
 // .rtl.folded #adminmenu .open-sub .wp-submenu,
 // .rtl.folded #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
@@ -1333,38 +202,24 @@ li#wp-admin-bar-menu-toggle {
 // .rtl.no-js.folded #adminmenu .wp-has-submenu:hover .wp-submenu {
 // 	right: convertPixelToEm(36px);
 // }
-
 // .folded #adminmenu a.wp-has-current-submenu:focus+.wp-submenu,
 // .folded #adminmenu .wp-has-current-submenu .wp-submenu {
 // 	position: absolute;
 // 	top: -1000em;
 // }
-
 // #adminmenu .wp-not-current-submenu .wp-submenu,
 // .folded #adminmenu .wp-has-current-submenu .wp-submenu {
 // 	min-width: convertPixelToEm(160px);
 // 	width: auto;
 // }
-
 // .ltr #adminmenu .wp-not-current-submenu .wp-submenu,
 // .ltr.folded #adminmenu .wp-has-current-submenu .wp-submenu {
 // 	border-left: convertPixelToEm(5px) solid transparent;
 // }
-
 // .rtl #adminmenu .wp-not-current-submenu .wp-submenu,
 // .rtl.folded #adminmenu .wp-has-current-submenu .wp-submenu {
 // 	border-right: convertPixelToEm(5px) solid transparent;
 // }
-
-// #adminmenu .wp-submenu li.current,
-// #adminmenu .wp-submenu li.current a,
-// #adminmenu .open-sub .wp-submenu li.current a,
-// #adminmenu a.wp-has-current-submenu:focus+.wp-submenu li.current a,
-// #adminmenu .wp-submenu li.current a:hover,
-// #adminmenu .wp-submenu li.current a:focus {
-// 	color: #fff;
-// }
-
 // #adminmenu .wp-not-current-submenu li>a,
 // .folded #adminmenu .wp-has-current-submenu li>a {
 // 	padding-right: convertPixelToEm(16px);
@@ -1372,18 +227,15 @@ li#wp-admin-bar-menu-toggle {
 // 	/* Exclude from the transition the outline for Windows High Contrast mode */
 // 	transition: all .1s ease-in-out, outline 0s;
 // }
-
 // .rtl #adminmenu .wp-not-current-submenu li>a,
 // .rtl.folded #adminmenu .wp-has-current-submenu li>a {
 // 	padding-left: convertPixelToEm(16px);
 // 	padding-right: convertPixelToEm(14px);
 // }
-
 // #adminmenu .wp-has-current-submenu ul>li>a,
 // .folded #adminmenu li.menu-top .wp-submenu>li>a {
 // 	padding: convertPixelToEm(5px) convertPixelToEm(12px);
 // }
-
 // #adminmenu a.menu-top,
 // #adminmenu .wp-submenu-head {
 // 	font-size: convertPixelToEm(14px);
@@ -1391,39 +243,31 @@ li#wp-admin-bar-menu-toggle {
 // 	line-height: 1.3;
 // 	padding: 0;
 // }
-
 // #adminmenu .wp-submenu-head {
 // 	display: none;
 // 	cursor: pointer;
 // }
-
 // .folded #adminmenu .wp-menu-name {
 // 	position: absolute;
 // }
-
 // .ltr.folded #adminmenu .wp-menu-name {
 // 	left: convertPixelToEm(-999px);
 // }
-
 // .rtl.folded #adminmenu .wp-menu-name {
 // 	right: convertPixelToEm(-999px);
 // }
-
 // .folded #adminmenu .wp-submenu-head {
 // 	display: block;
 // }
-
 // #adminmenu .wp-submenu li {
 // 	padding: 0;
 // 	margin: 0;
 // }
-
 // #adminmenu .wp-menu-image img {
 // 	padding: convertPixelToEm(9px) 0 0;
 // 	opacity: 0.6;
 // 	filter: alpha(opacity=60);
 // }
-
 // #adminmenu div.wp-menu-name {
 // 	padding: convertPixelToEm(8px) convertPixelToEm(8px) convertPixelToEm(8px) convertPixelToEm(36px);
 // 	overflow-wrap: break-word;
@@ -1433,11 +277,9 @@ li#wp-admin-bar-menu-toggle {
 // 	-webkit-hyphens: auto;
 // 	hyphens: auto;
 // }
-
 // .rtl #adminmenu div.wp-menu-name {
 // 	padding: convertPixelToEm(8px) convertPixelToEm(36px) convertPixelToEm(8px) convertPixelToEm(8px);
 // }
-
 // #adminmenu div.wp-menu-image {
 // 	float: left;
 // 	width: convertPixelToEm(36px);
@@ -1446,65 +288,34 @@ li#wp-admin-bar-menu-toggle {
 // 	text-align: center;
 // 	background-image: none;
 // }
-
 // .rtl #adminmenu div.wp-menu-image {
 // 	float: right;
 // }
-
 // #adminmenu div.wp-menu-image.svg {
 // 	background-repeat: no-repeat;
 // 	background-position: center;
 // 	background-size: convertPixelToEm(20px) auto;
 // }
-
 // div.wp-menu-image:before {
-// 	color: #a7aaad;
-// 	color: rgba(240, 246, 252, 0.6);
 // 	padding: convertPixelToEm(7px) 0;
 // 	transition: all .1s ease-in-out;
 // }
-
-// #adminmenu div.wp-menu-image:before {
-// 	color: #a7aaad;
-// 	color: rgba(240, 246, 252, 0.6);
-// }
-
-// #adminmenu li.wp-has-current-submenu:hover div.wp-menu-image:before,
-// #adminmenu .wp-has-current-submenu div.wp-menu-image:before,
-// #adminmenu .current div.wp-menu-image:before,
-// #adminmenu a.wp-has-current-submenu:hover div.wp-menu-image:before,
-// #adminmenu a.current:hover div.wp-menu-image:before,
-// #adminmenu li.wp-has-current-submenu a:focus div.wp-menu-image:before,
-// #adminmenu li.wp-has-current-submenu.open-sub div.wp-menu-image:before {
-// 	color: #fff;
-// }
-
-// #adminmenu li:hover div.wp-menu-image:before,
-// #adminmenu li a:focus div.wp-menu-image:before,
-// #adminmenu li.open-sub div.wp-menu-image:before {
-// 	color: #72aee6;
-// }
-
 // .folded #adminmenu div.wp-menu-image {
 // 	width: convertPixelToEm(35px);
 // 	height: convertPixelToEm(30px);
 // 	position: absolute;
 // 	z-index: 25;
 // }
-
 // .folded #adminmenu a.menu-top {
 // 	height: convertPixelToEm(34px);
 // }
-
 // /* Sticky admin menu */
 // .sticky-menu #adminmenuwrap {
 // 	position: fixed;
 // }
-
 // ul#adminmenu a.wp-has-current-submenu {
 // 	position: relative;
 // }
-
 // ul#adminmenu a.wp-has-current-submenu:after,
 // ul#adminmenu>li.current>a.current:after {
 // 	border: solid convertPixelToEm(8px) transparent;
@@ -1516,30 +327,23 @@ li#wp-admin-bar-menu-toggle {
 // 	top: 50%;
 // 	margin-top: convertPixelToEm(-8px);
 // }
-
 // .ltr ul#adminmenu a.wp-has-current-submenu:after,
 // .ltr ul#adminmenu>li.current>a.current:after {
 // 	right: 0;
-// 	border-right-color: #f0f0f1;
 // }
-
 // .rtl ul#adminmenu a.wp-has-current-submenu:after,
 // .rtl ul#adminmenu>li.current>a.current:after {
 // 	left: 0;
-// 	border-left-color: #f0f0f1;
 // }
-
 // .folded ul#adminmenu li:hover a.wp-has-current-submenu:after,
 // .folded ul#adminmenu li.wp-has-current-submenu:focus-within a.wp-has-current-submenu:after {
 // 	display: none;
 // }
-
 // .folded ul#adminmenu a.wp-has-current-submenu:after,
 // .folded ul#adminmenu>li a.current:after {
 // 	border-width: convertPixelToEm(4px);
 // 	margin-top: convertPixelToEm(-4px);
 // }
-
 // /* flyout menu arrow */
 // #adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after,
 // #adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
@@ -1552,50 +356,37 @@ li#wp-admin-bar-menu-toggle {
 // 	top: convertPixelToEm(10px);
 // 	z-index: 10000;
 // }
-
 // .ltr #adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after,
 // .ltr #adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
 // 	right: 0;
 // }
-
 // .rtl #adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after,
 // .rtl #adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
 // 	left: 0;
 // }
-
 // .folded ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after,
 // .folded ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
 // 	border-width: convertPixelToEm(4px);
 // 	margin-top: convertPixelToEm(-4px);
 // 	top: convertPixelToEm(18px);
 // }
-
-// #adminmenu li.wp-has-submenu.wp-not-current-submenu.open-sub:hover:after,
-// #adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
-// 	border-right-color: #2c3338;
-// }
-
 // #adminmenu li.menu-top:hover .wp-menu-image img,
 // #adminmenu li.wp-has-current-submenu .wp-menu-image img {
 // 	opacity: 1;
 // 	filter: alpha(opacity=100);
 // }
-
 // #adminmenu li.wp-menu-separator {
 // 	height: convertPixelToEm(5px);
 // 	padding: 0;
 // 	margin: 0 0 convertPixelToEm(6px);
 // 	cursor: inherit;
 // }
-
 // /* @todo: is this even needed given that it's nested beneath the above li.wp-menu-separator? */
 // #adminmenu div.separator {
 // 	height: convertPixelToEm(2px);
 // 	padding: 0;
 // }
-
 // #adminmenu .wp-submenu .wp-submenu-head {
-// 	color: #fff;
 // 	font-weight: 400;
 // 	font-size: convertPixelToEm(14px);
 // 	padding: convertPixelToEm(5px) convertPixelToEm(4px) convertPixelToEm(5px) convertPixelToEm(11px);
@@ -1604,18 +395,15 @@ li#wp-admin-bar-menu-toggle {
 // 	border-style: solid;
 // 	border-color: transparent;
 // }
-
 // .rtl #adminmenu .wp-submenu .wp-submenu-head {
 // 	padding: convertPixelToEm(5px) convertPixelToEm(11px) convertPixelToEm(5px) convertPixelToEm(4px);
 // 	margin: convertPixelToEm(-7px) convertPixelToEm(-5px) convertPixelToEm(4px) 0;
 // 	border-width: convertPixelToEm(3px) convertPixelToEm(5px) convertPixelToEm(3px) 0;
 // }
-
 // #adminmenu li.current,
 // .folded #adminmenu li.wp-menu-open {
 // 	border: 0 none;
 // }
-
 // /* @todo: consider to use a single rule for these counters and the list table comments counters. */
 // #adminmenu .menu-counter,
 // #adminmenu .awaiting-mod {
@@ -1627,19 +415,15 @@ li#wp-admin-bar-menu-toggle {
 // 	min-width: convertPixelToEm(18px);
 // 	height: convertPixelToEm(18px);
 // 	border-radius: convertPixelToEm(9px);
-// 	background-color: #d63638;
-// 	color: #fff;
 // 	font-size: convertPixelToEm(11px);
 // 	line-height: 1.6;
 // 	text-align: center;
 // 	z-index: 26;
 // }
-
 // .rtl #adminmenu .menu-counter,
 // .rtl #adminmenu .awaiting-mod {
 // 	margin: convertPixelToEm(1px) convertPixelToEm(6px) convertPixelToEm(-1px) 0;
 // }
-
 // #collapse-button {
 // 	display: block;
 // 	width: 100%;
@@ -1652,21 +436,13 @@ li#wp-admin-bar-menu-toggle {
 // 	position: relative;
 // 	overflow: visible;
 // 	background: none;
-// 	color: #a7aaad;
 // 	cursor: pointer;
 // }
-
-// #collapse-button:hover {
-// 	color: #72aee6;
-// }
-
 // #collapse-button:focus {
-// 	color: #72aee6;
 // 	/* Only visible in Windows High Contrast mode */
 // 	outline: convertPixelToEm(1px) solid transparent;
 // 	outline-offset: convertPixelToEm(-1px);
 // }
-
 // #collapse-button .collapse-button-icon,
 // #collapse-button .collapse-button-label {
 // 	/* absolutely positioned to avoid convertPixelToEm(1px) shift in IE when button is pressed */
@@ -1674,38 +450,30 @@ li#wp-admin-bar-menu-toggle {
 // 	position: absolute;
 // 	top: 0;
 // }
-
 // .ltr #collapse-button .collapse-button-icon,
 // .ltr #collapse-button .collapse-button-label {
 // 	left: 0;
 // }
-
 // .rtl #collapse-button .collapse-button-icon,
 // .rtl #collapse-button .collapse-button-label {
 // 	right: 0;
 // }
-
 // #collapse-button .collapse-button-label {
 // 	top: convertPixelToEm(8px);
 // }
-
 // #collapse-button .collapse-button-icon {
 // 	width: convertPixelToEm(36px);
 // 	height: convertPixelToEm(34px);
 // }
-
 // #collapse-button .collapse-button-label {
 // 	padding: 0 0 0 convertPixelToEm(36px);
 // }
-
 // .rtl #collapse-button .collapse-button-label {
 // 	padding: 0 convertPixelToEm(36px) 0 0;
 // }
-
 // .folded #collapse-button .collapse-button-label {
 // 	display: none;
 // }
-
 // #collapse-button .collapse-button-icon:after {
 // 	content: "\f148";
 // 	display: block;
@@ -1717,48 +485,38 @@ li#wp-admin-bar-menu-toggle {
 // 	-webkit-font-smoothing: antialiased;
 // 	-moz-osx-font-smoothing: grayscale;
 // }
-
 // /* rtl:ignore */
 // .folded #collapse-button .collapse-button-icon:after,
 // .rtl #collapse-button .collapse-button-icon:after {
 // 	transform: rotate(180deg);
 // }
-
 // .rtl.folded #collapse-button .collapse-button-icon:after {
 // 	transform: none;
 // }
-
 // #collapse-button .collapse-button-icon:after,
 // #collapse-button .collapse-button-label {
 // 	transition: all .1s ease-in-out;
 // }
-
 // /**
 //  * Toolbar menu toggle
 //  */
 // li#wp-admin-bar-menu-toggle {
 // 	display: none;
 // }
-
 // /* Auto-folding of the admin menu */
 // @media only screen and (max-width: convertPixelToEm(960px)) {
-
-
 // 	.ltr.auto-fold #wpcontent {
 // 		margin-left: convertPixelToEm(36px);
 // 	}
-
 // 	.rtl.auto-fold #wpcontent {
 // 		margin-right: convertPixelToEm(36px);
 // 	}
-
 // 	.auto-fold #adminmenuback,
 // 	.auto-fold #adminmenuwrap,
 // 	.auto-fold #adminmenu,
 // 	.auto-fold #adminmenu li.menu-top {
 // 		width: convertPixelToEm(36px);
 // 	}
-
 // 	.auto-fold #adminmenu .wp-submenu.sub-open,
 // 	.auto-fold #adminmenu .open-sub .wp-submenu,
 // 	.auto-fold #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
@@ -1767,7 +525,6 @@ li#wp-admin-bar-menu-toggle {
 // 	.auto-fold #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu {
 // 		top: 0;
 // 	}
-
 // 	.ltr.auto-fold #adminmenu .wp-submenu.sub-open,
 // 	.ltr.auto-fold #adminmenu .open-sub .wp-submenu,
 // 	.ltr.auto-fold #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
@@ -1776,7 +533,6 @@ li#wp-admin-bar-menu-toggle {
 // 	.ltr.auto-fold #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu {
 // 		left: convertPixelToEm(36px);
 // 	}
-
 // 	.rtl.auto-fold #adminmenu .wp-submenu.sub-open,
 // 	.rtl.auto-fold #adminmenu .open-sub .wp-submenu,
 // 	.rtl.auto-fold #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
@@ -1785,7 +541,6 @@ li#wp-admin-bar-menu-toggle {
 // 	.rtl.auto-fold #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu {
 // 		right: convertPixelToEm(36px);
 // 	}
-
 // 	.auto-fold #adminmenu a.wp-has-current-submenu:focus+.wp-submenu,
 // 	.auto-fold #adminmenu .wp-has-current-submenu .wp-submenu {
 // 		position: absolute;
@@ -1793,151 +548,118 @@ li#wp-admin-bar-menu-toggle {
 // 		padding: convertPixelToEm(7px) 0 convertPixelToEm(8px);
 // 		z-index: 9999;
 // 	}
-
 // 	.ltr.auto-fold #adminmenu a.wp-has-current-submenu:focus+.wp-submenu,
 // 	.ltr.auto-fold #adminmenu .wp-has-current-submenu .wp-submenu {
 // 		margin-right: convertPixelToEm(-1px);
 // 	}
-
 // 	.rtl.auto-fold #adminmenu a.wp-has-current-submenu:focus+.wp-submenu,
 // 	.rtl.auto-fold #adminmenu .wp-has-current-submenu .wp-submenu {
 // 		margin-left: convertPixelToEm(-1px);
 // 	}
-
 // 	.auto-fold #adminmenu .wp-has-current-submenu .wp-submenu {
 // 		min-width: convertPixelToEm(150px);
 // 		width: auto;
 // 	}
-
 // 	.auto-fold #adminmenu .wp-has-current-submenu li>a {
 // 		padding-right: convertPixelToEm(16px);
 // 		padding-left: convertPixelToEm(14px);
 // 	}
-
 // 	.rtl.auto-fold #adminmenu .wp-has-current-submenu li>a {
 // 		padding-left: convertPixelToEm(16px);
 // 		padding-right: convertPixelToEm(14px);
 // 	}
-
 // 	.ltr.auto-fold #adminmenu li.menu-top .wp-submenu>li>a {
 // 		padding-left: convertPixelToEm(12px);
 // 	}
-
 // 	.rtl.auto-fold #adminmenu li.menu-top .wp-submenu>li>a {
 // 		padding-right: convertPixelToEm(12px);
 // 	}
-
 // 	.auto-fold #adminmenu .wp-menu-name {
 // 		position: absolute;
 // 	}
-
 // 	.ltr.auto-fold #adminmenu .wp-menu-name {
 // 		left: convertPixelToEm(-999px);
 // 	}
-
 // 	.rtl.auto-fold #adminmenu .wp-menu-name {
 // 		right: convertPixelToEm(-999px);
 // 	}
-
 // 	.auto-fold #adminmenu .wp-submenu-head {
 // 		display: block;
 // 	}
-
 // 	.auto-fold #adminmenu div.wp-menu-image {
 // 		height: convertPixelToEm(30px);
 // 		width: convertPixelToEm(34px);
 // 		position: absolute;
 // 		z-index: 25;
 // 	}
-
 // 	.auto-fold #adminmenu a.menu-top {
 // 		min-height: convertPixelToEm(34px);
 // 	}
-
 // 	.auto-fold #adminmenu li.wp-menu-open {
 // 		border: 0 none;
 // 	}
-
 // 	.auto-fold #adminmenu .wp-has-current-submenu.menu-top-last {
 // 		margin-bottom: 0;
 // 	}
-
 // 	.auto-fold ul#adminmenu li:hover a.wp-has-current-submenu:after,
 // 	.auto-fold ul#adminmenu li:focus-within a.wp-has-current-submenu:after {
 // 		display: none;
 // 	}
-
 // 	.auto-fold ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after,
 // 	.auto-fold ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
 // 		border-width: convertPixelToEm(4px);
 // 		margin-top: convertPixelToEm(-4px);
 // 		top: convertPixelToEm(16px);
 // 	}
-
 // 	.auto-fold ul#adminmenu a.wp-has-current-submenu:after,
 // 	.auto-fold ul#adminmenu>li a.current:after {
 // 		border-width: convertPixelToEm(4px);
 // 		margin-top: convertPixelToEm(-4px);
 // 	}
-
 // 	.auto-fold #adminmenu li.menu-top:hover,
 // 	.auto-fold #adminmenu li.open-sub>a.menu-top,
 // 	.auto-fold #adminmenu li>a.menu-top:focus {
 // 		z-index: 10000;
 // 	}
-
 // 	.auto-fold #collapse-menu .collapse-button-label {
 // 		display: none;
 // 	}
-
 // 	/* rtl:ignore */
 // 	.auto-fold #collapse-button .collapse-button-icon:after {
 // 		transform: rotate(180deg);
 // 	}
-
 // 	.rtl.auto-fold #collapse-button .collapse-button-icon:after {
 // 		transform: none;
 // 	}
-
 // }
-
 // @media screen and (min-width: convertPixelToEm(782px)) {
 // 	body.is-fullscreen-mode #adminmenumain {
 // 		display: none;
 // 	}
-
-
 // 	body.ltr.is-fullscreen-mode #wpcontent {
 // 		margin-left: 0;
 // 	}
-
 // 	body.rtl.is-fullscreen-mode #wpcontent {
 // 		margin-right: 0;
 // 	}
 // }
-
 // @media screen and (max-width: convertPixelToEm(782px)) {
-
 // 	.auto-fold #wpcontent {
 // 		position: relative;
 // 	}
-
 // 	.ltr.auto-fold #wpcontent {
 // 		margin-left: 0;
 // 		padding-left: convertPixelToEm(10px);
 // 	}
-
 // 	.rtl.auto-fold #wpcontent {
 // 		margin-right: 0;
 // 		padding-right: convertPixelToEm(10px);
 // 	}
-
 // 	.sticky-menu #adminmenuwrap {
 // 		position: relative;
 // 		z-index: auto;
 // 		top: 0;
 // 	}
-
 // 	/* Sidebar Adjustments */
 // 	.auto-fold #adminmenu,
 // 	.auto-fold #adminmenuback,
@@ -1946,66 +668,53 @@ li#wp-admin-bar-menu-toggle {
 // 		width: convertPixelToEm(190px);
 // 		z-index: 100;
 // 	}
-
 // 	.auto-fold #adminmenuback {
 // 		position: fixed;
 // 	}
-
 // 	.auto-fold #adminmenuback,
 // 	.auto-fold #adminmenuwrap {
 // 		display: none;
 // 	}
-
 // 	.auto-fold.wp-responsive-open #adminmenuback,
 // 	.auto-fold.wp-responsive-open #adminmenuwrap {
 // 		display: block;
 // 	}
-
 // 	.auto-fold #adminmenu li.menu-top {
 // 		width: 100%;
 // 	}
-
 // 	/* Resize the admin menu items to a comfortable touch size */
 // 	.auto-fold #adminmenu li a {
 // 		font-size: convertPixelToEm(16px);
 // 		padding: convertPixelToEm(5px);
 // 	}
-
 // 	.auto-fold #adminmenu li.menu-top .wp-submenu>li>a {
 // 		padding: convertPixelToEm(10px) convertPixelToEm(10px) convertPixelToEm(10px) convertPixelToEm(20px);
 // 	}
-
 // 	.rtl.auto-fold #adminmenu li.menu-top .wp-submenu>li>a {
 // 		padding: convertPixelToEm(10px) convertPixelToEm(20px) convertPixelToEm(10px) convertPixelToEm(10px);
 // 	}
-
 // 	/* Restore the menu names */
 // 	.auto-fold #adminmenu .wp-menu-name {
 // 		position: static;
 // 	}
-
 // 	/* Switch the arrow side */
 // 	.auto-fold ul#adminmenu a.wp-has-current-submenu:after,
 // 	.auto-fold ul#adminmenu>li.current>a.current:after {
 // 		border-width: convertPixelToEm(8px);
 // 		margin-top: convertPixelToEm(-8px);
 // 	}
-
 // 	.auto-fold ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after,
 // 	.auto-fold ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
 // 		display: none;
 // 	}
-
 // 	#collapse-menu {
 // 		display: none;
 // 	}
-
 // 	/* Make the submenus appear correctly when tapped. */
 // 	#adminmenu .wp-submenu {
 // 		position: relative;
 // 		display: none;
 // 	}
-
 // 	.auto-fold #adminmenu .selected .wp-submenu,
 // 	.auto-fold #adminmenu .wp-menu-open .wp-submenu {
 // 		position: relative;
@@ -2013,35 +722,28 @@ li#wp-admin-bar-menu-toggle {
 // 		top: 0;
 // 		box-shadow: none;
 // 	}
-
 // 	.ltr.auto-fold #adminmenu .selected .wp-submenu,
 // 	.ltr.auto-fold #adminmenu .wp-menu-open .wp-submenu {
 // 		left: convertPixelToEm(-1px);
 // 	}
-
 // 	.rtl.auto-fold #adminmenu .selected .wp-submenu,
 // 	.rtl.auto-fold #adminmenu .wp-menu-open .wp-submenu {
 // 		right: convertPixelToEm(-1px);
 // 	}
-
 // 	.auto-fold #adminmenu .selected .wp-submenu:after,
 // 	.auto-fold #adminmenu .wp-menu-open .wp-submenu:after {
 // 		display: none;
 // 	}
-
 // 	.auto-fold #adminmenu .open-sub .wp-submenu {
 // 		display: none;
 // 	}
-
 // 	.auto-fold #adminmenu .selected .wp-submenu {
 // 		display: block;
 // 	}
-
 // 	.auto-fold ul#adminmenu li:hover a.wp-has-current-submenu:after,
 // 	.auto-fold ul#adminmenu li:focus-within a.wp-has-current-submenu:after {
 // 		display: block;
 // 	}
-
 // 	.auto-fold #adminmenu a.menu-top:focus+.wp-submenu,
 // 	.auto-fold #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu {
 // 		position: relative;
@@ -2049,28 +751,23 @@ li#wp-admin-bar-menu-toggle {
 // 		right: 0;
 // 		top: 0;
 // 	}
-
 // 	.rtl.auto-fold #adminmenu a.menu-top:focus+.wp-submenu,
 // 	.rtl.auto-fold #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu {
 // 		right: convertPixelToEm(-1px);
 // 		left: 0;
 // 	}
-
 // 	.ltr #adminmenu .wp-not-current-submenu .wp-submenu,
 // 	.ltr.folded #adminmenu .wp-has-current-submenu .wp-submenu {
 // 		border-left: none;
 // 	}
-
 // 	.rtl #adminmenu .wp-not-current-submenu .wp-submenu,
 // 	.rtl.folded #adminmenu .wp-has-current-submenu .wp-submenu {
 // 		border-right: none;
 // 	}
-
 // 	/* Remove submenu headers and adjust sub meu*/
 // 	#adminmenu .wp-submenu .wp-submenu-head {
 // 		display: none;
 // 	}
-
 // 	/* Toolbar menu toggle */
 // 	#wp-responsive-toggle {
 // 		position: fixed;
@@ -2079,17 +776,14 @@ li#wp-admin-bar-menu-toggle {
 // 		border: none;
 // 		box-sizing: border-box;
 // 	}
-
 // 	.ltr #wp-responsive-toggle {
 // 		left: convertPixelToEm(4px);
 // 		padding-right: convertPixelToEm(10px);
 // 	}
-
 // 	.rtl #wp-responsive-toggle {
 // 		right: convertPixelToEm(4px);
 // 		padding-left: convertPixelToEm(10px);
 // 	}
-
 // 	#wpadminbar #wp-admin-bar-menu-toggle a {
 // 		display: block;
 // 		padding: 0;
@@ -2100,27 +794,18 @@ li#wp-admin-bar-menu-toggle {
 // 		background: none;
 // 		height: convertPixelToEm(44px);
 // 	}
-
 // 	.ltr #wpadminbar #wp-admin-bar-menu-toggle a {
 // 		margin-left: convertPixelToEm(-1px);
 // 	}
-
 // 	.rtl #wpadminbar #wp-admin-bar-menu-toggle a {
 // 		margin-right: convertPixelToEm(-1px);
 // 	}
-
-// 	.wp-responsive-open #wpadminbar #wp-admin-bar-menu-toggle a {
-// 		background: #2c3338;
-// 	}
-
 // 	li#wp-admin-bar-menu-toggle {
 // 		display: block;
 // 	}
-
 // 	#wpadminbar #wp-admin-bar-menu-toggle a:hover {
 // 		border: convertPixelToEm(1px) solid transparent;
 // 	}
-
 // 	#wpadminbar #wp-admin-bar-menu-toggle .ab-icon:before {
 // 		content: "\f228";
 // 		display: inline-block;
@@ -2139,42 +824,30 @@ li#wp-admin-bar-menu-toggle {
 // 		text-decoration: none;
 // 		box-sizing: border-box;
 // 	}
-
 // 	.rtl #wpadminbar #wp-admin-bar-menu-toggle .ab-icon:before {
 // 		float: right;
 // 	}
-
-// 	.wp-responsive-open #wpadminbar #wp-admin-bar-menu-toggle .ab-icon:before {
-// 		color: #72aee6;
-// 	}
-
 // 	.ltr.wp-responsive-open #wpbody {
 // 		right: -16em;
 // 	}
-
 // 	.rtl.wp-responsive-open #wpbody {
 // 		left: -16em;
 // 	}
 // }
-
 // /* Smartphone */
 // @media screen and (max-width: convertPixelToEm(600px)) {
-
 // 	#adminmenuwrap,
 // 	#adminmenuback {
 // 		display: none;
 // 	}
-
 // 	.wp-responsive-open #adminmenuwrap,
 // 	.wp-responsive-open #adminmenuback {
 // 		display: block;
 // 	}
-
 // 	.auto-fold #adminmenu {
 // 		top: convertPixelToEm(46px);
 // 	}
 // }
-
 // /* ******************************************************************************************** */
 // /* -------------------------------- */
 // .focus-on #adminmenuback,
@@ -2184,12 +857,10 @@ li#wp-admin-bar-menu-toggle {
 // 	transition-property: transform;
 // 	transition-timing-function: ease-in-out;
 // }
-
 // .rtl.focus-on #adminmenuback,
 // .rtl.focus-on #adminmenuwrap {
 // 	transform: translateX(100%);
 // }
-
 // .focus-off #adminmenuback,
 // .focus-off #adminmenuwrap {
 // 	transform: translateX(0);
@@ -2197,15 +868,1102 @@ li#wp-admin-bar-menu-toggle {
 // 	transition-property: transform;
 // 	transition-timing-function: ease-in-out;
 // }
-
 // /* ---------------todo-fix-this-wherre-to-place---------------- */
 // #adminmenu a:focus {
 // 	outline: convertPixelToEm(1px) solid transparent;
 // 	outline-offset: convertPixelToEm(-1px);
 // }
-
 // #adminmenu .wp-submenu li.current,
 // #adminmenu .wp-submenu li.current a,
 // #adminmenu .wp-submenu li.current a:hover {
 // 	font-weight: 600;
 // }
+// ------------------With-Colors------------------
+@use 'sass:math';
+$base-size: 14px; // Default
+@function strip-units($number) {
+    @return math.div($number, ($number * 0 + 1));
+}
+
+@function convertPixelToEm($pixels, $context: $base-size) {
+    @return #{math.div(strip-units($pixels), strip-units($context))}em;
+}
+
+ng-wp-menu,
+#wpwrap {
+    font-size: $base_size;
+}
+
+// ------------------------------
+a,
+div {
+    outline: 0;
+}
+
+#adminmenuback,
+#adminmenuwrap,
+#adminmenu {
+    width: convertPixelToEm(160px);
+    background-color: #1d2327;
+}
+
+#wpcontent {
+    height: 100%;
+}
+
+.ltr #wpcontent {
+    margin-left: convertPixelToEm(160px);
+    padding-left: convertPixelToEm(20px);
+}
+
+.rtl #wpcontent {
+    margin-right: convertPixelToEm(160px);
+    padding-right: convertPixelToEm(20px);
+}
+
+#wpbody {
+    position: relative;
+}
+
+#adminmenuback {
+    position: fixed;
+    top: 0;
+    bottom: convertPixelToEm(-120px);
+    z-index: 1;
+    /* positive z-index to avoid elastic scrolling woes in Safari */
+}
+
+.upper-space #adminmenuback {
+    position: absolute;
+}
+
+.upper-space #adminmenuback,
+.upper-space #adminmenuwrap {
+    margin-top: 2em;
+}
+
+#adminmenu {
+    clear: left;
+    margin: convertPixelToEm(12px) 0;
+    padding: 0;
+    list-style: none;
+}
+
+.rtl #adminmenu {
+    clear: right;
+}
+
+.folded #adminmenuback,
+.folded #adminmenuwrap,
+.folded #adminmenu,
+.folded #adminmenu li.menu-top {
+    width: convertPixelToEm(36px);
+}
+
+.ltr.folded #wpcontent {
+    margin-left: convertPixelToEm(36px);
+}
+
+.rtl.folded #wpcontent {
+    margin-right: convertPixelToEm(36px);
+}
+
+
+/*------------------------------------------------------------------------------
+  7.0 - Main Navigation (Left Menu)
+------------------------------------------------------------------------------*/
+
+#adminmenuwrap {
+    position: relative;
+    float: left;
+    z-index: 9990;
+}
+
+.rtl #adminmenuwrap {
+    float: right;
+}
+
+
+/* side admin menu */
+
+#adminmenu * {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#adminmenu li {
+    margin: 0;
+    padding: 0;
+}
+
+#adminmenu a {
+    display: block;
+    line-height: 1.3;
+    padding: convertPixelToEm(2px) convertPixelToEm(5px);
+    color: #f0f0f1;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#adminmenu .wp-submenu a {
+    color: #c3c4c7;
+    color: rgba(240, 246, 252, 0.7);
+    font-size: convertPixelToEm(13px);
+    line-height: 1.4;
+    margin: 0;
+    padding: convertPixelToEm(5px) 0;
+}
+
+#adminmenu .wp-submenu a:hover,
+#adminmenu .wp-submenu a:focus {
+    background: none;
+}
+
+#adminmenu a:hover,
+#adminmenu li.menu-top>a:focus,
+#adminmenu .wp-submenu a:hover,
+#adminmenu .wp-submenu a:focus {
+    color: #72aee6;
+}
+
+#adminmenu a:hover,
+#adminmenu a:focus,
+.folded #adminmenu .wp-submenu-head:hover {
+    box-shadow: inset convertPixelToEm(4px) 0 0 0 currentColor;
+    transition: box-shadow .1s linear;
+}
+
+.rtl #adminmenu a:hover,
+.rtl #adminmenu a:focus,
+.rtl.folded #adminmenu .wp-submenu-head:hover {
+    box-shadow: inset convertPixelToEm(-4px) 0 0 0 currentColor;
+}
+
+#adminmenu li.menu-top {
+    border: none;
+    min-height: convertPixelToEm(34px);
+    position: relative;
+}
+
+#adminmenu .wp-submenu {
+    width: convertPixelToEm(160px);
+    list-style: none;
+    position: absolute;
+    top: -1000em;
+    overflow: visible;
+    word-wrap: break-word;
+    padding: convertPixelToEm(7px) 0 convertPixelToEm(8px);
+    z-index: 9999;
+    background-color: #2c3338;
+    box-shadow: 0 convertPixelToEm(3px) convertPixelToEm(5px) rgba(0, 0, 0, 0.2);
+}
+
+.ltr #adminmenu .wp-submenu {
+    left: convertPixelToEm(160px);
+}
+
+.rtl #adminmenu .wp-submenu {
+    right: convertPixelToEm(160px);
+}
+
+#adminmenu .sub-open,
+#adminmenu .open-sub .wp-submenu,
+#adminmenu a.menu-top:focus+.wp-submenu,
+.no-js li.wp-has-submenu:hover .wp-submenu {
+    top: convertPixelToEm(-1px);
+}
+
+#adminmenu a.wp-has-current-submenu:focus+.wp-submenu {
+    top: 0;
+}
+
+#adminmenu .wp-has-current-submenu .wp-submenu,
+.no-js li.wp-has-current-submenu:hover .wp-submenu,
+#adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
+#adminmenu .wp-has-current-submenu.open-sub .wp-submenu {
+    position: relative;
+    z-index: 3;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    border: 0 none;
+    margin-top: 0;
+    box-shadow: none;
+}
+
+.folded #adminmenu .wp-has-current-submenu .wp-submenu {
+    box-shadow: 0 convertPixelToEm(3px) convertPixelToEm(5px) rgba(0, 0, 0, 0.2);
+}
+
+
+/* ensure that wp-submenu's box shadow doesn't appear on top of the focused menu item's background. */
+
+#adminmenu li.menu-top:hover,
+#adminmenu li.open-sub>a.menu-top,
+#adminmenu li>a.menu-top:focus {
+    position: relative;
+    background-color: #1d2327;
+    color: #72aee6;
+}
+
+.folded #adminmenu li.menu-top:hover,
+.folded #adminmenu li.open-sub>a.menu-top,
+.folded #adminmenu li>a.menu-top:focus {
+    z-index: 10000;
+}
+
+#adminmenu li.wp-has-current-submenu a.wp-has-current-submenu,
+#adminmenu li.current a.menu-top,
+#adminmenu .wp-has-current-submenu .wp-submenu .wp-submenu-head {
+    background: #2271b1;
+    color: #fff;
+}
+
+.folded #adminmenu .wp-submenu.sub-open,
+.folded #adminmenu .open-sub .wp-submenu,
+.folded #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
+.folded #adminmenu .wp-has-current-submenu.open-sub .wp-submenu,
+.folded #adminmenu a.menu-top:focus+.wp-submenu,
+.folded #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu,
+.no-js.folded #adminmenu .wp-has-submenu:hover .wp-submenu {
+    top: 0;
+}
+
+.ltr.folded #adminmenu .wp-submenu.sub-open,
+.ltr.folded #adminmenu .open-sub .wp-submenu,
+.ltr.folded #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
+.ltr.folded #adminmenu .wp-has-current-submenu.open-sub .wp-submenu,
+.ltr.folded #adminmenu a.menu-top:focus+.wp-submenu,
+.ltr.folded #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu,
+.ltr.no-js.folded #adminmenu .wp-has-submenu:hover .wp-submenu {
+    left: convertPixelToEm(36px);
+}
+
+.rtl.folded #adminmenu .wp-submenu.sub-open,
+.rtl.folded #adminmenu .open-sub .wp-submenu,
+.rtl.folded #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
+.rtl.folded #adminmenu .wp-has-current-submenu.open-sub .wp-submenu,
+.rtl.folded #adminmenu a.menu-top:focus+.wp-submenu,
+.rtl.folded #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu,
+.rtl.no-js.folded #adminmenu .wp-has-submenu:hover .wp-submenu {
+    right: convertPixelToEm(36px);
+}
+
+.folded #adminmenu a.wp-has-current-submenu:focus+.wp-submenu,
+.folded #adminmenu .wp-has-current-submenu .wp-submenu {
+    position: absolute;
+    top: -1000em;
+}
+
+#adminmenu .wp-not-current-submenu .wp-submenu,
+.folded #adminmenu .wp-has-current-submenu .wp-submenu {
+    min-width: convertPixelToEm(160px);
+    width: auto;
+}
+
+.ltr #adminmenu .wp-not-current-submenu .wp-submenu,
+.ltr.folded #adminmenu .wp-has-current-submenu .wp-submenu {
+    border-left: convertPixelToEm(5px) solid transparent;
+}
+
+.rtl #adminmenu .wp-not-current-submenu .wp-submenu,
+.rtl.folded #adminmenu .wp-has-current-submenu .wp-submenu {
+    border-right: convertPixelToEm(5px) solid transparent;
+}
+
+#adminmenu .wp-submenu li.current,
+#adminmenu .wp-submenu li.current a,
+#adminmenu .open-sub .wp-submenu li.current a,
+#adminmenu a.wp-has-current-submenu:focus+.wp-submenu li.current a,
+#adminmenu .wp-submenu li.current a:hover,
+#adminmenu .wp-submenu li.current a:focus {
+    color: #fff;
+}
+
+#adminmenu .wp-not-current-submenu li>a,
+.folded #adminmenu .wp-has-current-submenu li>a {
+    padding-right: convertPixelToEm(16px);
+    padding-left: convertPixelToEm(14px);
+    /* Exclude from the transition the outline for Windows High Contrast mode */
+    transition: all .1s ease-in-out, outline 0s;
+}
+
+.rtl #adminmenu .wp-not-current-submenu li>a,
+.rtl.folded #adminmenu .wp-has-current-submenu li>a {
+    padding-left: convertPixelToEm(16px);
+    padding-right: convertPixelToEm(14px);
+}
+
+#adminmenu .wp-has-current-submenu ul>li>a,
+.folded #adminmenu li.menu-top .wp-submenu>li>a {
+    padding: convertPixelToEm(5px) convertPixelToEm(12px);
+}
+
+#adminmenu a.menu-top,
+#adminmenu .wp-submenu-head {
+    font-size: convertPixelToEm(14px);
+    font-weight: 400;
+    line-height: 1.3;
+    padding: 0;
+}
+
+#adminmenu .wp-submenu-head {
+    display: none;
+    cursor: pointer;
+}
+
+.folded #adminmenu .wp-menu-name {
+    position: absolute;
+}
+
+.ltr.folded #adminmenu .wp-menu-name {
+    left: convertPixelToEm(-999px);
+}
+
+.rtl.folded #adminmenu .wp-menu-name {
+    right: convertPixelToEm(-999px);
+}
+
+.folded #adminmenu .wp-submenu-head {
+    display: block;
+}
+
+#adminmenu .wp-submenu li {
+    padding: 0;
+    margin: 0;
+}
+
+#adminmenu .wp-menu-image img {
+    padding: convertPixelToEm(9px) 0 0;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+
+#adminmenu div.wp-menu-name {
+    padding: convertPixelToEm(8px) convertPixelToEm(8px) convertPixelToEm(8px) convertPixelToEm(36px);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+.rtl #adminmenu div.wp-menu-name {
+    padding: convertPixelToEm(8px) convertPixelToEm(36px) convertPixelToEm(8px) convertPixelToEm(8px);
+}
+
+#adminmenu div.wp-menu-image {
+    float: left;
+    width: convertPixelToEm(36px);
+    height: convertPixelToEm(34px);
+    margin: 0;
+    text-align: center;
+    background-image: none;
+}
+
+.rtl #adminmenu div.wp-menu-image {
+    float: right;
+}
+
+#adminmenu div.wp-menu-image.svg {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: convertPixelToEm(20px) auto;
+}
+
+div.wp-menu-image:before {
+    color: #a7aaad;
+    color: rgba(240, 246, 252, 0.6);
+    padding: convertPixelToEm(7px) 0;
+    transition: all .1s ease-in-out;
+}
+
+#adminmenu div.wp-menu-image:before {
+    color: #a7aaad;
+    color: rgba(240, 246, 252, 0.6);
+}
+
+#adminmenu li.wp-has-current-submenu:hover div.wp-menu-image:before,
+#adminmenu .wp-has-current-submenu div.wp-menu-image:before,
+#adminmenu .current div.wp-menu-image:before,
+#adminmenu a.wp-has-current-submenu:hover div.wp-menu-image:before,
+#adminmenu a.current:hover div.wp-menu-image:before,
+#adminmenu li.wp-has-current-submenu a:focus div.wp-menu-image:before,
+#adminmenu li.wp-has-current-submenu.open-sub div.wp-menu-image:before {
+    color: #fff;
+}
+
+#adminmenu li:hover div.wp-menu-image:before,
+#adminmenu li a:focus div.wp-menu-image:before,
+#adminmenu li.open-sub div.wp-menu-image:before {
+    color: #72aee6;
+}
+
+.folded #adminmenu div.wp-menu-image {
+    width: convertPixelToEm(35px);
+    height: convertPixelToEm(30px);
+    position: absolute;
+    z-index: 25;
+}
+
+.folded #adminmenu a.menu-top {
+    height: convertPixelToEm(34px);
+}
+
+
+/* Sticky admin menu */
+
+.sticky-menu #adminmenuwrap {
+    position: fixed;
+}
+
+ul#adminmenu a.wp-has-current-submenu {
+    position: relative;
+}
+
+ul#adminmenu a.wp-has-current-submenu:after,
+ul#adminmenu>li.current>a.current:after {
+    border: solid convertPixelToEm(8px) transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    top: 50%;
+    margin-top: convertPixelToEm(-8px);
+}
+
+.ltr ul#adminmenu a.wp-has-current-submenu:after,
+.ltr ul#adminmenu>li.current>a.current:after {
+    right: 0;
+    border-right-color: #f0f0f1;
+}
+
+.rtl ul#adminmenu a.wp-has-current-submenu:after,
+.rtl ul#adminmenu>li.current>a.current:after {
+    left: 0;
+    border-left-color: #f0f0f1;
+}
+
+.folded ul#adminmenu li:hover a.wp-has-current-submenu:after,
+.folded ul#adminmenu li.wp-has-current-submenu:focus-within a.wp-has-current-submenu:after {
+    display: none;
+}
+
+.folded ul#adminmenu a.wp-has-current-submenu:after,
+.folded ul#adminmenu>li a.current:after {
+    border-width: convertPixelToEm(4px);
+    margin-top: convertPixelToEm(-4px);
+}
+
+
+/* flyout menu arrow */
+
+#adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after,
+#adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
+    border: convertPixelToEm(8px) solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    top: convertPixelToEm(10px);
+    z-index: 10000;
+}
+
+.ltr #adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after,
+.ltr #adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
+    right: 0;
+}
+
+.rtl #adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after,
+.rtl #adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
+    left: 0;
+}
+
+.folded ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after,
+.folded ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
+    border-width: convertPixelToEm(4px);
+    margin-top: convertPixelToEm(-4px);
+    top: convertPixelToEm(18px);
+}
+
+#adminmenu li.wp-has-submenu.wp-not-current-submenu.open-sub:hover:after,
+#adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
+    border-right-color: #2c3338;
+}
+
+#adminmenu li.menu-top:hover .wp-menu-image img,
+#adminmenu li.wp-has-current-submenu .wp-menu-image img {
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+#adminmenu li.wp-menu-separator {
+    height: convertPixelToEm(5px);
+    padding: 0;
+    margin: 0 0 convertPixelToEm(6px);
+    cursor: inherit;
+}
+
+
+/* @todo: is this even needed given that it's nested beneath the above li.wp-menu-separator? */
+
+#adminmenu div.separator {
+    height: convertPixelToEm(2px);
+    padding: 0;
+}
+
+#adminmenu .wp-submenu .wp-submenu-head {
+    color: #fff;
+    font-weight: 400;
+    font-size: convertPixelToEm(14px);
+    padding: convertPixelToEm(5px) convertPixelToEm(4px) convertPixelToEm(5px) convertPixelToEm(11px);
+    margin: convertPixelToEm(-7px) 0 convertPixelToEm(4px) convertPixelToEm(-5px);
+    border-width: convertPixelToEm(3px) 0 convertPixelToEm(3px) convertPixelToEm(5px);
+    border-style: solid;
+    border-color: transparent;
+}
+
+.rtl #adminmenu .wp-submenu .wp-submenu-head {
+    padding: convertPixelToEm(5px) convertPixelToEm(11px) convertPixelToEm(5px) convertPixelToEm(4px);
+    margin: convertPixelToEm(-7px) convertPixelToEm(-5px) convertPixelToEm(4px) 0;
+    border-width: convertPixelToEm(3px) convertPixelToEm(5px) convertPixelToEm(3px) 0;
+}
+
+#adminmenu li.current,
+.folded #adminmenu li.wp-menu-open {
+    border: 0 none;
+}
+
+
+/* @todo: consider to use a single rule for these counters and the list table comments counters. */
+
+#adminmenu .menu-counter,
+#adminmenu .awaiting-mod {
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    margin: convertPixelToEm(1px) 0 convertPixelToEm(-1px) convertPixelToEm(2px);
+    padding: 0 convertPixelToEm(5px);
+    min-width: convertPixelToEm(18px);
+    height: convertPixelToEm(18px);
+    border-radius: convertPixelToEm(9px);
+    background-color: #d63638;
+    color: #fff;
+    font-size: convertPixelToEm(11px);
+    line-height: 1.6;
+    text-align: center;
+    z-index: 26;
+}
+
+.rtl #adminmenu .menu-counter,
+.rtl #adminmenu .awaiting-mod {
+    margin: convertPixelToEm(1px) convertPixelToEm(6px) convertPixelToEm(-1px) 0;
+}
+
+#collapse-button {
+    display: block;
+    width: 100%;
+    height: convertPixelToEm(34px);
+    margin: 0;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+    position: relative;
+    overflow: visible;
+    background: none;
+    color: #a7aaad;
+    cursor: pointer;
+}
+
+#collapse-button:hover {
+    color: #72aee6;
+}
+
+#collapse-button:focus {
+    color: #72aee6;
+    /* Only visible in Windows High Contrast mode */
+    outline: convertPixelToEm(1px) solid transparent;
+    outline-offset: convertPixelToEm(-1px);
+}
+
+#collapse-button .collapse-button-icon,
+#collapse-button .collapse-button-label {
+    /* absolutely positioned to avoid convertPixelToEm(1px) shift in IE when button is pressed */
+    display: block;
+    position: absolute;
+    top: 0;
+}
+
+.ltr #collapse-button .collapse-button-icon,
+.ltr #collapse-button .collapse-button-label {
+    left: 0;
+}
+
+.rtl #collapse-button .collapse-button-icon,
+.rtl #collapse-button .collapse-button-label {
+    right: 0;
+}
+
+#collapse-button .collapse-button-label {
+    top: convertPixelToEm(8px);
+}
+
+#collapse-button .collapse-button-icon {
+    width: convertPixelToEm(36px);
+    height: convertPixelToEm(34px);
+}
+
+#collapse-button .collapse-button-label {
+    padding: 0 0 0 convertPixelToEm(36px);
+}
+
+.rtl #collapse-button .collapse-button-label {
+    padding: 0 convertPixelToEm(36px) 0 0;
+}
+
+.folded #collapse-button .collapse-button-label {
+    display: none;
+}
+
+#collapse-button .collapse-button-icon:after {
+    content: "\f148";
+    display: block;
+    position: relative;
+    top: convertPixelToEm(7px);
+    text-align: center;
+    font: normal convertPixelToEm(20px)/1 dashicons !important;
+    speak: never;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* rtl:ignore */
+
+.folded #collapse-button .collapse-button-icon:after,
+.rtl #collapse-button .collapse-button-icon:after {
+    transform: rotate(180deg);
+}
+
+.rtl.folded #collapse-button .collapse-button-icon:after {
+    transform: none;
+}
+
+#collapse-button .collapse-button-icon:after,
+#collapse-button .collapse-button-label {
+    transition: all .1s ease-in-out;
+}
+
+
+/**
+ * Toolbar menu toggle
+ */
+
+li#wp-admin-bar-menu-toggle {
+    display: none;
+}
+
+
+/* Auto-folding of the admin menu */
+
+@media only screen and (max-width: convertPixelToEm(960px)) {
+    .ltr.auto-fold #wpcontent {
+        margin-left: convertPixelToEm(36px);
+    }
+    .rtl.auto-fold #wpcontent {
+        margin-right: convertPixelToEm(36px);
+    }
+    .auto-fold #adminmenuback,
+    .auto-fold #adminmenuwrap,
+    .auto-fold #adminmenu,
+    .auto-fold #adminmenu li.menu-top {
+        width: convertPixelToEm(36px);
+    }
+    .auto-fold #adminmenu .wp-submenu.sub-open,
+    .auto-fold #adminmenu .open-sub .wp-submenu,
+    .auto-fold #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
+    .auto-fold #adminmenu .wp-has-current-submenu.open-sub .wp-submenu,
+    .auto-fold #adminmenu a.menu-top:focus+.wp-submenu,
+    .auto-fold #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu {
+        top: 0;
+    }
+    .ltr.auto-fold #adminmenu .wp-submenu.sub-open,
+    .ltr.auto-fold #adminmenu .open-sub .wp-submenu,
+    .ltr.auto-fold #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
+    .ltr.auto-fold #adminmenu .wp-has-current-submenu.open-sub .wp-submenu,
+    .ltr.auto-fold #adminmenu a.menu-top:focus+.wp-submenu,
+    .ltr.auto-fold #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu {
+        left: convertPixelToEm(36px);
+    }
+    .rtl.auto-fold #adminmenu .wp-submenu.sub-open,
+    .rtl.auto-fold #adminmenu .open-sub .wp-submenu,
+    .rtl.auto-fold #adminmenu .wp-has-current-submenu .wp-submenu.sub-open,
+    .rtl.auto-fold #adminmenu .wp-has-current-submenu.open-sub .wp-submenu,
+    .rtl.auto-fold #adminmenu a.menu-top:focus+.wp-submenu,
+    .rtl.auto-fold #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu {
+        right: convertPixelToEm(36px);
+    }
+    .auto-fold #adminmenu a.wp-has-current-submenu:focus+.wp-submenu,
+    .auto-fold #adminmenu .wp-has-current-submenu .wp-submenu {
+        position: absolute;
+        top: -1000em;
+        padding: convertPixelToEm(7px) 0 convertPixelToEm(8px);
+        z-index: 9999;
+    }
+    .ltr.auto-fold #adminmenu a.wp-has-current-submenu:focus+.wp-submenu,
+    .ltr.auto-fold #adminmenu .wp-has-current-submenu .wp-submenu {
+        margin-right: convertPixelToEm(-1px);
+    }
+    .rtl.auto-fold #adminmenu a.wp-has-current-submenu:focus+.wp-submenu,
+    .rtl.auto-fold #adminmenu .wp-has-current-submenu .wp-submenu {
+        margin-left: convertPixelToEm(-1px);
+    }
+    .auto-fold #adminmenu .wp-has-current-submenu .wp-submenu {
+        min-width: convertPixelToEm(150px);
+        width: auto;
+    }
+    .auto-fold #adminmenu .wp-has-current-submenu li>a {
+        padding-right: convertPixelToEm(16px);
+        padding-left: convertPixelToEm(14px);
+    }
+    .rtl.auto-fold #adminmenu .wp-has-current-submenu li>a {
+        padding-left: convertPixelToEm(16px);
+        padding-right: convertPixelToEm(14px);
+    }
+    .ltr.auto-fold #adminmenu li.menu-top .wp-submenu>li>a {
+        padding-left: convertPixelToEm(12px);
+    }
+    .rtl.auto-fold #adminmenu li.menu-top .wp-submenu>li>a {
+        padding-right: convertPixelToEm(12px);
+    }
+    .auto-fold #adminmenu .wp-menu-name {
+        position: absolute;
+    }
+    .ltr.auto-fold #adminmenu .wp-menu-name {
+        left: convertPixelToEm(-999px);
+    }
+    .rtl.auto-fold #adminmenu .wp-menu-name {
+        right: convertPixelToEm(-999px);
+    }
+    .auto-fold #adminmenu .wp-submenu-head {
+        display: block;
+    }
+    .auto-fold #adminmenu div.wp-menu-image {
+        height: convertPixelToEm(30px);
+        width: convertPixelToEm(34px);
+        position: absolute;
+        z-index: 25;
+    }
+    .auto-fold #adminmenu a.menu-top {
+        min-height: convertPixelToEm(34px);
+    }
+    .auto-fold #adminmenu li.wp-menu-open {
+        border: 0 none;
+    }
+    .auto-fold #adminmenu .wp-has-current-submenu.menu-top-last {
+        margin-bottom: 0;
+    }
+    .auto-fold ul#adminmenu li:hover a.wp-has-current-submenu:after,
+    .auto-fold ul#adminmenu li:focus-within a.wp-has-current-submenu:after {
+        display: none;
+    }
+    .auto-fold ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after,
+    .auto-fold ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
+        border-width: convertPixelToEm(4px);
+        margin-top: convertPixelToEm(-4px);
+        top: convertPixelToEm(16px);
+    }
+    .auto-fold ul#adminmenu a.wp-has-current-submenu:after,
+    .auto-fold ul#adminmenu>li a.current:after {
+        border-width: convertPixelToEm(4px);
+        margin-top: convertPixelToEm(-4px);
+    }
+    .auto-fold #adminmenu li.menu-top:hover,
+    .auto-fold #adminmenu li.open-sub>a.menu-top,
+    .auto-fold #adminmenu li>a.menu-top:focus {
+        z-index: 10000;
+    }
+    .auto-fold #collapse-menu .collapse-button-label {
+        display: none;
+    }
+    /* rtl:ignore */
+    .auto-fold #collapse-button .collapse-button-icon:after {
+        transform: rotate(180deg);
+    }
+    .rtl.auto-fold #collapse-button .collapse-button-icon:after {
+        transform: none;
+    }
+}
+
+@media screen and (min-width: convertPixelToEm(782px)) {
+    body.is-fullscreen-mode #adminmenumain {
+        display: none;
+    }
+    body.ltr.is-fullscreen-mode #wpcontent {
+        margin-left: 0;
+    }
+    body.rtl.is-fullscreen-mode #wpcontent {
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: convertPixelToEm(782px)) {
+    .auto-fold #wpcontent {
+        position: relative;
+    }
+    .ltr.auto-fold #wpcontent {
+        margin-left: 0;
+        padding-left: convertPixelToEm(10px);
+    }
+    .rtl.auto-fold #wpcontent {
+        margin-right: 0;
+        padding-right: convertPixelToEm(10px);
+    }
+    .sticky-menu #adminmenuwrap {
+        position: relative;
+        z-index: auto;
+        top: 0;
+    }
+    /* Sidebar Adjustments */
+    .auto-fold #adminmenu,
+    .auto-fold #adminmenuback,
+    .auto-fold #adminmenuwrap {
+        position: absolute;
+        width: convertPixelToEm(190px);
+        z-index: 100;
+    }
+    .auto-fold #adminmenuback {
+        position: fixed;
+    }
+    .auto-fold #adminmenuback,
+    .auto-fold #adminmenuwrap {
+        display: none;
+    }
+    .auto-fold.wp-responsive-open #adminmenuback,
+    .auto-fold.wp-responsive-open #adminmenuwrap {
+        display: block;
+    }
+    .auto-fold #adminmenu li.menu-top {
+        width: 100%;
+    }
+    /* Resize the admin menu items to a comfortable touch size */
+    .auto-fold #adminmenu li a {
+        font-size: convertPixelToEm(16px);
+        padding: convertPixelToEm(5px);
+    }
+    .auto-fold #adminmenu li.menu-top .wp-submenu>li>a {
+        padding: convertPixelToEm(10px) convertPixelToEm(10px) convertPixelToEm(10px) convertPixelToEm(20px);
+    }
+    .rtl.auto-fold #adminmenu li.menu-top .wp-submenu>li>a {
+        padding: convertPixelToEm(10px) convertPixelToEm(20px) convertPixelToEm(10px) convertPixelToEm(10px);
+    }
+    /* Restore the menu names */
+    .auto-fold #adminmenu .wp-menu-name {
+        position: static;
+    }
+    /* Switch the arrow side */
+    .auto-fold ul#adminmenu a.wp-has-current-submenu:after,
+    .auto-fold ul#adminmenu>li.current>a.current:after {
+        border-width: convertPixelToEm(8px);
+        margin-top: convertPixelToEm(-8px);
+    }
+    .auto-fold ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after,
+    .auto-fold ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
+        display: none;
+    }
+    #collapse-menu {
+        display: none;
+    }
+    /* Make the submenus appear correctly when tapped. */
+    #adminmenu .wp-submenu {
+        position: relative;
+        display: none;
+    }
+    .auto-fold #adminmenu .selected .wp-submenu,
+    .auto-fold #adminmenu .wp-menu-open .wp-submenu {
+        position: relative;
+        display: block;
+        top: 0;
+        box-shadow: none;
+    }
+    .ltr.auto-fold #adminmenu .selected .wp-submenu,
+    .ltr.auto-fold #adminmenu .wp-menu-open .wp-submenu {
+        left: convertPixelToEm(-1px);
+    }
+    .rtl.auto-fold #adminmenu .selected .wp-submenu,
+    .rtl.auto-fold #adminmenu .wp-menu-open .wp-submenu {
+        right: convertPixelToEm(-1px);
+    }
+    .auto-fold #adminmenu .selected .wp-submenu:after,
+    .auto-fold #adminmenu .wp-menu-open .wp-submenu:after {
+        display: none;
+    }
+    .auto-fold #adminmenu .open-sub .wp-submenu {
+        display: none;
+    }
+    .auto-fold #adminmenu .selected .wp-submenu {
+        display: block;
+    }
+    .auto-fold ul#adminmenu li:hover a.wp-has-current-submenu:after,
+    .auto-fold ul#adminmenu li:focus-within a.wp-has-current-submenu:after {
+        display: block;
+    }
+    .auto-fold #adminmenu a.menu-top:focus+.wp-submenu,
+    .auto-fold #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu {
+        position: relative;
+        left: convertPixelToEm(-1px);
+        right: 0;
+        top: 0;
+    }
+    .rtl.auto-fold #adminmenu a.menu-top:focus+.wp-submenu,
+    .rtl.auto-fold #adminmenu .wp-has-current-submenu a.menu-top:focus+.wp-submenu {
+        right: convertPixelToEm(-1px);
+        left: 0;
+    }
+    .ltr #adminmenu .wp-not-current-submenu .wp-submenu,
+    .ltr.folded #adminmenu .wp-has-current-submenu .wp-submenu {
+        border-left: none;
+    }
+    .rtl #adminmenu .wp-not-current-submenu .wp-submenu,
+    .rtl.folded #adminmenu .wp-has-current-submenu .wp-submenu {
+        border-right: none;
+    }
+    /* Remove submenu headers and adjust sub meu*/
+    #adminmenu .wp-submenu .wp-submenu-head {
+        display: none;
+    }
+    /* Toolbar menu toggle */
+    #wp-responsive-toggle {
+        position: fixed;
+        top: convertPixelToEm(5px);
+        z-index: 99999;
+        border: none;
+        box-sizing: border-box;
+    }
+    .ltr #wp-responsive-toggle {
+        left: convertPixelToEm(4px);
+        padding-right: convertPixelToEm(10px);
+    }
+    .rtl #wp-responsive-toggle {
+        right: convertPixelToEm(4px);
+        padding-left: convertPixelToEm(10px);
+    }
+    #wpadminbar #wp-admin-bar-menu-toggle a {
+        display: block;
+        padding: 0;
+        overflow: hidden;
+        outline: none;
+        text-decoration: none;
+        border: convertPixelToEm(1px) solid transparent;
+        background: none;
+        height: convertPixelToEm(44px);
+    }
+    .ltr #wpadminbar #wp-admin-bar-menu-toggle a {
+        margin-left: convertPixelToEm(-1px);
+    }
+    .rtl #wpadminbar #wp-admin-bar-menu-toggle a {
+        margin-right: convertPixelToEm(-1px);
+    }
+    .wp-responsive-open #wpadminbar #wp-admin-bar-menu-toggle a {
+        background: #2c3338;
+    }
+    li#wp-admin-bar-menu-toggle {
+        display: block;
+    }
+    #wpadminbar #wp-admin-bar-menu-toggle a:hover {
+        border: convertPixelToEm(1px) solid transparent;
+    }
+    #wpadminbar #wp-admin-bar-menu-toggle .ab-icon:before {
+        content: "\f228";
+        display: inline-block;
+        float: left;
+        font: normal convertPixelToEm(40px)/convertPixelToEm(45px) dashicons;
+        vertical-align: middle;
+        outline: none;
+        margin: 0;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        height: convertPixelToEm(44px);
+        width: convertPixelToEm(50px);
+        padding: 0;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        box-sizing: border-box;
+    }
+    .rtl #wpadminbar #wp-admin-bar-menu-toggle .ab-icon:before {
+        float: right;
+    }
+    .wp-responsive-open #wpadminbar #wp-admin-bar-menu-toggle .ab-icon:before {
+        color: #72aee6;
+    }
+    .ltr.wp-responsive-open #wpbody {
+        right: -16em;
+    }
+    .rtl.wp-responsive-open #wpbody {
+        left: -16em;
+    }
+}
+
+
+/* Smartphone */
+
+@media screen and (max-width: convertPixelToEm(600px)) {
+    #adminmenuwrap,
+    #adminmenuback {
+        display: none;
+    }
+    .wp-responsive-open #adminmenuwrap,
+    .wp-responsive-open #adminmenuback {
+        display: block;
+    }
+    .auto-fold #adminmenu {
+        top: convertPixelToEm(46px);
+    }
+}
+
+
+/* ******************************************************************************************** */
+
+
+/* -------------------------------- */
+
+.focus-on #adminmenuback,
+.focus-on #adminmenuwrap {
+    transform: translateX(-100%);
+    transition-duration: 0.6s;
+    transition-property: transform;
+    transition-timing-function: ease-in-out;
+}
+
+.rtl.focus-on #adminmenuback,
+.rtl.focus-on #adminmenuwrap {
+    transform: translateX(100%);
+}
+
+.focus-off #adminmenuback,
+.focus-off #adminmenuwrap {
+    transform: translateX(0);
+    transition-duration: 0.2s;
+    transition-property: transform;
+    transition-timing-function: ease-in-out;
+}
+
+
+/* ---------------todo-fix-this-wherre-to-place---------------- */
+
+#adminmenu a:focus {
+    outline: convertPixelToEm(1px) solid transparent;
+    outline-offset: convertPixelToEm(-1px);
+}
+
+#adminmenu .wp-submenu li.current,
+#adminmenu .wp-submenu li.current a,
+#adminmenu .wp-submenu li.current a:hover {
+    font-weight: 600;
+}
