@@ -20,6 +20,7 @@ export interface NgWpMenuItem {
 
 export interface NgWpMenu {
     menuName: string;
+    themeName?: 'blue' | 'coffee' | 'ectoplasm' | 'light' | 'midnight' | 'modern' | 'ocean' | 'sunrise';
     collapseLable: string;
     menuDirection?: 'rtl' | 'ltr';
     menuGroups: NgWpMenuItem[][];

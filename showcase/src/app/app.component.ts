@@ -9,11 +9,13 @@ import { NgWpMenu } from 'src/src/public-api';
 export class AppComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
-    document.body.classList.add('ng-wp-menu-normal-theme');
+    // document.body.classList.add('ng-wp-initial');
+    // document.body.classList.add('ng-wp-menu-normal-theme');
   }
 
   menuModelLtr: NgWpMenu = {
     'menuName': 'Primary Menu',
+    'themeName':'coffee',
     'collapseLable': 'Collapse menu',
     'menuDirection': 'ltr',
     'menuGroups':
@@ -248,6 +250,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   menuModelRtl: NgWpMenu = {
     'menuName': 'فهرست اصلی',
+    'themeName':'coffee',
     'collapseLable': 'جمع کردن فهرست',
     'menuDirection': 'rtl',
     'menuGroups':
@@ -485,13 +488,13 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   changeTheme(themeName: string) {
-    let clsItems = document.body.classList;
-    clsItems.forEach((item: string) => {
-      if (/^ng-wp-menu-([a-z]*?)-theme$/.test(item)) {
-        clsItems.add(themeName);
-        clsItems.remove(item);
-      }
-    });
+    // let clsItems = document.body.classList;
+    // clsItems.forEach((item: string) => {
+    //   if (/^ng-wp-menu-([a-z]*?)-theme$/.test(item)) {
+    //     clsItems.add(themeName);
+    //     clsItems.remove(item);
+    //   }
+    // });
   }
 
   onMenuToggle() {

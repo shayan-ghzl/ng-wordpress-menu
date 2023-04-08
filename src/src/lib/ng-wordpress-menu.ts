@@ -77,6 +77,8 @@ import { NgWpMenu } from './menu';
 })
 export class Menu implements OnInit, OnChanges {
 
+
+
   @Output() onMenuToggle = new EventEmitter();
   @Input() menu!: NgWpMenu;
 
@@ -112,6 +114,10 @@ export class Menu implements OnInit, OnChanges {
       }
     }
     document.body.classList.add('sticky-menu');
+
+    if (this.menu.themeName) {
+      this.changeTheme(this.menu.themeName);
+    }
   }
 
   ngOnInit(): void {
@@ -124,6 +130,30 @@ export class Menu implements OnInit, OnChanges {
   onResize() {
     clearTimeout(this.windowResizeTimeout);
     this.windowResizeTimeout = setTimeout(this.triggerEvent.bind(this), 200);
+  }
+
+
+
+  changeTheme(theme: string) {
+    const link  = document.createElement('link');
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = './assets/colors/' + theme + '/colors.min.css';
+    link.media = 'all';
+   
+
+    // const id = linkElement.getAttribute('id');
+    // const cloneLinkElement = linkElement.cloneNode(true);
+    // cloneLinkElement.setAttribute('href', linkElement.getAttribute('href').replace(this.config.theme, theme));
+    // cloneLinkElement.setAttribute('id', id + '-clone');
+    // linkElement.parentNode.insertBefore(cloneLinkElement, linkElement.nextSibling);
+
+    link.addEventListener('load', () => {
+      document.getElementById('theme-link')?.remove();
+      link.id   = 'theme-link';
+    });
+    document.head.appendChild(link);
+
   }
 
   toggleMenu() {

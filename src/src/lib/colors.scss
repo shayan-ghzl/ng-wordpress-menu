@@ -1,5 +1,4 @@
-$theme-colors: "default",
-"blue",
+$theme-colors: "blue",
 "coffee",
 "ectoplasm",
 "light",
@@ -16,7 +15,8 @@ $theme-colors: "default",
 // ng-wp-menu-modern-theme
 // ng-wp-menu-ocean-theme
 // ng-wp-menu-sunrise-theme
-// default theme
+// ng-wp-menu-default-theme
+// ng-wp-menu-initial-theme
 // default variable means the variable was previously undefined or null
 $scheme-name: "default" !default;
 $text-color: #fff !default;
@@ -164,12 +164,12 @@ $body-background: #f1f1f1 !default;
             color: $menu-highlight-icon;
         }
         /* Active tabs use a bottom border color that matches the page background color. */
-        .about-wrap .nav-tab-active,
-        .nav-tab-active,
-        .nav-tab-active:hover {
-            background-color: $body-background;
-            border-bottom-color: $body-background;
-        }
+        // .about-wrap .nav-tab-active,
+        // .nav-tab-active,
+        // .nav-tab-active:hover {
+        //     background-color: $body-background;
+        //     border-bottom-color: $body-background;
+        // }
         /* Admin Menu: submenu */
         #adminmenu .wp-submenu,
         #adminmenu .wp-has-current-submenu .wp-submenu,
@@ -177,12 +177,12 @@ $body-background: #f1f1f1 !default;
         #adminmenu a.wp-has-current-submenu:focus+.wp-submenu {
             background: $menu-submenu-background;
         }
-        .ltr #adminmenu li.wp-has-submenu.wp-not-current-submenu.opensub:hover:after,
-        .ltr #adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
+        &.ltr #adminmenu li.wp-has-submenu.wp-not-current-submenu.opensub:hover:after,
+        &.ltr #adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
             border-right-color: $menu-submenu-background;
         }
-        .rtl #adminmenu li.wp-has-submenu.wp-not-current-submenu.opensub:hover:after,
-        .rtl #adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
+        &.rtl #adminmenu li.wp-has-submenu.wp-not-current-submenu.opensub:hover:after,
+        &.rtl #adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
             border-left-color: $menu-submenu-background;
         }
         #adminmenu .wp-submenu .wp-submenu-head {
@@ -208,18 +208,18 @@ $body-background: #f1f1f1 !default;
                 color: $menu-submenu-focus-text;
             }
         }
-        .ltr ul#adminmenu a.wp-has-current-submenu:after,
-        .ltr ul#adminmenu>li.current>a.current:after {
+        &.ltr ul#adminmenu a.wp-has-current-submenu:after,
+        &.ltr ul#adminmenu>li.current>a.current:after {
             border-right-color: $body-background;
         }
-        .rtl ul#adminmenu a.wp-has-current-submenu:after,
-        .rtl ul#adminmenu>li.current>a.current:after {
+        &.rtl ul#adminmenu a.wp-has-current-submenu:after,
+        &.rtl ul#adminmenu>li.current>a.current:after {
             border-left-color: $body-background;
         }
         #adminmenu li.current a.menu-top,
         #adminmenu li.wp-has-current-submenu a.wp-has-current-submenu,
         #adminmenu li.wp-has-current-submenu .wp-submenu .wp-submenu-head,
-        .folded #adminmenu li.current.menu-top {
+        &.folded #adminmenu li.current.menu-top {
             color: $menu-current-text;
             background: $menu-current-background;
         }
