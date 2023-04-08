@@ -18,13 +18,13 @@ $theme-colors: "blue",
 // ng-wp-menu-default-theme
 // ng-wp-menu-initial-theme
 // default variable means the variable was previously undefined or null
-$scheme-name: "default" !default;
-$text-color: #fff !default;
-$base-color: #23282d !default;
-$icon-color: hsl(hue($base-color), 7%, 95%) !default;
-$highlight-color: #0073aa !default;
-$notification-color: #d54e21 !default;
-$body-background: #f1f1f1 !default;
+$scheme-name: "default";
+$text-color: #fff;
+$base-color: #23282d;
+$icon-color: hsl(hue($base-color), 7%, 95%);
+$highlight-color: #0073aa;
+$notification-color: #d54e21;
+$body-background: #f1f1f1;
 @each $color in $theme-colors {
     @if $color=="blue" {
         // blue theme
@@ -33,11 +33,11 @@ $body-background: #f1f1f1 !default;
         $icon-color: #e5f8ff;
         $highlight-color: #096484;
         $notification-color: #e1a948;
-        $button-color: #e1a948 !default;
-        $menu-submenu-text: #e2ecf1 !default;
-        $menu-submenu-focus-text: #fff !default;
-        $menu-submenu-background: #4796b3 !default;
-        $dashboard-icon-background: $highlight-color !default;
+        $button-color: #e1a948;
+        $menu-submenu-text: #e2ecf1;
+        $menu-submenu-focus-text: #fff;
+        $menu-submenu-background: #4796b3;
+        $dashboard-icon-background: $highlight-color;
     }
     @else if $color=="coffee" {
         // coffee theme
@@ -45,8 +45,8 @@ $body-background: #f1f1f1 !default;
         $base-color: #59524c;
         $highlight-color: #c7a589;
         $notification-color: #9ea476;
-        $low-contrast-theme: "true" !default;
-        $form-checked: $base-color !default;
+        $low-contrast-theme: "true";
+        $form-checked: $base-color;
     }
     @else if $color=="ectoplasm" {
         // ectoplasm theme
@@ -55,8 +55,8 @@ $body-background: #f1f1f1 !default;
         $icon-color: #ece6f6;
         $highlight-color: #a3b745;
         $notification-color: #d46f15;
-        $form-checked: $base-color !default;
-        $dashboard-accent-1: $base-color !default;
+        $form-checked: $base-color;
+        $dashboard-accent-1: $base-color;
     }
     @else if $color=="light" {
         // light theme
@@ -67,15 +67,15 @@ $body-background: #f1f1f1 !default;
         $highlight-color: #04a4cc;
         $notification-color: #d64e07;
         $body-background: #f5f5f5;
-        $menu-highlight-text: #fff !default;
-        $menu-highlight-icon: #ccc !default;
-        $menu-highlight-background: #888 !default;
-        $menu-bubble-text: #fff !default;
-        $menu-avatar-frame: #aaa !default;
-        $menu-submenu-background: #fff !default;
-        $menu-collapse-text: #777 !default;
-        $menu-collapse-focus-icon: #555 !default;
-        $dashboard-icon-background: $text-color !default;
+        $menu-highlight-text: #fff;
+        $menu-highlight-icon: #ccc;
+        $menu-highlight-background: #888;
+        $menu-bubble-text: #fff;
+        $menu-avatar-frame: #aaa;
+        $menu-submenu-background: #fff;
+        $menu-collapse-text: #777;
+        $menu-collapse-focus-icon: #555;
+        $dashboard-icon-background: $text-color;
     }
     @else if $color=="midnight" {
         // midnight theme
@@ -83,21 +83,21 @@ $body-background: #f1f1f1 !default;
         $base-color: #363b3f;
         $highlight-color: #e14d43;
         $notification-color: #69a8bb;
-        $dashboard-accent-1: $notification-color !default;
-        $dashboard-icon-background: $highlight-color !default;
+        $dashboard-accent-1: $notification-color;
+        $dashboard-icon-background: $highlight-color;
     }
     @else if $color=="modern" {
         // modern theme
         $scheme-name: "modern";
         $base-color: #1e1e1e;
         $highlight-color: #3858e9;
-        $menu-submenu-focus-text: #33f078 !default;
+        $menu-submenu-focus-text: #33f078;
         $notification-color: $highlight-color;
-        $link: $highlight-color !default;
-        $link-focus: darken($highlight-color, 10%) !default;
-        $dashboard-accent-1: #273fcc !default;
-        $dashboard-accent-2: #627eff !default;
-        $dashboard-icon-background: #1d2327 !default;
+        $link: $highlight-color;
+        $link-focus: darken($highlight-color, 10%);
+        $dashboard-accent-1: #273fcc;
+        $dashboard-accent-2: #627eff;
+        $dashboard-icon-background: #1d2327;
     }
     @else if $color=="ocean" {
         // ocean theme
@@ -106,8 +106,8 @@ $body-background: #f1f1f1 !default;
         $icon-color: #f2fcff;
         $highlight-color: #9ebaa0;
         $notification-color: #aa9d88;
-        $low-contrast-theme: "true" !default;
-        $form-checked: $base-color !default;
+        $low-contrast-theme: "true";
+        $form-checked: $base-color;
     }
     @else if $color=="sunrise" {
         // sunrise theme
@@ -115,29 +115,29 @@ $body-background: #f1f1f1 !default;
         $base-color: #cf4944;
         $highlight-color: #dd823b;
         $notification-color: #ccaf0b;
-        $menu-submenu-focus-text: lighten($highlight-color, 35%) !default;
+        $menu-submenu-focus-text: lighten($highlight-color, 35%);
     }
     // admin menu variables
-    $menu-text: $text-color !default;
-    $menu-icon: $icon-color !default;
-    $menu-background: $base-color !default;
+    $menu-text: $text-color;
+    $menu-icon: $icon-color;
+    $menu-background: $base-color;
     $menu-highlight-text: $text-color;
     $menu-highlight-icon: $text-color;
     $menu-highlight-background: $highlight-color;
-    $menu-current-text: $menu-highlight-text !default;
-    $menu-current-icon: $menu-highlight-icon !default;
-    $menu-current-background: $menu-highlight-background !default;
+    $menu-current-text: $menu-highlight-text;
+    $menu-current-icon: $menu-highlight-icon;
+    $menu-current-background: $menu-highlight-background;
     $menu-submenu-text: mix($base-color, $text-color, 30%);
     $menu-submenu-background: darken($base-color, 7%);
     $menu-submenu-focus-text: $highlight-color;
-    $menu-submenu-current-text: $text-color !default;
+    $menu-submenu-current-text: $text-color;
     $menu-bubble-text: $text-color;
-    $menu-bubble-background: $notification-color !default;
-    $menu-bubble-current-text: $text-color !default;
-    $menu-bubble-current-background: $menu-submenu-background !default;
+    $menu-bubble-background: $notification-color;
+    $menu-bubble-current-text: $text-color;
+    $menu-bubble-current-background: $menu-submenu-background;
     $menu-collapse-text: $menu-icon;
-    $menu-collapse-icon: $menu-icon !default;
-    $menu-collapse-focus-text: $text-color !default;
+    $menu-collapse-icon: $menu-icon;
+    $menu-collapse-focus-text: $text-color;
     $menu-collapse-focus-icon: $menu-highlight-icon;
     .ng-wp-menu-#{$color}-theme {
         /* Admin Menu */
@@ -154,13 +154,13 @@ $body-background: #f1f1f1 !default;
         }
         #adminmenu a:hover,
         #adminmenu li.menu-top:hover,
-        #adminmenu li.opensub>a.menu-top,
+        #adminmenu li.open-sub>a.menu-top,
         #adminmenu li>a.menu-top:focus {
             color: $menu-highlight-text;
             background-color: $menu-highlight-background;
         }
         #adminmenu li.menu-top:hover div.wp-menu-image:before,
-        #adminmenu li.opensub>a.menu-top div.wp-menu-image:before {
+        #adminmenu li.open-sub>a.menu-top div.wp-menu-image:before {
             color: $menu-highlight-icon;
         }
         /* Active tabs use a bottom border color that matches the page background color. */
@@ -173,15 +173,15 @@ $body-background: #f1f1f1 !default;
         /* Admin Menu: submenu */
         #adminmenu .wp-submenu,
         #adminmenu .wp-has-current-submenu .wp-submenu,
-        #adminmenu .wp-has-current-submenu.opensub .wp-submenu,
+        #adminmenu .wp-has-current-submenu.open-sub .wp-submenu,
         #adminmenu a.wp-has-current-submenu:focus+.wp-submenu {
             background: $menu-submenu-background;
         }
-        &.ltr #adminmenu li.wp-has-submenu.wp-not-current-submenu.opensub:hover:after,
+        &.ltr #adminmenu li.wp-has-submenu.wp-not-current-submenu.open-sub:hover:after,
         &.ltr #adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
             border-right-color: $menu-submenu-background;
         }
-        &.rtl #adminmenu li.wp-has-submenu.wp-not-current-submenu.opensub:hover:after,
+        &.rtl #adminmenu li.wp-has-submenu.wp-not-current-submenu.open-sub:hover:after,
         &.rtl #adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
             border-left-color: $menu-submenu-background;
         }
@@ -191,7 +191,7 @@ $body-background: #f1f1f1 !default;
         #adminmenu .wp-submenu a,
         #adminmenu .wp-has-current-submenu .wp-submenu a,
         #adminmenu a.wp-has-current-submenu:focus+.wp-submenu a,
-        #adminmenu .wp-has-current-submenu.opensub .wp-submenu a {
+        #adminmenu .wp-has-current-submenu.open-sub .wp-submenu a {
             color: $menu-submenu-text;
             &:focus,
             &:hover {
@@ -201,7 +201,7 @@ $body-background: #f1f1f1 !default;
         /* Admin Menu: current */
         #adminmenu .wp-submenu li.current a,
         #adminmenu a.wp-has-current-submenu:focus+.wp-submenu li.current a,
-        #adminmenu .wp-has-current-submenu.opensub .wp-submenu li.current a {
+        #adminmenu .wp-has-current-submenu.open-sub .wp-submenu li.current a {
             color: $menu-submenu-current-text;
             &:hover,
             &:focus {
@@ -227,10 +227,10 @@ $body-background: #f1f1f1 !default;
         #adminmenu a.current:hover div.wp-menu-image:before,
         #adminmenu li.current div.wp-menu-image:before,
         #adminmenu li.wp-has-current-submenu a:focus div.wp-menu-image:before,
-        #adminmenu li.wp-has-current-submenu.opensub div.wp-menu-image:before,
+        #adminmenu li.wp-has-current-submenu.open-sub div.wp-menu-image:before,
         #adminmenu li:hover div.wp-menu-image:before,
         #adminmenu li a:focus div.wp-menu-image:before,
-        #adminmenu li.opensub div.wp-menu-image:before {
+        #adminmenu li.open-sub div.wp-menu-image:before {
             color: $menu-current-icon;
         }
         /* Admin Menu: bubble */

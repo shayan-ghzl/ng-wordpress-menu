@@ -1016,7 +1016,7 @@ div {
 
 #adminmenu .wp-submenu a:hover,
 #adminmenu .wp-submenu a:focus {
-    background: none;
+    background: none !important;
 }
 
 #adminmenu a:hover,
@@ -1390,9 +1390,14 @@ ul#adminmenu>li.current>a.current:after {
     top: convertPixelToEm(18px);
 }
 
-#adminmenu li.wp-has-submenu.wp-not-current-submenu.open-sub:hover:after,
-#adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
+.ltr #adminmenu li.wp-has-submenu.wp-not-current-submenu.open-sub:hover:after,
+.ltr #adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
     border-right-color: #2c3338;
+}
+
+.rtl #adminmenu li.wp-has-submenu.wp-not-current-submenu.open-sub:hover:after,
+.rtl #adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
+    border-left-color: #2c3338;
 }
 
 #adminmenu li.menu-top:hover .wp-menu-image img,

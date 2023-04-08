@@ -73,7 +73,7 @@ import { NgWpMenu } from './menu';
 `,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['./dashicons.scss', './ng-wordpress-menu.scss']
+  styleUrls: ['./dashicons.scss', './ng-wordpress-menu.scss', './colors.scss']
 })
 export class Menu implements OnInit, OnChanges {
 
@@ -115,9 +115,9 @@ export class Menu implements OnInit, OnChanges {
     }
     document.body.classList.add('sticky-menu');
 
-    if (this.menu.themeName) {
-      this.changeTheme(this.menu.themeName);
-    }
+    // if (this.menu.themeName) {
+    //   this.changeTheme(this.menu.themeName);
+    // }
   }
 
   ngOnInit(): void {
@@ -141,7 +141,6 @@ export class Menu implements OnInit, OnChanges {
     link.href = './assets/colors/' + theme + '/colors.min.css';
     link.media = 'all';
    
-
     // const id = linkElement.getAttribute('id');
     // const cloneLinkElement = linkElement.cloneNode(true);
     // cloneLinkElement.setAttribute('href', linkElement.getAttribute('href').replace(this.config.theme, theme));
