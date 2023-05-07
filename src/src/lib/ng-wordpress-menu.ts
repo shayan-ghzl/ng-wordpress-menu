@@ -1,7 +1,34 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Input, NgModule, OnChanges, OnInit, Output, Renderer2, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NgWpMenu } from './menu';
+
+export interface NgWpMenuChild {
+  addClass?: string;
+  routerLink: string;
+  routerLinkActive?: string;
+  name: string;
+  badge?: string;
+}
+
+export interface NgWpMenuItem {
+  addClass?: string;
+  routerLink: string;
+  routerLinkActive?: string;
+  icon?: string;
+  badge?: string;
+  name: string;
+  isOpen: boolean;
+  isSelected: boolean;
+  children: NgWpMenuChild[];
+}
+
+export interface NgWpMenu {
+  menuName: string;
+  collapseLable: string;
+  menuGroups: NgWpMenuItem[][];
+}
+
+export type NgWpMenuTheme = 'blue' | 'coffee' | 'ectoplasm' | 'light' | 'midnight' | 'modern' | 'ocean' | 'sunrise' | 'default';
 
 @Component({
   selector: 'ng-wp-menu',
@@ -77,10 +104,10 @@ import { NgWpMenu } from './menu';
 })
 export class Menu implements OnInit, OnChanges {
 
-
-
   @Output() onMenuToggle = new EventEmitter();
   @Input() menu!: NgWpMenu;
+  @Input() theme: NgWpMenuTheme = 'default';
+  @Input() direction: 'ltr' | 'rtl' = 'ltr';
 
   constructor(
     private renderer: Renderer2
@@ -100,24 +127,20 @@ export class Menu implements OnInit, OnChanges {
     // document.body.classList.add('opensub');
   }
 
-  direction: 'ltr' | 'rtl' = 'ltr';
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['menu'].firstChange) {
-      this.direction = this.menu.menuDirection || this.direction;
-      document.body.classList.add(this.direction);
-    } else {
-      let currentDirection = this.menu.menuDirection || this.direction;
-      if (this.direction !== currentDirection) {
-        document.body.classList.add(currentDirection);
-        document.body.classList.remove(this.direction);
-        this.direction = currentDirection;
-      }
-    }
     document.body.classList.add('sticky-menu');
 
-    // if (this.menu.themeName) {
-    //   this.changeTheme(this.menu.themeName);
-    // }
+    if (this.direction === 'rtl') {
+      document.body.classList.add('rtl');
+      document.body.parentElement!.dir = 'rtl'
+      document.body.classList.remove('ltr');  
+    } else {
+      document.body.classList.add('ltr');
+      document.body.parentElement!.dir = 'ltr'
+      document.body.classList.remove('rtl');
+    }
+
+    this.changeThemeByClass(this.theme);
   }
 
   ngOnInit(): void {
@@ -132,27 +155,28 @@ export class Menu implements OnInit, OnChanges {
     this.windowResizeTimeout = setTimeout(this.triggerEvent.bind(this), 200);
   }
 
+  // changeTheme(theme: string) {
+  //   const link = document.createElement('link');
+  //   link.rel = 'stylesheet';
+  //   link.type = 'text/css';
+  //   link.href = './assets/colors/colors.min.css';
+  //   link.media = 'all';
 
+  //   link.addEventListener('load', () => {
+  //     document.getElementById('theme-link')?.remove();
+  //     link.id = 'theme-link';
+  //   });
+  //   document.head.appendChild(link);
+  // }
 
-  changeTheme(theme: string) {
-    const link  = document.createElement('link');
-    link.rel  = 'stylesheet';
-    link.type = 'text/css';
-    link.href = './assets/colors/' + theme + '/colors.min.css';
-    link.media = 'all';
-   
-    // const id = linkElement.getAttribute('id');
-    // const cloneLinkElement = linkElement.cloneNode(true);
-    // cloneLinkElement.setAttribute('href', linkElement.getAttribute('href').replace(this.config.theme, theme));
-    // cloneLinkElement.setAttribute('id', id + '-clone');
-    // linkElement.parentNode.insertBefore(cloneLinkElement, linkElement.nextSibling);
-
-    link.addEventListener('load', () => {
-      document.getElementById('theme-link')?.remove();
-      link.id   = 'theme-link';
+  changeThemeByClass(theme: string) {
+    let clsItems = document.body.classList;
+    clsItems.forEach((item: string) => {
+      if (/^ng-wp-menu-([a-z]*?)-theme$/.test(item)) {
+        clsItems.remove(item);
+      }
     });
-    document.head.appendChild(link);
-
+    clsItems.add('ng-wp-menu-' + theme + '-theme');
   }
 
   toggleMenu() {
@@ -173,7 +197,7 @@ export class Menu implements OnInit, OnChanges {
     if (!viewportWidth) {
       return;
     }
-
+    
     if (viewportWidth <= 782) {
       this.wpResponsiveActive = true;
       document.body.classList.add('auto-fold');

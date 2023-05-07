@@ -1,54 +1,58 @@
 <div id="wpwrap">
 
-  <ng-wp-menu [menu]="menuModelRtl" (onMenuToggle)="onMenuToggle()"></ng-wp-menu>
-  <div id="wpcontent">
+    <ng-wp-menu [menu]="menuModelLtr" [theme]="themeName" [direction]="menuDirection" (onMenuToggle)="onMenuToggle()"></ng-wp-menu>
+    <div id="wpcontent">
 
-    <!-- navbar place -->
-    <div id="wpadminbar">
-      <ul>
-        <li>
-          <a routerLink="/home" routerLinkActive="active">Home</a>
-        </li>
-        <li>
-          <a routerLink="/comments" routerLinkActive="active">Comments</a>
-        </li>
-        <li>
-          <a routerLink="/plugins" routerLinkActive="active">Plugins</a>
-        </li>
-        <li>
-          <a routerLink="/tools" routerLinkActive="active">Tools</a>
-        </li>
-        <li>
-          <a routerLink="/import" routerLinkActive="active">Import</a>
-        </li>
-      </ul>
-    </div>
-
-    <div id="wpbody" role="main">
-
-      <div id="body-content">
-        <div class="page-header">
-          <div class="entry-title">
-            <h1>Documents</h1>
-            <h3>Support rtl and ltr</h3>
-            <button type="button" (click)="changeTheme('ng-wp-menu-default-theme')">default theme</button>
-            <button type="button" (click)="changeTheme('ng-wp-menu-blue-theme')">blue theme</button>
-            <button type="button" (click)="changeTheme('ng-wp-menu-coffee-theme')">coffee theme</button>
-            <button type="button" (click)="changeTheme('ng-wp-menu-ectoplasm-theme')">ectoplasm theme</button>
-            <button type="button" (click)="changeTheme('ng-wp-menu-light-theme')">light theme</button>
-            <button type="button" (click)="changeTheme('ng-wp-menu-midnight-theme')">midnight theme</button>
-            <button type="button" (click)="changeTheme('ng-wp-menu-modern-theme')">modern theme</button>
-            <button type="button" (click)="changeTheme('ng-wp-menu-ocean-theme')">ocean theme</button>
-            <button type="button" (click)="changeTheme('ng-wp-menu-sunrise-theme')">sunrise theme</button>
-          </div>
+        <!-- navbar place -->
+        <div id="wpadminbar">
+            <ul>
+                <li>
+                    <a routerLink="/home" routerLinkActive="active">Home</a>
+                </li>
+                <li>
+                    <a routerLink="/comments" routerLinkActive="active">Comments</a>
+                </li>
+                <li>
+                    <a routerLink="/plugins" routerLinkActive="active">Plugins</a>
+                </li>
+                <li>
+                    <a routerLink="/tools" routerLinkActive="active">Tools</a>
+                </li>
+                <li>
+                    <a routerLink="/import" routerLinkActive="active">Import</a>
+                </li>
+            </ul>
         </div>
-        <router-outlet></router-outlet>
 
-      </div>
+        <div id="wpbody" role="main">
+
+            <div id="wpbody-content">
+                <h1>Documents</h1>
+                <hr>
+                <section>
+                    <h3>change Theme:</h3>
+                    <button type="button" (click)="changeTheme('default')">default theme</button>
+                    <button type="button" (click)="changeTheme('blue')">blue theme</button>
+                    <button type="button" (click)="changeTheme('coffee')">coffee theme</button>
+                    <button type="button" (click)="changeTheme('ectoplasm')">ectoplasm theme</button>
+                    <button type="button" (click)="changeTheme('light')">light theme</button>
+                    <button type="button" (click)="changeTheme('midnight')">midnight theme</button>
+                    <button type="button" (click)="changeTheme('modern')">modern theme</button>
+                    <button type="button" (click)="changeTheme('ocean')">ocean theme</button>
+                    <button type="button" (click)="changeTheme('sunrise')">sunrise theme</button>
+                </section>
+                <section>
+                    <h3>change Direction:</h3>
+                    <button type="button" (click)="changeDirection('ltr')">ltr direction</button>
+                    <button type="button" (click)="changeDirection('rtl')">rtl direction</button>
+                </section>
+                <router-outlet></router-outlet>
+
+            </div>
+
+        </div>
 
     </div>
-
-  </div>
 
 </div>
 
