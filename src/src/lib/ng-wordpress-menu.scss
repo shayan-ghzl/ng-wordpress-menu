@@ -8,9 +8,9 @@ $base-size: 14px; // Default
     @return #{math.div(strip-units($pixels), strip-units($context))}em;
 }
 
-ng-wp-menu,
 #wpwrap {
     font-size: $base_size;
+    overflow-x: hidden;
 }
 
 // ------------------------------
@@ -837,6 +837,9 @@ li#wp-admin-bar-menu-toggle {
 }
 
 @media screen and (max-width: 782px) {
+    #adminmenu *, #adminmenu {
+        -webkit-tap-highlight-color: transparent !important;
+    }
     .auto-fold #wpcontent {
         position: relative;
     }
