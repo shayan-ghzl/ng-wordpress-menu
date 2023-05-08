@@ -11,6 +11,7 @@ $base-size: 14px; // Default
 #wpwrap {
     font-size: $base_size;
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
 // ------------------------------
@@ -570,7 +571,7 @@ ul#adminmenu>li.current>a.current:after {
     display: inline-block;
     vertical-align: top;
     box-sizing: border-box;
-    margin: convertPixelToEm(1px, 11px) 0 convertPixelToEm(-1px, 11px) convertPixelToEm(2px, 11px);
+    margin: convertPixelToEm(1px, 11px) 0 convertPixelToEm(-1px, 11px) convertPixelToEm(6px, 11px);
     padding: 0 convertPixelToEm(5px, 11px);
     min-width: convertPixelToEm(18px, 11px);
     height: convertPixelToEm(18px, 11px);
@@ -658,7 +659,7 @@ ul#adminmenu>li.current>a.current:after {
     content: "\f148";
     display: block;
     position: relative;
-    top: convertPixelToEm(7px);
+    top: convertPixelToEm(7px, 20px);
     text-align: center;
     font: normal convertPixelToEm(20px) / 1 dashicons !important;
     speak: never;
@@ -845,11 +846,11 @@ li#wp-admin-bar-menu-toggle {
     }
     .ltr.auto-fold #wpcontent {
         margin-left: 0;
-        padding-left: convertPixelToEm(10px);
+        padding: convertPixelToEm(10px);
     }
     .rtl.auto-fold #wpcontent {
         margin-right: 0;
-        padding-right: convertPixelToEm(10px);
+        padding: convertPixelToEm(10px);
     }
     .sticky-menu #adminmenuwrap {
         position: relative;
@@ -1030,10 +1031,14 @@ li#wp-admin-bar-menu-toggle {
         color: #72aee6;
     }
     .ltr.wp-responsive-open #wpbody {
-        right: -16em;
+        // customized
+        // right: -16em;
+        right: -14em;
     }
     .rtl.wp-responsive-open #wpbody {
-        left: -16em;
+        // customized
+        // left: -16em;
+        left: -14em;
     }
 }
 

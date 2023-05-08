@@ -6,14 +6,14 @@ const rename = require('gulp-rename');
 // ----------------------------------------------
 const sass = gulpSass(dartSass);
 const themesDir = [
-    './src/src/lib/colors/blue/colors.scss',
-    './src/src/lib/colors/coffee/colors.scss',
-    './src/src/lib/colors/ectoplasm/colors.scss',
-    './src/src/lib/colors/light/colors.scss',
-    './src/src/lib/colors/midnight/colors.scss',
-    './src/src/lib/colors/modern/colors.scss',
-    './src/src/lib/colors/ocean/colors.scss',
-    './src/src/lib/colors/sunrise/colors.scss'
+    './src/assets/colors/blue/colors.scss',
+    './src/assets/colors/coffee/colors.scss',
+    './src/assets/colors/ectoplasm/colors.scss',
+    './src/assets/colors/light/colors.scss',
+    './src/assets/colors/midnight/colors.scss',
+    './src/assets/colors/modern/colors.scss',
+    './src/assets/colors/ocean/colors.scss',
+    './src/assets/colors/sunrise/colors.scss'
 ];
 gulp.task("sass", async function() {
     return gulp.src(themesDir)

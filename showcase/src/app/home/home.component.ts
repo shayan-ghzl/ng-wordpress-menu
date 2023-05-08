@@ -1,22 +1,18 @@
-## Download and install package
-
-```
-npm i ng-wordpress-menu
-```
-## Import
-
-```
-import { NgWordpressMenu } from 'ng-wordpress-menu';
-```
-## How to use
-
-```
 import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
+})
+export class HomeComponent {
+
+  angularExample = `import { Component } from '@angular/core';
 import { NgWpMenu, NgWpMenuTheme } from 'ng-wordpress-menu';
 
 @Component({
   selector: 'app-root',
-  template: `
+  template: \`
   <div id="wpwrap">
   <ng-wp-menu [menu]="menuModel" [theme]="themeName" [direction]="menuDirection" (onMenuToggle)="onMenuToggle()"></ng-wp-menu>
   <div id="wpcontent">
@@ -26,7 +22,7 @@ import { NgWpMenu, NgWpMenuTheme } from 'ng-wordpress-menu';
           </div>
       </div>
   </div>
-  </div>`
+  </div>\`
 })
 export class AppComponent {
   menuDirection:'ltr' | 'rtl' = 'ltr';
@@ -268,6 +264,5 @@ export class AppComponent {
         ],
       ],
   };
+}`;
 }
-
-```

@@ -1,0 +1,25 @@
+.icons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    svg {
+        box-sizing: border-box;
+        display: block;
+        width: 38px;
+        height: 38px;
+        fill: #2271b1;
+        cursor: pointer;
+        padding: 2px;
+        border: 1px solid #b7b7b7;
+
+        &:hover {
+            border-color: #000;
+        }
+
+        &.copied {
+            border-color: #198754;
+            border-width: 2px;
+        }
+    }
+}

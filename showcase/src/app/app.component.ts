@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { NgWpMenu } from 'src/src/public-api';
+import { NgWpMenu, NgWpMenuTheme } from 'ng-wordpress-menu';
 
 @Component({
   selector: 'app-root',
@@ -161,9 +160,9 @@ export class AppComponent {
             ]
           },
           {
-            "routerLink": "/tools",
+            "routerLink": "/icons",
             "icon": "dashicons-admin-tools",
-            "name": "Tools",
+            "name": "Icons",
             "isOpen": false,
             "isSelected": false,
             "children": [
@@ -394,7 +393,7 @@ export class AppComponent {
             ]
           },
           {
-            "routerLink": "/tools",
+            "routerLink": "/icons",
             "icon": "dashicons-admin-tools",
             "name": "ابزارها",
             "isOpen": false,
@@ -475,45 +474,22 @@ export class AppComponent {
       ],
   };
 
-  menuDirection:any = 'ltr';
-  themeName:any = 'default';
+  menuDirection:'ltr' | 'rtl' = 'ltr';
+  themeName:NgWpMenuTheme = 'default';
 
-  togglerHtml = `<button type="button" (click)="toggleMobileMenu()" class="mobile-menu-toggler">
-                    <span class="dashicons dashicons-menu-alt"></span>
-                  </button>`;
-
-  togglerCss = `{{
-                  .mobile-menu-toggler{
-                      display: none;
-                      cursor: pointer;
-                  }
-                  @media screen and (max-width: 782px) {
-                      .mobile-menu-toggler{
-                          display: block;
-                      }
-                  }
-                }}`;
-
-  togglerMethod = `toggleMobileMenu() {
-                      document.body.classList.toggle('wp-responsive-open');
-                    }`;
-
-  constructor(
-    private _snackBar: MatSnackBar,
-  ){}
-
+  
   changeTheme(value: any) {
     this.themeName = value;
   }
-
+  
   changeDirection(value: any) {
     this.menuDirection = value;
   }
-
+  
   onMenuToggle() {
     console.log('Menu Toggled');
   }
-  
+
   toggleMobileMenu() {
     document.body.classList.toggle('wp-responsive-open');
   }
@@ -522,28 +498,6 @@ export class AppComponent {
     if(!isNaN(+value)){
       document.getElementById('wpwrap')!.style.fontSize = value + 'px';
     }
-  }
-
-  target!: HTMLElement;
-  timeout: any;
-  copy(copyText: string, e: any) {
-    this.target?.classList.remove('copied');
-    this.target = e.currentTarget;
-    let target = e.currentTarget;
-    target.classList.add('copied');
-    this.openSnackBar('Text copied : ' + copyText);
-    clearTimeout(this.timeout);
-    this.timeout = setTimeout(() => {
-      target.classList.remove('copied');
-    }, 5000);
-  }
-
-  openSnackBar(message: string) {
-    this._snackBar.open(message, '', {
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom',
-      duration: 5000
-    });
   }
 
 }

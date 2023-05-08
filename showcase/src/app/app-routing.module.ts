@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TestRouteComponent } from './test-route/test-route.component';
+import { HomeComponent } from './home/home.component';
+import { IconsComponent } from './icons/icons.component';
+import { TogglerComponent } from './toggler/toggler.component';
 
 const routes: Routes = [
   {
     path: 'home',
-    component: TestRouteComponent,
+    component: HomeComponent,
     data: { pageTitle: 'home' }
   },
   {
@@ -65,7 +68,7 @@ const routes: Routes = [
   },
   {
     path: 'comments',
-    component: TestRouteComponent,
+    component: TogglerComponent,
     data: { pageTitle: 'comments' }
   },
   {
@@ -119,8 +122,8 @@ const routes: Routes = [
     data: { pageTitle: 'user-id' }
   },
   {
-    path: 'tools',
-    component: TestRouteComponent,
+    path: 'icons',
+    component: IconsComponent,
     data: { pageTitle: 'tools' }
   },
   {
